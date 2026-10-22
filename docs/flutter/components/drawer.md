@@ -32,7 +32,7 @@ class _DrawerBasicDemoState extends State<DrawerBasicDemo> {
             const DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
               child: Column(
-                justifyContent: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(radius: 24, child: Icon(Icons.person)),

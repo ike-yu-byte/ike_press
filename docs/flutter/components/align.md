@@ -56,12 +56,60 @@ class AlignCornerDemo extends StatelessWidget {
 }
 ```
 
-## 强制宽高比
+## 方向感知对齐
 
-`AspectRatio` 固定子宽高比。
+RTL 语言（阿拉伯语等）下 `Alignment.centerLeft` 仍贴物理左侧；要"跟随文字起始边"须用 `AlignmentDirectional.centerStart`。
 
 ```dart
-/// 示例: align-ratio —— 16:9
+/// 示例: align-text-direction —— Directionality 切换左右
+class AlignTextDirectionDemo extends StatelessWidget {
+  const AlignTextDirectionDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: SizedBox(
+              width: 220,
+              height: 70,
+              child: ColoredBox(
+                color: Colors.blue.shade50,
+                child: const Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text('LTR 贴左'),
+                ),
+              ),
+            ),
+          ),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: SizedBox(
+              width: 220,
+              height: 70,
+              child: ColoredBox(
+                color: Colors.orange.shade50,
+                child: const Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text('RTL 贴右'),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+## 强制宽高比
+
+```dart
+/// 示例: align-ratio —— 16:9 盒子
 class AlignRatioDemo extends StatelessWidget {
   const AlignRatioDemo({super.key});
 
@@ -84,10 +132,22 @@ class AlignRatioDemo extends StatelessWidget {
 
 | 属性 | 说明 |
 | --- | --- |
-| `child` | 被对齐的子 |
-| `alignment` | `Alignment` / `AlignmentDirectional` |
+| `alignment` | `Alignment` / `AlignmentDirectional` 常量 |
 | `widthFactor` / `heightFactor` | 自身尺寸 = 子尺寸 × 系数 |
+| `child` | 被定位的子 |
 
-::: tip RTL 用 AlignmentDirectional
-涉及从右到左语言时，用 `AlignmentDirectional.centerStart` 而非 `Alignment.centerLeft`，会随文字方向自动翻转。
+`AspectRatio`：
+
+| 属性 | 说明 |
+| --- | --- |
+| `aspectRatio` | 宽 / 高 比值 |
+
+## 易错点
+
+::: danger Align 不能裸放无界空间
+`Align` 默认尽量撑大，放进 Column 无约束时会报错；给它套 SizedBox 或在有界父级里使用。
+:::
+
+::: tip Alignment 与 AlignmentDirectional
+`Alignment.centerLeft` 是物理方位，`AlignmentDirectional.centerStart` 是逻辑方位（随 RTL 翻转）。国际化界面一律用后者。
 :::

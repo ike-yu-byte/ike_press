@@ -131,7 +131,7 @@ class _RadioEnumDemoState extends State<RadioEnumDemo> {
               onChanged: (v) => setState(() => _speed = v!),
             ),
           const SizedBox(height: 8),
-          Text('当前：$_speed.name'),
+          Text('当前：${_speed.name}'),
         ],
       ),
     );
