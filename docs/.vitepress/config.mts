@@ -73,6 +73,11 @@ export default defineConfig({
 
         socialLinks: [
           { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
+          {
+            icon: 'wechat',
+            link: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNTU1NDk5Mg%3D%3D&scene=305#wechat_redirect',
+            ariaLabel: '微信公众号',
+          },
         ],
 
         footer: {
@@ -121,6 +126,11 @@ export default defineConfig({
 
         socialLinks: [
           { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
+          {
+            icon: 'wechat',
+            link: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxNTU1NDk5Mg%3D%3D&scene=305#wechat_redirect',
+            ariaLabel: 'WeChat Official Account',
+          },
         ],
 
         footer: {
