@@ -14,7 +14,7 @@ npm install
 ## 本地开发
 
 ```bash
-npm run docs:dev
+npm run dev
 ```
 
 启动后访问 `http://localhost:5173`，修改 `docs/` 下的 Markdown 文件会即时热更新。
@@ -22,7 +22,7 @@ npm run docs:dev
 ## 构建静态站点
 
 ```bash
-npm run docs:build
+npm run build
 ```
 
 产物输出到 `docs/.vitepress/dist/`，是纯静态文件，可直接部署。
@@ -30,7 +30,7 @@ npm run docs:build
 ## 预览构建产物
 
 ```bash
-npm run docs:preview
+npm run preview
 ```
 
 ## 常用写法
