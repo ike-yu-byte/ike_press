@@ -3,18 +3,18 @@ layout: home
 
 hero:
   name: IKE Press
-  text: 静态文档站点
-  tagline: 基于 VitePress + Vue 3 构建，极速的开发体验
+  text: 一个程序员的碎碎念
+  tagline: 写代码，也写闲话。这里记录我踩过的坑、造过的轮子，和一些没什么用但很有趣的小东西。
   image:
     src: /favicon.png
     alt: IKE Press
   actions:
     - theme: brand
-      text: 快速开始
-      link: /guide/getting-started
-    - theme: alt
-      text: 指南
+      text: 随便逛逛
       link: /guide/
+    - theme: alt
+      text: 先搞明白这站怎么来的
+      link: /guide/getting-started
 
 features:
   - icon: ⚡️

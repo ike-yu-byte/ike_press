@@ -22,7 +22,7 @@ export default defineConfig({
           text: '入门',
           collapsed: false,
           items: [
-            { text: '介绍', link: '/guide/' },
+            { text: '介绍', link: '/guide/index' },
             { text: '快速开始', link: '/guide/getting-started' },
             { text: '目录结构', link: '/guide/project-structure' },
           ],
@@ -30,12 +30,12 @@ export default defineConfig({
       ],
     },
 
-    outline: { level: [2, 3], label: '本页目录' },
+    outline: { level: [2, 6], label: '本页目录' }, // h2-h6收录到右侧目录
 
     docFooter: { prev: '上一篇', next: '下一篇' },
     lastUpdatedText: '最后更新',
-    darkModeSwitchLabel: '外观',
-    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题', // 仅移动端可见
+    sidebarMenuLabel: '菜单', // 仅移动端可见
     returnToTopLabel: '返回顶部',
 
     search: {
