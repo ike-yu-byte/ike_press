@@ -5,7 +5,7 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Icon
 
-`Icon` renders a monochrome vector glyph. The Material Icons font set is built in and referenced through the `Icons` static constants.
+`Icon` renders a monochrome vector glyph. The <a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Material Icons</a> font set is built in and referenced through the `Icons` static constants.
 
 ## Basic icons
 
@@ -101,4 +101,6 @@ class IconButtonDemo extends StatelessWidget {
 
 ::: tip Finding icons
 Search at [fonts.google.com/icons](https://fonts.google.com/icons) -- one click copies the `Icons.xxx` name.
+
+Heads-up: the page defaults to the new **Material Symbols** set, while Flutter ships the old **Material Icons**. Outlined icons that carry a `_border` suffix in Flutter are the same-named icon in **Outlined** style under the new set -- e.g. `Icons.favorite_border` won't be found by that name; search `favorite` and pick Outlined in the Style panel, or switch the Style dropdown to "Material Icons (old)" to browse exactly what Flutter has.
 :::

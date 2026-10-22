@@ -5,7 +5,7 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Icon 图标
 
-`Icon` 渲染单色矢量图标，内置 Material Icons 字库，通过 `Icons` 静态常量引用。
+`Icon` 渲染单色矢量图标，内置 <a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Material Icons 字库</a>，通过 `Icons` 静态常量引用。
 
 ## 基础图标
 
@@ -101,4 +101,6 @@ class IconButtonDemo extends StatelessWidget {
 
 ::: tip 查找图标
 去 [fonts.google.com/icons](https://fonts.google.com/icons) 搜索，点一下即复制 `Icons.xxx` 名称。
+
+注意：该页默认展示的是新版 **Material Symbols**，而 Flutter 内置的是旧版 **Material Icons**。旧版带 `_border` 后缀的描边图标，在新版里是同名图标的 **Outlined** 样式——例如 `Icons.favorite_border` 直接搜不到，搜 `favorite` 再把左侧 Style 选为 Outlined 即可；也可把 Style 下拉切到 "Material Icons (old)" 浏览 Flutter 同款图标集。
 :::
