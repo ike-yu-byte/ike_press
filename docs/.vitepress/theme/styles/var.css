@@ -8,6 +8,19 @@
 } */
 
 /**
+ * 布局宽度：默认整站限宽 1440px 居中，超宽屏两侧留白严重
+ * 放宽到 1720px；若想完全铺满可改为 100%
+ */
+:root {
+  --vp-layout-max-width: 1720px;
+}
+
+/* 正文列默认硬编码 688px，同步放宽（!important 用于压过组件 scoped 样式） */
+.VPDoc.has-aside .content-container {
+  max-width: 880px !important;
+}
+
+/**
  * 首页 hero 图片背后的光晕背景（.image-bg 装饰层）
  * 原理：一个渐变圆 + 高斯模糊，叠在 logo 图片下方
  */
