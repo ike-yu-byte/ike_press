@@ -62,8 +62,8 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '基于 VitePress 构建',
-      copyright: 'Copyright © 2026 IKE Press',
+      message: '基于 MIT 许可发布',
+      copyright: 'Copyright © 2026 ike_yu <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" rel="noopener noreferrer">粤ICP备2026151960号-1</a>',
     },
   },
 })
