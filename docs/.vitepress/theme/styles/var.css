@@ -1,8 +1,23 @@
 /**
  * 品牌色覆盖：修改 --vp-c-brand-* 系列变量即可换主题色
  */
-:root {
+/* :root {
   --vp-c-brand-1: #d97706;
   --vp-c-brand-2: #f59e0b;
   --vp-c-brand-3: #fbbf24;
+} */
+
+/**
+ * 首页 hero 图片背后的光晕背景（.image-bg 装饰层）
+ * 原理：一个渐变圆 + 高斯模糊，叠在 logo 图片下方
+ */
+:root {
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
 }

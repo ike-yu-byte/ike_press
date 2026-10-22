@@ -10,7 +10,7 @@ ike_press/
    │     ├─ index.ts            # 自定义主题入口（扩展默认主题）
    │     └─ styles/var.css      # 品牌色等 CSS 变量覆盖
    ├─ public/                   # 静态资源，构建时原样拷贝到站点根目录
-   │  └─ favicon.svg
+   │  └─ favicon.png
    ├─ index.md                  # 站点首页（home 布局）
    └─ guide/                    # 指南章节
       ├─ index.md               # /guide/ 介绍

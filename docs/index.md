@@ -6,7 +6,7 @@ hero:
   text: 静态文档站点
   tagline: 基于 VitePress + Vue 3 构建，极速的开发体验
   image:
-    src: /favicon.svg
+    src: /favicon.png
     alt: IKE Press
   actions:
     - theme: brand

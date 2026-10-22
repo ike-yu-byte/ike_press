@@ -8,7 +8,7 @@ export default defineConfig({
   lastUpdated: true, // 启用最后更新时间
   cleanUrls: true, // 启用简洁 URL
 
-  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
+  head: [['link', { rel: 'icon', href: '/favicon.png' }]],
 
   themeConfig: {
     nav: [
