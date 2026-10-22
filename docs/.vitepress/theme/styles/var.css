@@ -21,6 +21,22 @@
 }
 
 /**
+ * Flutter 组件文档页（frontmatter: pageClass: flutter-doc）：
+ * 加宽右栏以容纳预览面板，选择器特异性高于组件 scoped 样式
+ */
+.flutter-doc .VPDoc .aside {
+  max-width: 380px;
+}
+
+.flutter-doc .VPDoc .aside-container {
+  width: 360px;
+}
+
+.flutter-doc .VPDoc .aside-curtain {
+  width: 360px;
+}
+
+/**
  * 首页 hero 图片背后的光晕背景（.image-bg 装饰层）
  * 原理：一个渐变圆 + 高斯模糊，叠在 logo 图片下方
  */

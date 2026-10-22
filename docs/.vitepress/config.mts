@@ -37,11 +37,49 @@ export default defineConfig({
 
           '/flutter/': [
             {
-              text: 'Flutter',
+              text: '开始',
               collapsed: false,
               items: [
                 { text: '分区首页', link: '/flutter/index' },
-                // 以后每写一篇 Flutter 笔记，在这里加一行即可
+              ],
+            },
+            {
+              text: '基础',
+              collapsed: false,
+              items: [
+                { text: 'Button 按钮', link: '/flutter/components/button' },
+                { text: 'Divider 分割线' },
+                { text: 'Typography 文本' },
+                { text: 'Icon 图标' },
+              ],
+            },
+            {
+              text: '表单',
+              collapsed: false,
+              items: [
+                { text: 'Input 输入框' },
+                { text: 'Textarea 多行输入框' },
+                { text: 'Checkbox 多选框' },
+                { text: 'Radio 单选框' },
+                { text: 'Switch 开关' },
+                { text: 'Stepper 步进器' },
+              ],
+            },
+            {
+              text: '导航',
+              collapsed: false,
+              items: [
+                { text: 'Tabs 选项卡' },
+                { text: 'Backtop 返回顶部' },
+                { text: 'Fab 悬浮按钮' },
+              ],
+            },
+            {
+              text: '消息提醒',
+              collapsed: false,
+              items: [
+                { text: 'Dialog 对话框' },
+                { text: 'Toast 轻反馈' },
               ],
             },
           ],
