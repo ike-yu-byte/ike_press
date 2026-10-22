@@ -17,9 +17,14 @@ hero:
       link: /guide/getting-started
 
 features:
-  - icon: ⚡️
-    title: Vite 驱动
-    details: 基于 Vite 的即时热更新，Markdown 保存即生效，构建速度极快。
+  - icon:
+      src: /flutter.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Flutter
+    details: Flutter 跨端开发学习笔记，从 Dart 语言到上架一款完整 App。
+    link: /flutter/
   - icon: 🖖
     title: Vue 组件支持
     details: 可在 Markdown 中直接使用 Vue 组件，也可以使用全局组件和布局插槽。

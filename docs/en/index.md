@@ -17,9 +17,14 @@ hero:
       link: /en/guide/getting-started
 
 features:
-  - icon: ⚡️
-    title: Powered by Vite
-    details: Instant hot module replacement — save a Markdown file and see it live, with blazing-fast builds.
+  - icon:
+      src: /flutter.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Flutter
+    details: Cross-platform notes with Flutter — from the Dart language to shipping a complete app.
+    link: /en/flutter/
   - icon: 🖖
     title: Vue Components
     details: Use Vue components directly in Markdown, plus global components and layout slots.

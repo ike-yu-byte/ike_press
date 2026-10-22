@@ -18,6 +18,7 @@ export default defineConfig({
         nav: [
           { text: '首页', link: '/' },
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
+          { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
         ],
 
         sidebar: {
@@ -29,6 +30,17 @@ export default defineConfig({
                 { text: '介绍', link: '/guide/index' },
                 { text: '快速开始', link: '/guide/getting-started' },
                 { text: '目录结构', link: '/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/flutter/': [
+            {
+              text: 'Flutter',
+              collapsed: false,
+              items: [
+                { text: '分区首页', link: '/flutter/index' },
+                // 以后每写一篇 Flutter 笔记，在这里加一行即可
               ],
             },
           ],
@@ -98,6 +110,7 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/en/' },
           { text: 'Guide', link: '/en/guide/', activeMatch: '/en/guide/' },
+          { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
         ],
 
         sidebar: {
@@ -109,6 +122,17 @@ export default defineConfig({
                 { text: 'Introduction', link: '/en/guide/index' },
                 { text: 'Quick Start', link: '/en/guide/getting-started' },
                 { text: 'Project Structure', link: '/en/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/en/flutter/': [
+            {
+              text: 'Flutter',
+              collapsed: false,
+              items: [
+                { text: 'Section Home', link: '/en/flutter/index' },
+                // Add a line here for every Flutter article written
               ],
             },
           ],
