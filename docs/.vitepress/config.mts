@@ -5,8 +5,8 @@ export default defineConfig({
   title: 'IKE Press',
   description: '基于 VitePress 搭建的静态文档站点',
 
-  lastUpdated: true,
-  cleanUrls: true,
+  lastUpdated: true, // 启用最后更新时间
+  cleanUrls: true, // 启用简洁 URL
 
   head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
 
@@ -58,7 +58,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com' },
+      { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
     ],
 
     footer: {
