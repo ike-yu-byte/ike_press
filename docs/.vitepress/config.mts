@@ -36,7 +36,7 @@ export default defineConfig({
     lastUpdatedText: '最后更新',
     darkModeSwitchLabel: '主题', // 仅移动端可见
     sidebarMenuLabel: '菜单', // 仅移动端可见
-    returnToTopLabel: '返回顶部',
+    returnToTopLabel: '返回顶部', // 仅移动端可见
 
     search: {
       provider: 'local',
@@ -50,13 +50,17 @@ export default defineConfig({
             noResultsText: '无法找到相关结果',
             footer: {
               selectText: '选择',
-              enterText: '跳转',
+              selectKeyAriaLabel: '回车键',
+              navigateText: '切换',
+              navigateUpKeyAriaLabel: '上箭头',
+              navigateDownKeyAriaLabel: '下箭头',
+              closeText: '关闭',
+              closeKeyAriaLabel: 'Esc 键',
             },
           },
         },
       },
     },
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
     ],
