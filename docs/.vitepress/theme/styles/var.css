@@ -1,0 +1,8 @@
+/**
+ * 品牌色覆盖：修改 --vp-c-brand-* 系列变量即可换主题色
+ */
+:root {
+  --vp-c-brand-1: #d97706;
+  --vp-c-brand-2: #f59e0b;
+  --vp-c-brand-3: #fbbf24;
+}
