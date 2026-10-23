@@ -695,25 +695,40 @@ Future<void> useIt() async {
 void main() {
   // Records: lightweight typed tuples/structs, ≈ JS { x, y } but with types
   (int, String) pair = (1, 'one');                       // positional fields
-  ({required int id, String? name}) user = (id: 7, name: 'xyz'); // named fields ≈ typed object literal
+  // Named fields: inside the braces are "type + name" declarations, pinning down which named fields
+  // this record must have and their types. Named fields are optional by default — required forces them at
+  // assignment; a field's type must be nullable (?) to be omittable as null.
+  // The shape is fixed at compile time, no adding/removing keys — ≈ a TS object type, not a plain JS object
+  ({required int id, String? name}) user = (id: 7, name: 'xyz');
   print('${pair.$1} ${user.id}');
 
   // Pattern matching: if-case / switch expressions ≈ destructuring + discriminated-union narrowing
-  if (pair case (final n, _) when n > 0) {
-    print('positive: $n');
+  // pair is the record above: (1, 'one')
+  if (pair case (final n, _) when n > 0) {   // after case comes a "shape": the block runs only if it matches
+    // (final n, _): bind the 1st positional value to a new variable n (final is optional, just clearer); _ is a wildcard — matched but unused
+    // when n > 0: a guard — the shape must match AND this condition must hold. Order matters: shape first → n exists → then the guard runs; if the shape doesn't match, the guard never executes
+    // whole line ≈ JS: const [n] = pair; if (n > 0) { … }
+    print('positive: $n');                   // positive: 1
   }
 
   // sealed classes: exhaustible discriminated unions — the compiler checks branch coverage
-  var shape = Circle(2.0);
+  // Circle / Rectangle are defined at the bottom of this block — Dart classes can be used before they're declared (no TDZ), like JS function declarations, unlike JS classes
+  Shape shape = Circle(2.0);                             // explicitly typed as Shape (var would infer Circle, leaving only one branch to be exhaustive)
+  // Branches are chosen by shape's runtime type (≈ instanceof checks centralised), with automatic narrowing and field destructuring:
+  // Circle(radius: final r): matches if it's a Circle, and binds the radius field to r — no casts needed
   var area = switch (shape) {
     Circle(radius: final r) => 3.14159 * r * r,
-    Rectangle() => 1.0, // illustration
-  };
+    Rectangle() => 1.0,                                  // the non-destructuring form: empty parens only check the type, fields stay accessed via the narrowed shape;
+                                                          //   to destructure instead: Rectangle(width: final w, height: final h) => w * h
+  };                          // exhaustiveness: missing any subtype is a compile error, so no default needed
   print(area);
 }
 
-class Circle { final double radius; const Circle(this.radius); }
-class Rectangle { const Rectangle(); }
+// sealed: locks the subtype list, which is what lets switch prove exhaustiveness
+sealed class Shape
+// ↑ the two classes used by main above — Dart doesn't require declaration before use; any position in the file works
+class Circle extends Shape { final double radius; const Circle(this.radius); }
+class Rectangle extends Shape { const Rectangle(); }
 ```
 
 ## JS → Dart quick-reference table

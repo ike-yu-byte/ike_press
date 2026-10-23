@@ -696,25 +696,39 @@ Future<void> useIt() async {
 void main() {
   // Record：轻量元组/匿名结构，≈ JS 的 { x, y } 字面量但带类型
   (int, String) pair = (1, 'one');          // 位置字段
-  ({required int id, String? name}) user = (id: 7, name: 'xyz'); // 命名字段，≈ TS 对象字面量
+  // 命名字段：花括号内是“类型 + 字段名”声明，限定这个 record 必须有哪些具名字段、各自什么类型。
+  // 命名字段默认是可选的，required 表示赋值时必须给；字段类型带 ? 才可缺省为 null。
+  // 形状编译期定死、不可增删键，所以 ≈ TS 对象字面量类型而非 JS 普通对象
+  ({required int id, String? name}) user = (id: 7, name: 'xyz');
   print('${pair.$1} ${user.id}');
 
   // 模式匹配：if-case / switch 表达式，≈ 更强大的解构 + 判别联合收窄
-  if (pair case (final n, _) when n > 0) {
-    print('positive: $n');
+  // pair 是上面那个 record：(1, 'one')
+  if (pair case (final n, _) when n > 0) {   // case 后面是“形状”：套上了才进块
+    // (final n, _)：第 1 个位置的值绑定到新变量 n（final 可省，写上更明确）；_ 是通配符，匹配但不取用
+    // when n > 0：守卫，形状套上后额外条件为真才算匹配。注意先后顺序：先套形状→n 存在了→才检查守卫；形状不匹配时守卫根本不执行
+    // 整句 ≈ JS：const [n] = pair; if (n > 0) { … }
+    print('positive: $n');                   // positive: 1
   }
 
   // sealed class：可穷尽的"判别联合"，≈ TS discriminated union，编译器帮你查分支覆盖
-  var shape = Circle(2.0);
+  // Circle / Rectangle 定义在本块最底部——Dart 里类可先用后定义（无 TDZ），≈ JS 的 function 声明、不同于 JS 的 class
+  Shape shape = Circle(2.0);                             // 显式标 Shape 类型（写 var 会被推断成 Circle，穷尽检查就只剩一个分支了）
+  // 按 shape 的运行时类型选分支（≈ instanceof 判断集中处），并自动收窄、解构字段：
+  // Circle(radius: final r)：是 Circle 就匹配，顺带把 radius 字段绑定给 r，不用再强转
   var area = switch (shape) {
     Circle(radius: final r) => 3.14159 * r * r,
-    Rectangle() => shape.width * shape.height, // 示意
-  };
+    Rectangle() => shape.width * shape.height, // 不解构的写法：空括号只判类型，字段靠收窄后的 shape 访问；
+                                               //   要解构可写 Rectangle(width: final w, height: final h) => w * h
+  };                                           // 穷尽检查：漏掉任一子类型都编译报错，所以无需 default 分支
   print(area);
 }
 
-class Circle { final double radius; const Circle(this.radius); }
-class Rectangle { final double width = 1, height = 1; const Rectangle(); }
+// sealed：限定“子类名单写死”，配合 switch 才能做穷尽检查
+sealed class Shape
+// ↑ 上方 main 里用到的两个类在这里——Dart 不要求定义在使用之前，放文件任意位置均可
+class Circle extends Shape { final double radius; const Circle(this.radius); }
+class Rectangle extends Shape { final double width = 1, height = 1; const Rectangle(); }
 ```
 
 ## JS → Dart 语法速查表
