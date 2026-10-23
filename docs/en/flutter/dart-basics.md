@@ -144,9 +144,10 @@ void main() {
   var nums = [1, 2, 3];               // literal, inferred List<int>
   List<String> names = ['a', 'b'];    // explicit generic, ≈ TS Array<string>
 
-  nums.add(4);
-  nums.insert(0, 0);
-  nums.remove(2);
+  nums.add(4);                  // append to the end, ≈ push
+  nums.insert(0, 0);            // insert at an index, ≈ splice(0, 0, 0)
+  nums.remove(2);               // removes the first element equal to the value 2 — by value, not by index! use removeAt(i) for that
+  nums.removeLast();            // remove & return the last item, ≈ pop (there is no method literally named pop); also removeFirst(), or peek via last / first properties
   print(nums.length);                 // a property, not a method — and it's spelled .length here too
   print(nums[0]);
   print(nums.sublist(1, 3));          // ≈ slice
@@ -158,7 +159,7 @@ void main() {
   var frozen = const [1, 2, 3];       // compile-time immutable list, stricter than Object.freeze
   // frozen.add(4);                   // ❌ UnsupportedError
 
-  var empty = List<String>.empty();
+  var empty = List<String>.empty();     // immutable empty list, ≈ Object.freeze([]); for a growable one just write <String>[]
   var filled = List.filled(3, 0);     // [0, 0, 0]
   var generated = List.generate(3, (i) => i * i); // [0, 1, 4]
 }
@@ -170,6 +171,7 @@ In Dart, a string-keyed dictionary is not an `{}` object literal but an explicit
 
 ```dart
 void main() {
+  // var user = {'name': 'Alice', 'age': 20} would infer Map<String, Object> — the common supertype of the mixed value types
   Map<String, dynamic> user = {'name': 'Alice', 'age': 20, 'vip': true}; // mixed values → dynamic
 
   user['name'];                 // read; missing key yields null (like JS obj['x'])
@@ -188,10 +190,14 @@ void main() {
 
 ```dart
 void main() {
-  var tags = <String>{'a', 'b', 'a'}; // explicit element type keeps it a Set
-  print(tags.length);                  // 2, auto-deduplicated
-  tags.addAll({4, 5});
-  print(tags.intersection({1, 4}.toSet())); // set intersection; JS needs a hand-rolled filter
+  var tags = <String>{'a', 'b', 'a'};  // Set literal: angle brackets declare the element type, duplicates auto-removed
+  print(tags.length);                   // 2 — 'a' kept once
+
+  tags.addAll({'a', 'c'});              // add many at once, existing elements stay unique: now {a, b, c}
+  print(tags.intersection({'a', 'c'})); // {a, c} — shared elements; JS has no native method, hand-roll [...a].filter(x => b.has(x))
+  print(tags.union({'d'}));             // union {a, b, c, d}, ≈ new Set([...a, ...b])
+  print(tags.difference({'a'}));        // difference {b, c}: in tags but not in the argument
+  print(tags.contains('b'));            // ≈ Set.has
 }
 ```
 
@@ -206,8 +212,12 @@ void main() {
 
   var config = {
     'theme': 'dark',
-    if (showBanner) 'banner': 'welcome',   // conditional entry
-    for (final e in errors) e: true,       // looped entry
+    // Conditional entry: 'banner': 'welcome' goes into the Map only when showBanner is true;
+    // when false the key doesn't exist at all (not null — the key is simply absent).
+    // Equivalent to: build the Map, then if (showBanner) config['banner'] = 'welcome'
+    if (showBanner) 'banner': 'welcome',
+    // Looped entry: iterates errors, each element e expands to one pair e: true → 'e1': true, 'e2': true
+    for (final e in errors) e: true,
   };
   print(config); // {theme: dark, banner: welcome, e1: true, e2: true}
 }
@@ -229,14 +239,14 @@ var toDouble = (int n) => n * 2.0;       // functions are first-class values, li
 Dart has no "pass fewer args and get undefined"; arity is checked at compile time. The two flavors **cannot be mixed**:
 
 ```dart
-// ① positional optional []: optional in order
+// 1) positional optional []: optional in order
 String join(String a, [String sep = '-', String? b]) =>
     b == null ? a : '$a$sep$b';
 join('x');          // 'x'
 join('x', '_');     // '_' as sep, b still null
 join('x', '_', 'y');
 
-// ② named parameters {}: like a JS options object, but names/types are validated
+// 2) named parameters {}: like a JS options object, but names/types are validated
 void createServer({int port = 8080, bool https = false, required String host}) {
   print('$host:$port https=$https');
 }
@@ -248,6 +258,13 @@ createServer(host: '0.0.0.0', port: 443, https: true); // order-free
 Flutter source is full of **named parameters** — `Padding(padding: ..., child: ...)` is exactly this mechanism; `required` makes mandatory fields explicit at every call site, far more readable than JS positional arguments.
 
 ### Closures and higher-order functions
+
+Both concepts rest on one premise: **functions are first-class citizens** — they can be stored in variables, put in collections, passed as arguments, and returned from functions, just like numbers and strings.
+
+- **Closure**: a function bundled with the external local variables it captures. After the outer function returns, its locals would normally be destroyed — but as long as an inner function still references them, they stay alive. Each closure holds its own independent copy. This behaves exactly like JS closures; the `makeCounter` example below ports to JS verbatim.
+- **Higher-order function**: a function that takes or returns another function. You've used them forever — in JS's `arr.map(x => x * 2)`, `map` is the higher-order function and the callback is the argument. Dart's collection ops, async callbacks, and Flutter event handlers all follow this pattern.
+
+In Flutter the two are everywhere: `onPressed: () => setState(...)` is a closure callback capturing the widget's state; `ListView.builder(itemBuilder: (context, i) => ...)` is a higher-order function taking a builder as a parameter — understand closures and you've understood Flutter's entire callback system.
 
 ```dart
 void main() {
@@ -272,10 +289,10 @@ void main() {
 
 ```dart
 void main() {
-  // ① Conditions must be real bools: if (0) / if ('') compile in JS, fail in Dart
+  // 1) Conditions must be real bools: if (0) / if ('') compile in JS, fail in Dart
   // if (0) {}   // ❌ no falsiness! Check explicitly: list.isEmpty, s == null
 
-  // ② switch cases no longer fall through; each case breaks automatically
+  // 2) switch cases no longer fall through; each case breaks automatically
   var command = 'quit';
   switch (command) {
     case 'start':
@@ -286,15 +303,19 @@ void main() {
       print('unknown');
   }
 
-  // ③ Since Dart 3, switch is an expression with pattern destructuring:
+  // 3) Since Dart 3, switch is an *expression*: it produces a value you can assign, and each branch reads "pattern => result".
+  //    The value being matched, (404, 'not found'), is a Record (tuple): slot 1 is the status code, slot 2 the message
   var status = switch ((404, 'not found')) {
+    // Pattern 1: slot 1 must equal 200; _ is the wildcard, accepting any value in slot 2
     (200, _) => 'ok',
+    // Pattern 2: slot 1 falls in the 400-499 range (range pattern); final msg binds slot 2 to a variable for interpolation
     (>= 400 && < 500, final msg) => 'client error: $msg',
+    // Pattern 3: _ is the catch-all, like default — reached only when nothing above matches
     _ => 'other',
   };
-  print(status); // client error: not found
+  print(status); // (404, 'not found') matches pattern 2 → client error: not found
 
-  // ④ for-in iterates iterables ≈ JS for...of (there is no for...in)
+  // 4) for-in iterates iterables ≈ JS for...of (there is no for...in)
   for (final item in [1, 2, 3]) {
     print(item);
   }
@@ -481,10 +502,10 @@ Dart runs its event loop on one thread; **CPU-heavy work blocks the UI** — the
 
 ```dart
 // Three import path flavors:
-import 'dart:core';                          // ① SDK libraries (collections, async, math…), explicit unlike browser globals
-import 'package:http/http.dart';             // ② third-party packages, ≈ npm imports
+import 'dart:core';                          // 1) SDK libraries (collections, async, math…), explicit unlike browser globals
+import 'package:http/http.dart';             // 2) third-party packages, ≈ npm imports
 import 'package:http/http.dart' as http;     //    namespace import, ≈ import * as http from 'http'
-import './utils/string_util.dart';           // ③ relative path, ES-module style (within the same package)
+import './utils/string_util.dart';           // 3) relative path, ES-module style (within the same package)
 
 // Import a subset of symbols:
 import 'dart:math' show Random, pi;          // ≈ import { Random, pi }

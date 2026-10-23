@@ -144,9 +144,10 @@ void main() {
   var nums = [1, 2, 3];               // 字面量创建，推断为 List<int>
   List<String> names = ['a', 'b'];    // 显式泛型，≈ TS 的 Array<string>
 
-  nums.add(4);
-  nums.insert(0, 0);
-  nums.remove(2);
+  nums.add(4);                  // 尾部追加，≈ push
+  nums.insert(0, 0);            // 指定位置插入，≈ splice(0, 0, 0)
+  nums.remove(2);               // 按“值”删除第一个等于 2 的元素，不是按索引！按索引删用 removeAt(i)
+  nums.removeLast();            // 移除并返回末尾元素，≈ pop（Dart 没有叫 pop 的方法）；另有 removeFirst()，只看用 last / first 属性
   print(nums.length);                 // 是属性不是方法！JS 的 .length 在这里也写作 .length（Dart 属性语法）
   print(nums[0]);
   print(nums.sublist(1, 3));          // ≈ slice
@@ -158,7 +159,7 @@ void main() {
   var frozen = const [1, 2, 3];       // 编译期不可变列表，≈ Object.freeze 但更严格
   // frozen.add(4);                   // ❌ UnsupportedError
 
-  var empty = List<String>.empty();
+  var empty = List<String>.empty();     // 不可变空列表，≈ Object.freeze([])；要可变空列表直接写 <String>[]
   var filled = List.filled(3, 0);     // [0, 0, 0]
   var generated = List.generate(3, (i) => i * i); // [0, 1, 4]
 }
@@ -170,16 +171,16 @@ Dart 里"字符串键的字典"不是 `{}` 对象字面量，而是显式的 Map
 
 ```dart
 void main() {
-  var user = {'name': 'Alice', 'age': 20};   // 推断为 Map<String, int>? 不，是 Map<String, Object>
-  Map<String, dynamic> user2 = {'name': 'Alice', 'age': 20, 'vip': true}; // 混合值常用 dynamic
+  // 若写 var user = {'name': 'Alice', 'age': 20}：值有 String 有 int，会按公共父类型推断为 Map<String, Object>
+  Map<String, dynamic> user = {'name': 'Alice', 'age': 20, 'vip': true}; // 混合值常用 dynamic
 
-  user2['name'];                 // 取值，键不存在得 null（同 JS obj['x']）
-  user2['email'] ??= 'a@b.c';    // 不存在才赋默认值——JS 没有直接语法
-  user2.remove('age');
-  user2.containsKey('vip');
-  user2.forEach((k, v) => print('$k: $v'));
-  print(user2.entries.map((e) => '${e.key}=${e.value}').toList()); // ≈ Object.entries().map()
-  print({...user2, 'city': 'NY'}); // 展开合并，≈ { ...obj1, city: 'NY' }
+  user['name'];                 // 取值，键不存在得 null（同 JS obj['x']）
+  user['email'] ??= 'a@b.c';    // 不存在才赋默认值——JS 没有直接语法
+  user.remove('age');
+  user.containsKey('vip');
+  user.forEach((k, v) => print('$k: $v'));
+  print(user.entries.map((e) => '${e.key}=${e.value}').toList()); // ≈ Object.entries().map()
+  print({...user, 'city': 'NY'}); // 展开合并，≈ { ...obj1, city: 'NY' }
 }
 ```
 
@@ -188,10 +189,16 @@ void main() {
 ### Set ≈ Set
 
 ```dart
-var tags = {'a', 'b', 'a'};      // 字面量默认就是 Set 当元素类型推断冲突时；{1,2,3} 是 Set<int>
-print(tags.length);              // 2，自动去重
-tags.addAll({4, 5});
-print(tags.intersection({1, 4}.toSet())); // 交集，JS 需手写 filter
+void main() {
+  var tags = <String>{'a', 'b', 'a'};  // Set 字面量：尖括号声明元素类型，重复元素自动去重
+  print(tags.length);                   // 2，'a' 只保留一份
+
+  tags.addAll({'a', 'c'});              // 批量加入多个元素，已存在的不会重复：现在是 {a, b, c}
+  print(tags.intersection({'a', 'c'})); // 交集 {a, c}：取两个集合的公共元素；JS 没有原生方法，需手写 [...a].filter(x => b.has(x))
+  print(tags.union({'d'}));             // 并集 {a, b, c, d}，≈ new Set([...a, ...b])
+  print(tags.difference({'a'}));        // 差集 {b, c}：在 tags 中但不在参数中的元素
+  print(tags.contains('b'));            // ≈ Set.has
+}
 ```
 
 ### 集合字面量里的 if / for
@@ -205,8 +212,12 @@ void main() {
 
   var config = {
     'theme': 'dark',
-    if (showBanner) 'banner': 'welcome',   // 条件项
-    for (final e in errors) e: true,       // 循环展开项
+    // 条件条目：showBanner 为 true 才把 'banner': 'welcome' 放进 Map；
+    // 为 false 时这个键压根不存在（不是 null，是没这个键）。
+    // 等价于：先建 Map 再 if (showBanner) config['banner'] = 'welcome'
+    if (showBanner) 'banner': 'welcome',
+    // 循环条目：遍历 errors，每个元素 e 展开为一对键值 e: true → 'e1': true, 'e2': true
+    for (final e in errors) e: true,
   };
   print(config); // {theme: dark, banner: welcome, e1: true, e2: true}
 }
@@ -228,14 +239,14 @@ var toDouble = (int n) => n * 2.0;       // 函数可以存进变量（一等公
 Dart 没有 JS 的"少传就是 undefined"，参数匹配在编译期检查。可选参数分两种，**不能混用**：
 
 ```dart
-// ① 位置可选参数 []：按顺序可选
+// 1) 位置可选参数 []：按顺序可选
 String join(String a, [String sep = '-', String? b]) =>
     b == null ? a : '$a$sep$b';
 join('x');          // 'x'
 join('x', '_');     // 用 '_' 作 sep，但 b 仍为空
 join('x', '_', 'y');
 
-// ② 命名参数 {}：像 JS 的配置对象，但编译期校验名字和类型
+// 2) 命名参数 {}：像 JS 的配置对象，但编译期校验名字和类型
 void createServer({int port = 8080, bool https = false, required String host}) {
   print('$host:$port https=$https');
 }
@@ -247,6 +258,13 @@ createServer(host: '0.0.0.0', port: 443, https: true); // 顺序随意
 Flutter 源码里铺天盖地的是**命名参数**——`Padding(padding: ..., child: ...)` 全是这一机制，`required` 关键字让必填项在调用点显式出现，可读性远超 JS 位置参数。
 
 ### 闭包与高阶函数
+
+这两个概念来自同一个前提：**函数是一等公民**——可以存进变量、放进集合、当参数传递、从函数返回，和数字字符串没区别。
+
+- **闭包（Closure）**：函数和它捕获的外部局部变量绑在一起形成的“数据包”。外层函数执行完毕后，它栈帧里的局部变量本应销毁，但只要内层函数还引用着它们，这些变量就一直活着——每个闭包各自持有独立的一份，互不干扰。JS 里的闭包就是这个行为，Dart 完全一致，下面的 `makeCounter` 例子可以直接平移到 JS 运行。
+- **高阶函数（Higher-order function）**：参数或返回值是函数的函数。你早就天天在用：JS 的 `arr.map(x => x * 2)` 里，`map` 就是高阶函数，回调就是参数。Dart 的集合操作、异步回调、Flutter 的事件处理全是这个模式。
+
+在 Flutter 里这两者无处不在：`onPressed: () => setState(...)` 是一个捕获了组件状态的闭包回调；`ListView.builder(itemBuilder: (context, i) => ...)` 则是接收函数作为参数的高阶函数——看懂闭包就看懂了 Flutter 的回调体系。
 
 ```dart
 void main() {
@@ -271,10 +289,10 @@ void main() {
 
 ```dart
 void main() {
-  // ① 条件必须是真 bool：if (0) / if ('') 在 JS 里合法，Dart 直接编译错误
+  // 1) 条件必须是真 bool：if (0) / if ('') 在 JS 里合法，Dart 直接编译错误
   // if (0) {}   // ❌ 没有 falsy 概念！判空要显式：if (list.isEmpty)、if (s == null)
 
-  // ② switch 不再穿透，每个 case 自动 break；fallthrough 要显式写 continue
+  // 2) switch 不再穿透，每个 case 自动 break；fallthrough 要显式写 continue
   var command = 'quit';
   switch (command) {
     case 'start':
@@ -285,15 +303,19 @@ void main() {
       print('unknown');
   }
 
-  // ③ Dart 3 起 switch 是表达式，还能解构模式：
+  // 3) Dart 3 起 switch 是“表达式”：能直接产生值赋给变量，每个分支写成“模式 => 结果”。
+  //    被匹配的 (404, 'not found') 是一个 Record（元组）：第 1 位是状态码，第 2 位是说明文字
   var status = switch ((404, 'not found')) {
+    // 模式 1：第 1 位必须等于 200；_ 是通配符，表示第 2 位任意值都接受
     (200, _) => 'ok',
+    // 模式 2：第 1 位落在 400~499 区间（范围模式）；final msg 把第 2 位的值绑定成变量 msg，供结果插值
     (>= 400 && < 500, final msg) => 'client error: $msg',
+    // 模式 3：_ 兜底，等同 default，前面都不命中才走这里
     _ => 'other',
   };
-  print(status); // client error: not found
+  print(status); // (404, 'not found') 命中模式 2 → client error: not found
 
-  // ④ for-in 遍历可迭代对象，≈ JS 的 for...of（没有 for...in）
+  // 4) for-in 遍历可迭代对象，≈ JS 的 for...of（没有 for...in）
   for (final item in [1, 2, 3]) {
     print(item);
   }
@@ -481,10 +503,10 @@ Dart 单线程跑事件循环，**CPU 重活会卡 UI**——和 JS 完全同样
 
 ```dart
 // 三种 import 路径：
-import 'dart:core';                          // ① SDK 内置库（集合、异步、数学等），≈ 浏览器全局对象但需显式引入的部分
-import 'package:http/http.dart';             // ② 第三方包，≈ npm 包名导入
+import 'dart:core';                          // 1) SDK 内置库（集合、异步、数学等），≈ 浏览器全局对象但需显式引入的部分
+import 'package:http/http.dart';             // 2) 第三方包，≈ npm 包名导入
 import 'package:http/http.dart' as http;     //    命名空间导入，≈ import * as http from 'http'
-import './utils/string_util.dart';           // ③ 相对路径，≈ ES Modules 相对导入（限同包内）
+import './utils/string_util.dart';           // 3) 相对路径，≈ ES Modules 相对导入（限同包内）
 
 // 只导入部分符号：
 import 'dart:math' show Random, pi;          // ≈ import { Random, pi }（但 Dart 按符号名而非对象）
