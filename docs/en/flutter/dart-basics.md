@@ -304,8 +304,10 @@ void main() {
   }
 
   // 3) Since Dart 3, switch is an *expression*: it produces a value you can assign, and each branch reads "pattern => result".
-  //    The value being matched, (404, 'not found'), is a Record (tuple): slot 1 is the status code, slot 2 the message
-  var status = switch ((404, 'not found')) {
+  //    Say this is an API response: a status code plus a message — combine them into a Record (tuple) (code, message) to match
+  var code = 404;
+  var message = 'not found';
+  var status = switch ((code, message)) {
     // Pattern 1: slot 1 must equal 200; _ is the wildcard, accepting any value in slot 2
     (200, _) => 'ok',
     // Pattern 2: slot 1 falls in the 400-499 range (range pattern); final msg binds slot 2 to a variable for interpolation

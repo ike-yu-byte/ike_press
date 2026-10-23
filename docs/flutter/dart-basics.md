@@ -304,8 +304,10 @@ void main() {
   }
 
   // 3) Dart 3 起 switch 是“表达式”：能直接产生值赋给变量，每个分支写成“模式 => 结果”。
-  //    被匹配的 (404, 'not found') 是一个 Record（元组）：第 1 位是状态码，第 2 位是说明文字
-  var status = switch ((404, 'not found')) {
+  //    假设这是接口返回：状态码 + 说明文字，把二者组合成 Record（元组）(code, message) 去匹配
+  var code = 404;
+  var message = 'not found';
+  var status = switch ((code, message)) {
     // 模式 1：第 1 位必须等于 200；_ 是通配符，表示第 2 位任意值都接受
     (200, _) => 'ok',
     // 模式 2：第 1 位落在 400~499 区间（范围模式）；final msg 把第 2 位的值绑定成变量 msg，供结果插值
