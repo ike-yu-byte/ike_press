@@ -404,7 +404,7 @@ class Animal {
   void speak() => print('$name makes a sound'); // print returns void itself, so declaring void here is correct (body type matches return type)
 }
 
-// Single inheritance via extends; implements consumes any class as an interface (no interface keyword)
+// Single inheritance via extends: one parent only, and all of its implementation is inherited
 class Dog extends Animal {
   Dog() : super('Dog');                     // super calls the parent constructor
 
@@ -414,12 +414,25 @@ class Dog extends Animal {
   void fetch() => print('fetching');
 }
 
+// Interfaces: Dart has no interface keyword — any class / abstract class can be implemented.
+// Convention: use an abstract class to declare a contract with no implementation
+abstract class Swimmable {
+  void swim();                              // signature only, no body — implementers must override it
+}
+
+// implements takes only the contract, none of the implementation: every method must be rewritten,
+// and multiple interfaces are allowed (comma-separated): class X implements A, B
+class Robot implements Swimmable {
+  @override
+  void swim() => print('Robot swims');
+}
+
 // Mixins: reuse cross-cutting ability ≈ a more disciplined mixin pattern / HOC idea
 mixin Swimmer {
   void swim() => print('swimming');
 }
 
-class Duck extends Animal with Swimmer {    // with mixes in capabilities
+class Duck extends Animal with Swimmer {    // Duck "is" an Animal and "can" swim; with takes multiple mixins
   Duck() : super('Duck');
 }
 
@@ -428,8 +441,18 @@ void main() {
     a.speak();
   }
   (Duck() as Swimmer).swim();
+
+  // Interface polymorphism: no need to know the concrete class — anything implementing Swimmable can be called via the contract
+  var r = Robot();
+  r.swim();                                 // Robot swims
 }
 ```
+
+One line each: `extends` means "is a" (inherits implementation, single parent); `implements` means "acts like" (contract only, re-implement everything, multiple allowed); `with` means "can do" (reuses implementation, no is-a relationship). All three compose: `class X extends A with M implements I`.
+
+::: tip How super relates to mixins
+`super('Duck')` in a constructor calls only the `extends` parent's constructor — **mixins cannot declare constructors**, so there is no "mixin constructor" to call. But `super.method()` inside an instance method walks the linearized chain: Duck's parent chain is `Duck → Animal+Swimmer → Animal`, so if `Swimmer` defines a method of the same name, `super.swim()` from `Duck` hits the **mixin's implementation**, not `Animal`'s.
+:::
 
 Privacy convention: Dart uses a **`_` prefix** for library privacy (enforced at compile time), not the JS community's "private by comment".
 
@@ -449,7 +472,7 @@ void main() {
   var log = StringBuffer()
     ..writeln('line 1')
     ..writeln('line 2');
-  print(log.toString());
+  print(log.toString());       // prints two lines: line 1 and line 2 (writeln appends a newline each time)
 }
 ```
 
@@ -465,6 +488,10 @@ Dart's async model is **isomorphic** with JS: single-threaded event loop, microt
 Future<String> fetchUser(int id) async {
   // ≈ JS: async function fetchUser(id) { await new Promise(r => setTimeout(r, 100)); ... }
   await Future.delayed(const Duration(milliseconds: 100)); // promisified setTimeout
+  if (id < 0) {
+    // StateError: a dart:core built-in meaning "the object/arguments are in an invalid state" (an empty list's removeLast throws it too)
+    throw StateError('invalid id: $id');
+  }
   return 'user-$id';
 }
 
@@ -486,13 +513,13 @@ Future<void> main() async {
   ]);
   print(fastest);
 
-  // Error handling: try/catch/finally identical to JS
+  // Error handling: try / catch / finally identical to JS
   try {
-    throw StateError('boom');
-  } on StateError catch (e) {    // on-clauses catch by type ≈ catch (e) + instanceof
-    print('caught: $e');
-  } catch (e) {
-    print('any: $e');
+    await fetchUser(-1);         // an invalid id — fetchUser throws StateError internally
+  } catch (e) {                  // catches any exception, ≈ JS catch (e)
+    print('caught: $e');         // caught: Bad state: invalid id: -1
+  } finally {
+    print('done');               // runs on success and failure alike, ≈ JS finally
   }
 }
 ```

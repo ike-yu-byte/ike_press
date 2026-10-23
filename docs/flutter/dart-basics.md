@@ -404,7 +404,7 @@ class Animal {
   void speak() => print('$name makes a sound'); // print 本身返回 void，所以这里声明 void 正确（箭头体类型与返回类型匹配）
 }
 
-// 单继承 extends；implements 实现接口（Dart 没有 interface 关键字，类即可被实现）
+// 单继承 extends：父类只能有一个，且继承父类的全部实现
 class Dog extends Animal {
   Dog() : super('Dog');                     // super 调用父类构造
 
@@ -414,12 +414,25 @@ class Dog extends Animal {
   void fetch() => print('fetching');
 }
 
+// 接口：Dart 没有 interface 关键字，任何 class / abstract class 都可被 implements。
+// 惯例用 abstract class 定义"只有契约、没有实现"的接口
+abstract class Swimmable {
+  void swim();                              // 只声明方法签名、无函数体，实现类必须重写
+}
+
+// implements 只拿契约、不继承任何实现：接口里的方法一个都不能漏，
+// 且可以同时实现多个接口（逗号分隔）：class X implements A, B
+class Robot implements Swimmable {
+  @override
+  void swim() => print('Robot swims');
+}
+
 // 混入：复用"横切能力"，≈ 更受控的 mixin 模式 / React 高阶组件思想
 mixin Swimmer {
   void swim() => print('swimming');
 }
 
-class Duck extends Animal with Swimmer {    // with 混入多个能力
+class Duck extends Animal with Swimmer {    // Duck "是"Animal，且"会"游泳：with 可混入多个
   Duck() : super('Duck');
 }
 
@@ -429,8 +442,18 @@ void main() {
     a.speak();
   }
   (Duck() as Swimmer).swim();
+
+  // 接口多态：不关心具体是什么类，只要实现了 Swimmable 就能按契约调用
+  var r = Robot();
+  r.swim();                                 // Robot swims
 }
 ```
+
+三者一句话区分：`extends` 是"是我"（继承实现，单继承）；`implements` 是"像是我"（只拿契约，实现全部重写，可多实现）；`with` 是"借我能"（复用实现，不构成 is-a 关系）。三者可组合：`class X extends A with M implements I`。
+
+::: tip super 与混入的关系
+构造里的 `super('Duck')` 只能调父类 `Animal` 的构造——**mixin 不允许声明构造函数**，不存在“mixin 的构造”可调。但实例方法里的 `super.方法名()` 沿线性化链查找：`Duck` 的父链是 `Duck → Animal+Swimmer → Animal`，若 `Swimmer` 定义了同名方法，`Duck` 中 `super.swim()` 调到的是 **mixin 的实现**，而不是 `Animal` 的。
+:::
 
 私有约定：Dart 用 **`_` 前缀**表示库级私有（编译期强制），不是 JS 社区约定的"假装私有"。
 
@@ -450,7 +473,7 @@ void main() {
   var log = StringBuffer()
     ..writeln('line 1')
     ..writeln('line 2');
-  print(log.toString());
+  print(log.toString());       // 输出两行：line 1 和 line 2（writeln 每次自动加换行符）
 }
 ```
 
@@ -466,6 +489,10 @@ Dart 的异步模型与 JS **同构**：单隔离区事件循环、微任务优�
 Future<String> fetchUser(int id) async {
   // ≈ JS: async function fetchUser(id) { await new Promise(r => setTimeout(r, 100)); ... }
   await Future.delayed(const Duration(milliseconds: 100)); // ≈ setTimeout 的 Promise 化
+  if (id < 0) {
+    // StateError：dart:core 内置异常，语义是"对象/参数处于非法状态"（空列表调 removeLast 也抛它）
+    throw StateError('invalid id: $id');
+  }
   return 'user-$id';
 }
 
@@ -488,13 +515,13 @@ Future<void> main() async {
   ]);
   print(fastest);
 
-  // 错误处理：try/catch/finally 与 JS 完全相同
+  // 错误处理：try / catch / finally 与 JS 完全相同
   try {
-    throw StateError('boom');
-  } on StateError catch (e) {    // on 子句按类型捕获，≈ catch (e) + instanceof 判断
-    print('caught: $e');
-  } catch (e) {
-    print('any: $e');
+    await fetchUser(-1);         // 传入非法 id，fetchUser 内部抛出 StateError
+  } catch (e) {                  // 捕获任何异常，≈ JS catch (e)
+    print('caught: $e');         // caught: Bad state: invalid id: -1
+  } finally {
+    print('done');               // 不论成败都执行，≈ JS finally
   }
 }
 ```
