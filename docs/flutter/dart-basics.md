@@ -540,13 +540,38 @@ Future<void> listenDemo() async {
     print(value);
   }
 
-  // 转换管道：map/where 返回的还是 Stream，≈ RxJS 操作符链
-  stream.map((x) => x * 10).where((x) => x > 10).listen(print);
+  // 转换管道：map/where 只“登记规则”，是惰性的——不 listen 就一个值都不发；listen 才是触发发射的开关。
+  // 注意：上面的 await for 其实也是一种订阅（内部帮你 listen 了）；且单订阅流只能订阅一次，所以这里换新数据源
+  Stream.fromIterable([1, 2, 3])
+    .map((x) => x * 10)      // 登记规则：到来值 ×10 → 10, 20, 30
+    .where((x) => x > 10)    // 登记规则：只留 >10 → 滤掉 10
+    .listen(print);          // 订阅才真正启动：输出 20、30（print 是回调简写，等于 (v) => print(v)）
 
-  // 手动订阅要记得取消——JS 里忘关 WebSocket 是泄漏，Dart 里忘 cancel StreamSubscription 同理
+  // 无限流 + 取消订阅：periodic ≈ setInterval，每 50ms 发射一个自增数字 0,1,2...，永不自停；
+  // listen() 返回 StreamSubscription 句柄，是唯一能关掉它的“遥控器”
   var sub = Stream.periodic(const Duration(milliseconds: 50), (x) => x).listen(print);
+
+  // 下面两行是演示写法：先让流跑 160ms（约打印出 0、1、2）再取消，否则例子一秒就结束什么都看不到。
+  // 真实项目里 cancel 应在页面销毁（State.dispose）时调用——忘 cancel ≈ JS 忘 clearInterval / 忘关 WebSocket，回调持续触发就是泄漏
   await Future.delayed(const Duration(milliseconds: 160));
   await sub.cancel();
+}
+```
+
+注意 `Stream.fromIterable` 是**固定数据源的冷流**：元素在创建那一刻就定死了，订阅只是把已有的逐个异步发出、发完自动结束，没有后续塞新值的入口。想要"随时推值、监听者随到随收"，用 **`StreamController`**（≈ RxJS 的 Subject / Node 的 EventEmitter），WebSocket、事件总线、按钮点击事件都是这个推送模型：
+
+```dart
+import 'dart:async';
+
+Future<void> controllerDemo() async {
+  var controller = StreamController<String>();  // 双端对象：sink 是入口，stream 是出口
+
+  controller.stream.listen((e) => print('收到: $e'));
+
+  controller.sink.add('第一条');                 // 随时推，监听者立刻收到
+  await Future.delayed(const Duration(milliseconds: 50));
+  controller.sink.add('第二条');                 // 再推，再收
+  await controller.close();                       // 关闭：流结束，sink 不再接受新值
 }
 ```
 
@@ -554,15 +579,85 @@ Flutter 的 `StreamBuilder` 就是"把 Stream 绑到 UI 上自动重绘"，概�
 
 ### Isolate：与 Web Worker 对应
 
-Dart 单线程跑事件循环，**CPU 重活会卡 UI**——和 JS 完全同样的问题，同样的解法：
+Dart 单线程跑事件循环，**CPU 重活会卡 UI**——和 JS 完全同样的问题，解法也完全相同：另开一个线程、不共享内存、靠传消息通信。Dart 里这个线程叫 **Isolate**。
+
+先看你熟悉的 Web Worker 写法（JS）：
+
+```js
+// worker.js —— worker 线程
+self.onmessage = (e) => {            // 收到主线程派的任务
+  const sum = heavySum(e.data);      // 在 worker 里算重活
+  self.postMessage(sum);             // 把结果传回去
+};
+
+// main.js —— 主线程
+const worker = new Worker('worker.js');
+worker.postMessage(42);                          // 派任务，主线程继续跑不阻塞
+worker.onmessage = (e) => console.log(e.data);   // 算完了拿结果
+// worker.terminate()  // 不用了就杀掉
+```
+
+下面是逐行对应的完整 Dart 实现（可直接 `dart run`）：
 
 ```dart
-// 主线程
-// await compute(heavyTask, 42);   // Flutter 提供的封装，≈ new Worker + postMessage 的样板全免
-//
-// Isolate.spawn(heavyMain, message) 则更接近裸 new Worker()，
-// 隔离区间不共享内存，只能传消息（且消息必须可序列化，比 Web Worker 的 structuredClone 限制多）。
+import 'dart:isolate';
+
+// SendPort / ReceivePort 都是 dart:isolate 的内置类（随上面的 import 引入）：
+// ReceivePort = 收件箱（收消息，listen 订阅）；SendPort = 寄件地址（发消息，send 投递）。
+// 一对端口 = Web Worker 里 postMessage + onmessage 那组通道，只是 Dart 把收发拆成了两个对象
+
+// worker 端入口：运行在另一个 isolate 里，≈ worker.js 整体
+void workerMain(SendPort sendToMain) {  // 入参就是主线程的收件箱地址（spawn 时传进来的）
+  final myInbox = ReceivePort();            // 我的收件箱 ≈ self 监听的那条通道
+  myInbox.listen((task) {                   // ≈ self.onmessage
+    var sum = 0;
+    for (var i = 0; i < (task as int); i++) {
+      sum += i;                             // 重活在这个线程算，不卡主线程
+    }
+    sendToMain.send(sum);                   // ≈ self.postMessage：结果投递进主线程的 mainInbox，
+                                            //   由下方 main 里的 await mainInbox.first 接收
+                                            //（sum = 0+1+...+999999 = 499999500000）
+  });
+  sendToMain.send(myInbox.sendPort);        // 先把“我的收件箱地址”告知主线程（握手，见下方说明）
+}
+
+Future<void> main() async {
+  final mainInbox = ReceivePort();                          // 主线程的收件箱；它本身就是一个 Stream，
+                                                            //   first 是 get 属性：返回 Future，await 到下一条消息到达
+  await Isolate.spawn(workerMain, mainInbox.sendPort);      // ≈ new Worker('worker.js')
+
+  // mainInbox 会依次收到两条消息：第 1 条 = 握手（worker 的收件箱地址），第 2 条 = worker 算好的 sum
+  final toWorker = await mainInbox.first as SendPort;       // 取第 1 条：收到 worker 寄来的收件箱地址
+  toWorker.send(1000000);                                   // ≈ worker.postMessage(42)：派任务
+
+  print('worker 结果: ${await mainInbox.first}');           // ≈ onmessage：取第 2 条，即 worker 回传的 sum
+                                                            //（await 挂起等待，直到消息到达）
+  mainInbox.close();                                        // ≈ worker.terminate()
+}
 ```
+
+对应关系一目了然：`Isolate.spawn` ≈ `new Worker`，`SendPort.send` ≈ `postMessage`，`ReceivePort.listen` ≈ `onmessage`。唯一的额外成本是**握手**：两边互相不知道对方的收件箱地址，所以 worker 上线第一件事先把 `sendPort` 寄给主线程（JS 里这条通道被 `postMessage`/`onmessage` 内置了，Dart 要自己传）。
+
+两点差异与一个偷懒办法：
+
+- 消息必须可跨 isolate 传递，限制比 Web Worker 的 structuredClone 更严：闭包、`dynamic` 发不出去
+- 常驻 worker 才需要上面的握手；**一次性重活**用 `Isolate.run`（Dart 2.19+）把样板全免：
+
+```dart
+import 'dart:isolate';
+
+Future<void> main() async {
+  // 一次性 isolate：算完自动退出，无需握手；≈ 把函数体丢进 worker.js 跑一遍拿结果
+  final result = await Isolate.run(() {
+    var sum = 0;
+    for (var i = 0; i < 100000000; i++) sum += i;
+    return sum;
+  });
+  print(result);   // 4999999950000000
+}
+```
+
+Flutter 里的 `compute(fn, message)` 就是 `Isolate.run` 的早期封装，作用相同。
 
 ## 模块与导入
 

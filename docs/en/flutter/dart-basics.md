@@ -538,13 +538,38 @@ Future<void> listenDemo() async {
     print(value);
   }
 
-  // Transformation pipes: map/where return Streams ≈ RxJS operator chains
-  stream.map((x) => x * 10).where((x) => x > 10).listen(print);
+  // Transformation pipe: map/where only *register rules* — they are lazy; without listen not a single value is emitted. listen is the switch that starts the flow.
+  // Note: the await for above is also a subscription (it listens for you); and a single-subscription stream can only be listened once, so use a fresh source here
+  Stream.fromIterable([1, 2, 3])
+    .map((x) => x * 10)      // rule: incoming value ×10 → 10, 20, 30
+    .where((x) => x > 10)    // rule: keep >10 → filters out 10
+    .listen(print);          // subscribing actually starts it: prints 20, 30 (print is shorthand for (v) => print(v))
 
-  // Manual subscriptions must be cancelled — leaking a StreamSubscription is like leaking a WebSocket
+  // Infinite stream + cancelling: periodic ≈ setInterval, emitting 0,1,2... every 50ms forever;
+  // listen() returns a StreamSubscription handle — the only "remote control" that can shut it off
   var sub = Stream.periodic(const Duration(milliseconds: 50), (x) => x).listen(print);
+
+  // The next two lines are demo scaffolding: let the stream run 160ms (printing roughly 0, 1, 2) before cancelling, otherwise the example ends instantly and you'd see nothing.
+  // In real apps, cancel belongs in page teardown (State.dispose) — forgetting it is like leaking a setInterval / unclosed WebSocket: callbacks keep firing forever
   await Future.delayed(const Duration(milliseconds: 160));
   await sub.cancel();
+}
+```
+
+Note that `Stream.fromIterable` is a **cold stream with a fixed source**: its elements are locked in at creation — subscribing just emits the existing ones asynchronously, then it completes; there's no way to feed in new values later. For "push anytime, listeners receive as it arrives", use a **`StreamController`** (≈ an RxJS Subject / Node's EventEmitter) — WebSockets, event buses, and button taps all follow this push model:
+
+```dart
+import 'dart:async';
+
+Future<void> controllerDemo() async {
+  var controller = StreamController<String>();  // two-ended object: sink is the input, stream the output
+
+  controller.stream.listen((e) => print('got: $e'));
+
+  controller.sink.add('first');                 // push anytime, the listener receives it immediately
+  await Future.delayed(const Duration(milliseconds: 50));
+  controller.sink.add('second');                // push again, receive again
+  await controller.close();                     // close: stream ends, the sink accepts nothing more
 }
 ```
 
@@ -552,16 +577,85 @@ Flutter's `StreamBuilder` is exactly "bind a Stream to the UI for automatic rebu
 
 ### Isolates: the Web Worker counterpart
 
-Dart runs its event loop on one thread; **CPU-heavy work blocks the UI** — the same problem JS has, the same solution:
+Dart runs its event loop on one thread; **CPU-heavy work blocks the UI** — the same problem JS has, and the identical solution: spin up another thread, share no memory, communicate by passing messages. Dart calls that thread an **Isolate**.
+
+First, the Web Worker pattern you already know (JS):
+
+```js
+// worker.js — the worker thread
+self.onmessage = (e) => {            // task arrives from the main thread
+  const sum = heavySum(e.data);      // do the heavy work here
+  self.postMessage(sum);             // send the result back
+};
+
+// main.js — the main thread
+const worker = new Worker('worker.js');
+worker.postMessage(42);                          // dispatch the task; the main thread keeps running
+worker.onmessage = (e) => console.log(e.data);   // collect the result when done
+// worker.terminate()  // kill it when no longer needed
+```
+
+And the complete line-by-line Dart equivalent (runs directly with `dart run`):
 
 ```dart
-// Main thread:
-// await compute(heavyTask, 42);   // Flutter's wrapper — all the new Worker + postMessage boilerplate gone
-//
-// Isolate.spawn(heavyMain, message) is closer to a raw new Worker();
-// isolates share no memory and communicate by message only (with stricter serialization rules
-// than the Web Worker structuredClone).
+import 'dart:isolate';
+
+// SendPort / ReceivePort are built-in classes of dart:isolate (pulled in by the import above):
+// ReceivePort = an inbox (receives messages, subscribe via listen); SendPort = a mailing address (sends messages via send).
+// A port pair = the postMessage + onmessage channel of a Web Worker — Dart just splits send and receive into two objects
+
+// Worker-side entry: runs in another isolate ≈ the whole of worker.js
+void workerMain(SendPort sendToMain) {  // the parameter is the main thread's inbox address (passed in by spawn)
+  final myInbox = ReceivePort();            // my inbox ≈ the channel self listens on
+  myInbox.listen((task) {                   // ≈ self.onmessage
+    var sum = 0;
+    for (var i = 0; i < (task as int); i++) {
+      sum += i;                             // heavy math happens on this thread, main thread stays free
+    }
+    sendToMain.send(sum);                   // ≈ self.postMessage: the result lands in the main thread's mainInbox,
+                                            //   received below in main via await mainInbox.first
+                                            // (sum = 0+1+...+999999 = 499999500000)
+  });
+  sendToMain.send(myInbox.sendPort);        // first, tell the main thread my inbox address (the handshake below)
+}
+
+Future<void> main() async {
+  final mainInbox = ReceivePort();                          // the main thread's inbox; it is itself a Stream —
+                                                            //   first is a getter returning a Future, awaited until the next message arrives
+  await Isolate.spawn(workerMain, mainInbox.sendPort);      // ≈ new Worker('worker.js')
+
+  // mainInbox receives two messages in order: 1st = the handshake (worker's inbox address), 2nd = the computed sum
+  final toWorker = await mainInbox.first as SendPort;       // take message 1: the worker's inbox address arrives
+  toWorker.send(1000000);                                   // ≈ worker.postMessage(42): dispatch the task
+
+  print('worker result: ${await mainInbox.first}');         // ≈ onmessage: take message 2, the sum sent back by the worker
+                                                            // (await suspends until the message arrives)
+  mainInbox.close();                                        // ≈ worker.terminate()
+}
 ```
+
+The mapping is now obvious: `Isolate.spawn` ≈ `new Worker`, `SendPort.send` ≈ `postMessage`, `ReceivePort.listen` ≈ `onmessage`. The only extra cost is the **handshake**: neither side knows the other's inbox address, so the worker's first act is mailing its `sendPort` to the main thread (JS hides this channel inside `postMessage`/`onmessage`; Dart makes you pass it yourself).
+
+Two differences and one shortcut:
+
+- Messages must be transferable across isolates — stricter than structuredClone: closures and `dynamic` can't be sent
+- The handshake is only for long-lived workers; for **one-shot heavy work**, `Isolate.run` (Dart 2.19+) removes all the boilerplate:
+
+```dart
+import 'dart:isolate';
+
+Future<void> main() async {
+  // One-shot isolate: runs, returns, exits — no handshake; ≈ throwing the function body into worker.js once
+  final result = await Isolate.run(() {
+    var sum = 0;
+    for (var i = 0; i < 100000000; i++) sum += i;
+    return sum;
+  });
+  print(result);   // 4999999950000000
+}
+```
+
+Flutter's `compute(fn, message)` is an earlier wrapper around `Isolate.run` — same thing.
 
 ## Modules & imports
 
