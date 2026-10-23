@@ -41,6 +41,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: '分区首页', link: '/flutter/index' },
+                { text: 'Dart 基础语法', link: '/flutter/dart-basics' },
               ],
             },
             {
@@ -234,6 +235,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: 'Section Home', link: '/en/flutter/index' },
+                { text: 'Dart Basics', link: '/en/flutter/dart-basics' },
               ],
             },
             {
