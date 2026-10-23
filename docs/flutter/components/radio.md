@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Radio 单选框
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Radio` 用于一组互斥选项里选一个。单个 `Radio` 没有意义，靠**共享同一个 `groupValue`** 实现互斥：谁的 `value == groupValue` 谁就亮。
 
 ## 基础单选

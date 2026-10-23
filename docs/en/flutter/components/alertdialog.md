@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # AlertDialog
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 Dialogs interrupt the user to request confirmation or show critical information. You open them with `showDialog`, placing an `AlertDialog` inside.
 
 ## Confirmation dialog

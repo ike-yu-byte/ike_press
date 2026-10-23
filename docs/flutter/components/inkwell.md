@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # InkWell 水波纹
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `InkWell` 给子组件加上 Material 的**点击水波纹（ripple）**效果，自带 `onTap`/`onLongPress` 手势。是"可点的自定义区域"的标准选择。
 
 ## 基础水波纹

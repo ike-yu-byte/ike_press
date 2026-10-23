@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # DropdownButton 下拉选择
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `DropdownButton` 点击弹出一个选项菜单，选中后收起并把当前项显示在按钮位置。适合从固定几个选项里选一个（城市、分类）。
 
 ## 基础用法

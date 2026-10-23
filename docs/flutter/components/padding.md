@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Padding 内边距
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Padding` 在 `child` 周围插入空白，只管留白，不带背景/尺寸能力，比 `Container` 更轻。
 
 ## 四周内边距

@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Dismissible 滑动删除
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Dismissible` 让子组件可以**向某个方向滑走**，滑出后触发回调（通常是从列表里删除）。邮件、待办列表左滑删除就是它。
 
 ## 基本滑动删除

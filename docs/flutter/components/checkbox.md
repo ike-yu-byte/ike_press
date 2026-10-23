@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Checkbox 复选框
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Checkbox` 表示开/关二态选择。它是**受控组件**：自己不记忆状态，勾选结果完全由外部 `value` + `onChanged` 决定。
 
 ## 基础勾选

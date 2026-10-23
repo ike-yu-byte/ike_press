@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Radio
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Radio` picks one option from a mutually exclusive set. A lone `Radio` is meaningless -- exclusivity comes from **sharing one `groupValue`**: the radio whose `value == groupValue` is the lit one.
 
 ## Basic single choice

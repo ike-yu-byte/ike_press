@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # ProgressIndicator 进度指示
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 进度指示分两类：**不确定**（转圈，不知道还要多久）和**确定**（有百分比）。对应 `CircularProgressIndicator` 与 `LinearProgressIndicator`。
 
 ## 不确定进度（加载中）

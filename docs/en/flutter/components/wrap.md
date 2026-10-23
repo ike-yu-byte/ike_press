@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Wrap
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Wrap` works like Row/Column but automatically flows children onto the next line when they run out of room. Ideal for tag clouds and emoji pickers.
 
 ## Auto-wrapping tags

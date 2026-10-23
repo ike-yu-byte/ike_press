@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Draggable 拖拽
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Draggable` 让一个 widget 可被拖起，拖到 `DragTarget` 上松手即完成一次投递。常用于拖拽排序、把内容拖进区域、标签归类等。
 
 ## 一对组合：Draggable + DragTarget

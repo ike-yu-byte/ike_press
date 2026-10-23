@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Card
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Card` is a Material surface container with rounded corners, a shadow and inset spacing, grouping related content so it "floats" on the page. It is only a shell -- put anything inside.
 
 ## Basic info card

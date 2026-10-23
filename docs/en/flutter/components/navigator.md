@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Navigator
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Navigator` manages pushing and popping pages to implement navigation. Flutter has two styles: **imperative** (`push` a `MaterialPageRoute`) and **named routes** (`pushNamed`).
 
 ## Push a new page (imperative)

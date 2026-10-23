@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Flex
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Flex` is the underlying implementation of `Row`/`Column`; `direction` picks the main axis. Use it directly only when the layout direction must switch at runtime.
 
 ## Vertical (equivalent to Column)

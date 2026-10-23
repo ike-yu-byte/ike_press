@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # ListView
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `ListView` is Flutter's core scrollable list widget for long content. It is **lazy** -- only items inside (and near) the viewport are built, so it easily carries thousands of rows.
 
 ## Fixed item list

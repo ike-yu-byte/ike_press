@@ -4,6 +4,13 @@
 This section holds my Flutter learning notes. Articles will be added over time.
 :::
 
+## Handy entry points
+
+- <a href="https://flutter.dev" target="_blank" rel="noopener noreferrer">Flutter official site</a>: the front door to the framework — overview, downloads, tutorials and API docs (the docs live at <a href="https://docs.flutter.dev" target="_blank" rel="noopener noreferrer">docs.flutter.dev</a>).
+- <a href="https://pub.dev" target="_blank" rel="noopener noreferrer">pub.dev</a>: the official Dart / Flutter package repository — find third-party packages, versions and usage here.
+- <a href="https://tdesign.tencent.com/flutter/overview" target="_blank" rel="noopener noreferrer">TDesign Flutter</a>: Tencent's open-source design system and Flutter component library — ready-made widgets for enterprise / admin-style UIs.
+- <a href="https://blog.csdn.net/ike_yu/article/details/158615079?fromshare=blogdetail&sharetype=blogdetail&sharerId=158615079&sharerefer=PC&sharesource=ike_yu&sharefrom=from_link" target="_blank" rel="noopener noreferrer">Installing Flutter (notes)</a>: my own setup walkthrough and pitfalls (hosted on CSDN).
+
 ## Widget reference
 
 The component pages mirror the official Flutter widget catalog, grouped by purpose — each page walks through real features with complete runnable examples:

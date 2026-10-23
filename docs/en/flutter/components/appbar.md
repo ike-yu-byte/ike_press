@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # AppBar
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `AppBar` is the bar at the top of a page: title, back button, trailing action icons, and it can carry a `bottom` widget (e.g. a TabBar). Used as `Scaffold.appBar`.
 
 ## Basic app bar

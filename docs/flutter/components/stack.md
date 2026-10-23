@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Stack 层叠布局
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Stack` 让子组件沿 Z 轴叠放，后面的盖在前面上。适合角标、浮层、水印。
 
 ## 图片 + 角标

@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Center / Align 对齐
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Center` 与 `Align` 把子组件在父级空间内摆到某个位置，`Center` 即 `Align(alignment: Alignment.center)`。
 
 ## 居中

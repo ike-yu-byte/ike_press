@@ -72,7 +72,8 @@ const props = defineProps<{
 }
 
 .fp-body {
-  height: min(56vh, 520px);
+  /* 右栏已隐藏 TOC、面板 sticky，适当调高以填充 PC 端视口剩余空间（上限防止超大屏过长） */
+  height: min(76vh, 820px);
   flex-shrink: 0;
 }
 

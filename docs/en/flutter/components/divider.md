@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Divider
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Divider` draws a horizontal separator line to divide content. Under Material 3 it is a thin line with built-in vertical whitespace.
 
 ## Basic divider

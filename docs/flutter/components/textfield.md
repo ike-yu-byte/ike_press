@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # TextField 输入框
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `TextField` 是文本输入的核心组件，Material 下带下划线/边框样式。它的"兄弟" `TextFormField` 用于放进 `Form` 做校验，绝大多数属性一致。
 
 ## 基础输入 + 读取值

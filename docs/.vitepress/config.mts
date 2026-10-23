@@ -40,7 +40,12 @@ export default defineConfig({
               text: '开始',
               collapsed: false,
               items: [
-                { text: '分区首页', link: '/flutter/index' },
+                { text: 'Dart 基础语法', link: '/flutter/dart-basics' },
+                { text: '开始 Flutter', link: '/flutter/index' },
+                { text: 'setState 与生命周期', link: '/flutter/widget-lifecycle' },
+                { text: '事件总线', link: '/flutter/event-bus' },
+                { text: 'GlobalKey', link: '/flutter/global-key' },
+                { text: 'Navigator 路由', link: '/flutter/navigator' },
               ],
             },
             {
@@ -233,7 +238,12 @@ export default defineConfig({
               text: 'Get Started',
               collapsed: false,
               items: [
-                { text: 'Section Home', link: '/en/flutter/index' },
+                { text: 'Dart Basics', link: '/en/flutter/dart-basics' },
+                { text: 'Start Flutter', link: '/en/flutter/index' },
+                { text: 'setState & Lifecycle', link: '/en/flutter/widget-lifecycle' },
+                { text: 'Event Bus', link: '/en/flutter/event-bus' },
+                { text: 'GlobalKey', link: '/en/flutter/global-key' },
+                { text: 'Navigator Routing', link: '/en/flutter/navigator' },
               ],
             },
             {

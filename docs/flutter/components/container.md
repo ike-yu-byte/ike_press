@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Container 容器
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Container` 是最"万能"的布局盒子，一个组件同时负责尺寸、padding、margin、装饰（背景/圆角/边框/阴影）、对齐。
 
 ## 彩色圆角块

@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Switch 开关
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Switch` 表示一个即时生效的开/关切换（如 Wi-Fi、通知）。与 Checkbox 一样是受控组件，靠 `value` + `onChanged` 驱动，区别在于 Switch 带滑动动画、语义是"拨一下就立刻生效"。
 
 ## 基础开关

@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Row 横向布局
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Row` 把子组件沿水平方向排成一行，主轴=水平、交叉轴=垂直。
 
 ## 基本横排

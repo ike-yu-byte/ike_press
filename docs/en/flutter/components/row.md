@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Row
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Row` places its children side by side horizontally: main axis = horizontal, cross axis = vertical.
 
 ## Basic horizontal line

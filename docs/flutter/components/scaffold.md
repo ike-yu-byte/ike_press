@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Scaffold 页面脚手架
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Scaffold` 是 Material 页面的**骨架容器**，一个页面通常最外层就是它。它把 AppBar、body、底部导航、悬浮按钮、抽屉、SnackBars 等槽位统一安排好了。
 
 ## 完整骨架

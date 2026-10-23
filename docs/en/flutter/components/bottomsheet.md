@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # BottomSheet
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 A bottom sheet slides up from the bottom of the screen. It suits medium-complexity content like "share channels", "filter panels" or "action lists", and sits closer to the thumb zone than a dialog.
 
 ## Modal bottom sheet (most common)

@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Badge
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Badge` is a small red dot or count overlaid on the top-right of an icon (message counts, unread dots). Provided by Material 3, replacing the old hand-rolled Stack approach.
 
 ## Count badge

@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # TextField
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `TextField` is the core text input widget, styled with an underline/border under Material. Its sibling `TextFormField` is meant for `Form` validation; nearly all properties are identical.
 
 ## Basic input + reading the value

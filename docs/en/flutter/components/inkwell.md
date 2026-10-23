@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # InkWell
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `InkWell` adds Material's **tap ripple** to a child widget, with built-in `onTap`/`onLongPress` gestures. It's the standard choice for "tappable custom areas".
 
 ## Basic ripple

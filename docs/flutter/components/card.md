@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Card 卡片
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Card` 是一个带圆角、阴影、内边距的 Material 表面容器，用来把相关内容"成组"浮在页面上。它只是外壳，内容随便放。
 
 ## 基本信息卡

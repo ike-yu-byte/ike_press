@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # SnackBar
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `SnackBar` is a brief message sliding up from the bottom of the screen ("Saved", "Send failed"). It doesn't interrupt, disappears after a few seconds, and can carry one action like "Undo".
 
 ## Basic message

@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Dismissible
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Dismissible` lets its child be **swiped away in a direction**; once dismissed a callback fires (usually removing it from a list). This is the left-swipe delete in mail and to-do apps.
 
 ## Basic swipe-to-delete

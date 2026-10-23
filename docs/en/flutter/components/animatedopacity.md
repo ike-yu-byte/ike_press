@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # AnimatedOpacity
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `AnimatedOpacity` fades in/out automatically when `opacity` changes. Great for showing/hiding elements with a soft transition instead of a harsh appear/disappear.
 
 ## Fade in and out

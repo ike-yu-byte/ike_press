@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Badge 徽标
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Badge` 是叠在图标右上角的小红点或数字（消息数、未读点）。Material 3 提供，替代过去手写 Stack 的做法。
 
 ## 数字徽标

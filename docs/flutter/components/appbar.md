@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # AppBar 顶栏
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `AppBar` 是页面顶部那条栏，放标题、返回按钮、右侧操作图标，还能挂一个 `bottom`（如 TabBar）。作为 `Scaffold.appBar` 使用。
 
 ## 基本顶栏

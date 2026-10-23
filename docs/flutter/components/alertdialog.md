@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # AlertDialog 对话框
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 对话框用于打断用户、请求确认或展示关键信息。通过 `showDialog` 弹出，内部放 `AlertDialog`。
 
 ## 确认对话框

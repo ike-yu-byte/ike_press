@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # AnimatedContainer 属性动画
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `AnimatedContainer` 除了普通 `Container` 的能力，还能在属性变化时**自动补间过渡**（尺寸、颜色、圆角、margin 等），无需自己写 `AnimationController`。
 
 ## 点击切换尺寸/颜色

@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Tooltip
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Tooltip` attaches a hover/long-press hint to a widget, most often used to explain what an icon button does.
 
 ## Basic hint

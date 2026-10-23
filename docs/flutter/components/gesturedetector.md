@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # GestureDetector 手势检测
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `GestureDetector` 给任意 widget 添加手势识别（点击、双击、长按、拖动、缩放等），它**只处理逻辑、不提供任何视觉反馈**（没有水波纹）。
 
 ## 点击/双击/长按

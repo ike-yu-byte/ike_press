@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # GridView
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `GridView` shows content in a fixed row/column grid -- typical uses are photo walls and app-style icon tiles. It supports lazy building too.
 
 ## Fixed column count

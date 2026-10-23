@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Center / Align
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Center` and `Align` place a child somewhere inside the parent's space; `Center` is simply `Align(alignment: Alignment.center)`.
 
 ## Centering

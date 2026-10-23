@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # TweenAnimationBuilder
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `TweenAnimationBuilder` is the go-to for "lightweight explicit animation": give it a target `tween.end` and it automatically tweens from the current value, feeding each frame's interpolated value back through the callback so you can build widgets. **No hand-written AnimationController, no Ticker mixin.**
 
 ## Size tween

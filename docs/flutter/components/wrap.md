@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Wrap 流式布局
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Wrap` 类似 Row/Column，但子组件排到边界放不下时会自动换行。适合标签云、表情面板。
 
 ## 标签自动折行

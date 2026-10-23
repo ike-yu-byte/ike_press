@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Checkbox
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Checkbox` is an on/off choice. It is a **controlled widget**: it stores no state itself -- the checked result is entirely determined by the external `value` + `onChanged`.
 
 ## Basic check

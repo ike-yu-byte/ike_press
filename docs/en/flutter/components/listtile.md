@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # ListTile
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `ListTile` is the Material standard "one list row" layout with five preset slots -- leading icon, title, subtitle, trailing widget -- plus built-in tap and ripple. Settings rows and message lists almost always use it.
 
 ## The five slots at once

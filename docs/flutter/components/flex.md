@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Flex 弹性布局
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Flex` 是 `Row`/`Column` 的底层实现，`direction` 决定主轴方向。只有当排列方向需要运行时切换时才直接用它。
 
 ## 竖直方向（等价 Column）

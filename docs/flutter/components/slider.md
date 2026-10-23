@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Slider 滑块
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Slider` 让用户在一段区间内拖动选择数值，如音量、亮度、价格范围。
 
 ## 基础连续滑块

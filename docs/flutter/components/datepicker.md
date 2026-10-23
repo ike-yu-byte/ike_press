@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # DatePicker 日期选择器
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 Flutter 的日期选择不是一个 widget，而是通过 `showDatePicker` 弹出一个对话框。时间用 `showTimePicker`。
 
 ## 选择日期

@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Button 按钮
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 Flutter SDK 内置了一族 Material 按钮组件（`package:flutter/material.dart`），无需任何三方包。它们都派生自 `ButtonStyleButton`，**参数几乎一致，区别只在默认样式**。
 
 Material 3 规范下的分工：

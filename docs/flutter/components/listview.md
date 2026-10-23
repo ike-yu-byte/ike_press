@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # ListView 列表
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `ListView` 是可滚动列表，Flutter 里最核心的长内容组件。它**懒加载**——只渲染视口内及附近的项，因此能承载成千上万条数据。
 
 ## 固定项列表

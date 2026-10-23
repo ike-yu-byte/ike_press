@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # GridView 网格
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `GridView` 以固定的行列网格展示内容，典型场景是图片墙、功能入口九宫格。同样支持懒加载。
 
 ## 固定列数 count

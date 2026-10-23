@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # CircleAvatar
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `CircleAvatar` draws a circular placeholder, typically a user avatar: photo, icon or initials.
 
 ## Image avatar

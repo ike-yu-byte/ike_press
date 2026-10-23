@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # AnimatedContainer
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 Beyond what a plain `Container` does, `AnimatedContainer` **tween-transitions automatically** whenever properties change (size, color, radius, margin, etc.) — no hand-written `AnimationController` needed.
 
 ## Toggle size/color on tap

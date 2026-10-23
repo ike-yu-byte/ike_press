@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # BottomNavigationBar 底部导航
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `BottomNavigationBar` 是 App 最常见的底部主导航（首页/发现/我的）。放在 `Scaffold.bottomNavigationBar`，点不同项切换 `currentIndex` 并换 body。
 
 ## 基本三 Tab
