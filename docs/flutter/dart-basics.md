@@ -401,7 +401,7 @@ class Animal {
   final String name;
   Animal(this.name);
 
-  void speak() => print('$name makes a sound');
+  void speak() => print('$name makes a sound'); // print 本身返回 void，所以这里声明 void 正确（箭头体类型与返回类型匹配）
 }
 
 // 单继承 extends；implements 实现接口（Dart 没有 interface 关键字，类即可被实现）
@@ -650,6 +650,10 @@ Dart 不做自动分号插入（ASI），每条语句以 `;` 结尾。忘了就�
 
 ::: info 一切皆表达式的世界更近 TS
 类、函数、数字、`null` 全是对象（JS 里数字字符串是原始值）；`new` 关键字可省略，直接 `Point(1, 2)` 构造。
+:::
+
+::: info void 是“不可使用的值”，不是“无返回值”的同义词
+`print` 的签名是 `void print(Object?)`——它输出到控制台（副作用），但不交出任何可用值，所以 `void speak() => print(...)` 合法；反过来 `void f() => 42;` 编译报错。`var x = print('hi');` 也会被拦——`void` 类型的值禁止赋值使用。JS 的 `console.log()` 返回 `undefined`，行为一致。
 :::
 
 ## 下一步

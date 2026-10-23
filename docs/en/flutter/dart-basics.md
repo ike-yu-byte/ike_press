@@ -401,7 +401,7 @@ class Animal {
   final String name;
   Animal(this.name);
 
-  void speak() => print('$name makes a sound');
+  void speak() => print('$name makes a sound'); // print returns void itself, so declaring void here is correct (body type matches return type)
 }
 
 // Single inheritance via extends; implements consumes any class as an interface (no interface keyword)
@@ -650,6 +650,10 @@ Dart has no automatic semicolon insertion (ASI). Every statement ends with `;`. 
 
 ::: info Everything-is-an-expression, closer to TS
 Classes, functions, numbers and `null` are all objects (JS has primitives); the `new` keyword is optional — just call `Point(1, 2)`.
+:::
+
+::: info void means "a value you must not use", not a synonym for "returns nothing"
+`print` is declared as `void print(Object?)` — it writes to the console (a side effect) and hands back no usable value, so `void speak() => print(...)` is valid; conversely `void f() => 42;` fails to compile. `var x = print('hi');` is also rejected — a `void`-typed value can't be assigned. JS's `console.log()` returning `undefined` behaves the same way.
 :::
 
 ## What's next
