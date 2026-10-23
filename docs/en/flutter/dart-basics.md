@@ -340,11 +340,11 @@ class Point {
   // Default constructor — named after the class, no constructor keyword
   Point(this.x, this.y);                    // this-param sugar: declare + assign in one step
 
-  // Named constructor: JS can only fake this with factory functions
-  Point.origin() : x = 0, y = 0;            // : starts the initializer list, runs before the body
+  // Named constructor: one class can offer several semantic entry points, called as ClassName.name(...) ≈ a JS static factory
+  Point.origin() : x = 0, y = 0;            // : starts the initializer list, assigning fields before the body runs
 
-  // Factory constructor: may return cached instances or subtypes ≈ a static create method
-  factory Point.shared() => _shared ??= Point(0, 0);
+  // Factory constructor: can return an object without creating a new instance (existing / cached / subtype)
+  factory Point.shared() => _shared ??= Point(0, 0); // created on first call, then always returns the same instance
   static Point? _shared;
 
   // getter: JS get/set port over almost unchanged
@@ -352,11 +352,47 @@ class Point {
 }
 
 void main() {
+  // 1) Default: ClassName(...) builds a new object from the arguments
   var p = Point(3, 4);
   print('${p.x}, ${p.y}');   // 3.0, 4.0
   print(p.distance);          // 5.0
+
+  // 2) Named: ClassName.name(...) — self-documenting, no need to remember positional meaning
+  var o = Point.origin();
+  print('${o.x}, ${o.y}');   // 0.0, 0.0 — fixed origin, no manual Point(0, 0)
+
+  // 3) Factory: two calls return the same cached instance
+  var a = Point.shared();
+  var b = Point.shared();
+  print(identical(a, b));     // true — the same object (JS === compares references)
 }
 ```
+
+Constructors support both flavors of optional parameters too, with exactly the same rules as ordinary functions (`[]` positional, `{}` named). Flutter widget constructors are almost always "named + optional + required":
+
+```dart
+class MessageBox {
+  final String text;
+  final bool closable;
+  final int lines;
+
+  // Positional optional + defaults: trailing arguments may be omitted
+  MessageBox.positional(this.text, [this.closable = true, this.lines = 1]);
+
+  // Named optional: self-documenting at the call site, required enforces presence
+  MessageBox.named({required this.text, this.closable = true, this.lines = 1});
+}
+
+void main() {
+  var a = MessageBox.positional('saved');                    // closable=true, lines=1 (all defaults)
+  var b = MessageBox.positional('saved', false);             // order-bound: closable=false
+  var c = MessageBox.named(text: 'error');                   // name + colon, any order
+  var d = MessageBox.named(text: 'error', lines: 3);         // change only what you want
+  print('${a.text} ${b.closable} ${c.lines} ${d.lines}');    // saved false 1 3
+}
+```
+
+Compare: positional optional can't skip `closable` to pass `lines` (you'd write `positional('x', true, 3)`); named params skip freely (`named(text: 'x', lines: 3)`) — the reason Flutter standardized on named parameters.
 
 ### Inheritance, interfaces, mixins
 

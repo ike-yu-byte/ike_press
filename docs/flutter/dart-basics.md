@@ -340,11 +340,11 @@ class Point {
   // 默认构造函数——方法名等于类名，无 constructor 关键字
   Point(this.x, this.y);                    // this.参数 语法糖：声明+赋值一步完成
 
-  // 命名构造函数：JS 只能靠工厂函数模拟，Dart 原生支持
-  Point.origin() : x = 0, y = 0;            // : 后面是初始化列表，构造体执行前赋值
+  // 命名构造函数：一个类可以有多个语义化入口，调用时写作 类名.构造名(...)，≈ JS 的静态工厂函数
+  Point.origin() : x = 0, y = 0;            // : 后面是初始化列表，构造体执行前给字段赋值
 
-  // 工厂构造函数：可以返回缓存实例或子类，≈ 静态 create 方法
-  factory Point.shared() => _shared ??= Point(0, 0);
+  // 工厂构造函数：不新建实例也能返回对象（已有实例 / 缓存 / 子类都行）
+  factory Point.shared() => _shared ??= Point(0, 0); // 首次调用才创建，之后永远返回同一个实例
   static Point? _shared;
 
   // getter：JS 的 get/set 几乎原样平移
@@ -352,11 +352,47 @@ class Point {
 }
 
 void main() {
+  // 1) 默认构造：类名(...)，直接按参数建新对象
   var p = Point(3, 4);
   print('${p.x}, ${p.y}');   // 3.0, 4.0
   print(p.distance);          // 5.0
+
+  // 2) 命名构造：类名.构造名(...)，语义自解释，不用记参数含义
+  var o = Point.origin();
+  print('${o.x}, ${o.y}');   // 0.0, 0.0 —— 固定原点，不用手写 Point(0, 0)
+
+  // 3) 工厂构造：两次调用拿到的是同一个缓存实例
+  var a = Point.shared();
+  var b = Point.shared();
+  print(identical(a, b));     // true —— 同一对象（JS 里用 === 比引用）
 }
 ```
+
+构造函数同样支持两种可选参数，规则与普通函数完全一致（`[]` 位置可选、`{}` 命名可选）。Flutter 的 Widget 构造函数几乎全是“命名参数 + 可选 + required”的组合：
+
+```dart
+class MessageBox {
+  final String text;
+  final bool closable;
+  final int lines;
+
+  // 位置可选 + 默认值：后面的参数可传可不传
+  MessageBox.positional(this.text, [this.closable = true, this.lines = 1]);
+
+  // 命名可选：调用点名字自解释，必填项用 required 强制
+  MessageBox.named({required this.text, this.closable = true, this.lines = 1});
+}
+
+void main() {
+  var a = MessageBox.positional('saved');                    // closable=true, lines=1（全走默认）
+  var b = MessageBox.positional('saved', false);             // 只能按顺序传：closable=false
+  var c = MessageBox.named(text: 'error');                   // named 的用法：名字 + 冒号，顺序随意
+  var d = MessageBox.named(text: 'error', lines: 3);         // 只改想改的，中间参数跳过
+  print('${a.text} ${b.closable} ${c.lines} ${d.lines}');    // saved false 1 3
+}
+```
+
+对比：位置可选想跳过 `closable` 直传 `lines` 做不到（只能写 `positional('x', true, 3)`）；命名参数可以任意跳过（`named(text: 'x', lines: 3)`）——这就是 Flutter 普遍选命名参数的原因。
 
 ### 继承、接口、混入
 
