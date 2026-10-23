@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Divider 分割线
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Divider` 画一条水平分隔线，区隔内容。Material 3 下默认细线带上下留白。
 
 ## 基本分割线

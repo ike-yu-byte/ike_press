@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # DropdownButton
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `DropdownButton` opens an option menu on tap; after picking, the menu closes and the chosen item shows in the button's place. Good for choosing one of a few fixed options (city, category).
 
 ## Basic usage

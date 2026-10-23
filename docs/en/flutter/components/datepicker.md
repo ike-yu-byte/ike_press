@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # DatePicker
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 Flutter's date picker is not a widget -- you call `showDatePicker` which pops a dialog. Time uses `showTimePicker`.
 
 ## Picking a date

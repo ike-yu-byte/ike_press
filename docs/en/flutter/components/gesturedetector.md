@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # GestureDetector
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `GestureDetector` adds gesture recognition to any widget (tap, double tap, long press, drag, scale, etc.). It **handles logic only and provides zero visual feedback** (no ripple).
 
 ## Tap / double tap / long press

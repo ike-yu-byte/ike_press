@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # SizedBox
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `SizedBox` forces its `child` to a fixed size; with no child it becomes a pure spacer block.
 
 ## Creating gaps

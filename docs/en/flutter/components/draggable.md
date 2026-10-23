@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Draggable
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Draggable` lets a widget be picked up and dragged; releasing over a `DragTarget` completes a delivery. Common uses: drag-to-reorder, dropping content into zones, tagging/classifying items.
 
 ## The pair: Draggable + DragTarget

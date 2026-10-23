@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # TabBar / TabBarView 选项卡
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `TabBar` 是顶部的标签条，`TabBarView` 是可左右滑动的内容页，两者通过 `TabController` 联动。常放在 `AppBar.bottom`。
 
 ## DefaultTabController（最省事）

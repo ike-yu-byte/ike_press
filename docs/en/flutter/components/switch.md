@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Switch
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Switch` is an instantly-applied on/off toggle (Wi-Fi, notifications, etc.). Like Checkbox it is controlled via `value` + `onChanged`; the difference is the sliding animation and the "flip it and it takes effect" semantics.
 
 ## Basic switch

@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Container
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Container` is the most versatile layout box: one widget handling size, padding, margin, decoration (background/rounding/border/shadow) and alignment at the same time.
 
 ## Rounded color block

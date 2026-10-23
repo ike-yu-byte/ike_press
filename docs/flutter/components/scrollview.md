@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # SingleChildScrollView 单孩子滚动
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `SingleChildScrollView` 让**一个**子组件变得可滚动。当你有一整块固定内容（一个 Column、一段长文）需要滚动，但子项数量少、不需要懒加载时用它。
 
 ## 纵向滚动长内容

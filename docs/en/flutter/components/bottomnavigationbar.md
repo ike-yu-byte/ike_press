@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # BottomNavigationBar
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `BottomNavigationBar` is the most common primary navigation in apps (Home/Explore/Me). It lives in `Scaffold.bottomNavigationBar`; tapping different items updates `currentIndex` and swaps the body.
 
 ## Basic three tabs

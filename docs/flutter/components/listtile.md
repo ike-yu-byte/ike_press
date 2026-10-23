@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # ListTile 列表项
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `ListTile` 是 Material 标准的"一行列表项"布局，预置了左图标、标题、副标题、右组件五个槽位，点击/水波纹都自带。设置里的选项、消息列表基本都用它。
 
 ## 五槽位基本形态

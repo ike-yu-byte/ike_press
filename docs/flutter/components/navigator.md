@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Navigator 路由跳转
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Navigator` 管理页面的入栈/出栈，实现页面跳转。Flutter 有两种写法：**命令式**（`push` 一个 `MaterialPageRoute`）和**命名路由**（`pushNamed`）。
 
 ## 跳转到新页面（命令式）

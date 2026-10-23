@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # NavigationRail
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `NavigationRail` is a vertical navigation bar, common on tablets/desktop/wide layouts (a left-side vertical nav). It's the vertical counterpart of `BottomNavigationBar`.
 
 ## Basic usage

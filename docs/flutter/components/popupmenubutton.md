@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # PopupMenuButton 弹出菜单
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `PopupMenuButton` 点击后弹出一小组菜单项（常放 AppBar 右上角的 ⋮），选中某项回调 `onSelected`。
 
 ## 基本用法

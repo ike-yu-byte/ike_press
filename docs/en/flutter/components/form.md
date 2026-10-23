@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Form
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Form` aggregates a group of `TextFormField` inputs into one unit for unified validation and reset. Validation logic lives in each field's `validator`.
 
 ## Login form (full validation flow)

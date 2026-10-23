@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Expanded / Flexible
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Expanded` and `Flexible` make one child of Row/Column consume the *remaining* main-axis space; `flex` distributes proportionally. The only difference between the two: `Expanded` forces the child to fill that space, `Flexible` merely loosens the constraint (the child may stay smaller).
 
 ## Expanded: fill the remaining space

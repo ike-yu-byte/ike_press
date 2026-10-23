@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Stack
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Stack` layers children along the Z axis -- later children paint on top. Perfect for badges, overlays and watermarks.
 
 ## Image + badge

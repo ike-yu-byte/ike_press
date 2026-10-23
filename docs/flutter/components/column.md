@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Column 纵向布局
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Column` 把子组件沿垂直方向排成一列，与 `Row` 对称，主轴=垂直。
 
 ## 基本竖排

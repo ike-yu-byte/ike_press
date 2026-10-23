@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Text
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Text` renders a piece of text with one uniform style; the styling details live in `TextStyle`.
 
 ## Basic styling

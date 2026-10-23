@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # TweenAnimationBuilder 补间动画
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `TweenAnimationBuilder` 是"轻量显式动画"利器：给一个目标值 `tween.end`，它自动从当前值补间过去，并在每一帧用回调把中间值喂给你构建 widget。**不用手写 AnimationController、不用混入 Ticker**。
 
 ## 尺寸补间

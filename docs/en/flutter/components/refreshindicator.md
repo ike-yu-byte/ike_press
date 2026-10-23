@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # RefreshIndicator
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `RefreshIndicator` wraps a scrollable widget: pulling down shows a spinner, releasing kicks off an async refresh task.
 
 ## Basic pull-to-refresh

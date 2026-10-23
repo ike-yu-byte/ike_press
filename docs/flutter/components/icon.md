@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Icon 图标
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Icon` 渲染单色矢量图标，内置 <a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Material Icons 字库</a>，通过 `Icons` 静态常量引用。
 
 ## 基础图标

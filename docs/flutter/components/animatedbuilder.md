@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # AnimatedBuilder / 显式动画
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 当需要**完全掌控**动画（播放、暂停、反转、循环、多动画编排）时，用显式动画：`AnimationController` + `AnimatedBuilder`。这是 Flutter 动画体系的核心，隐式动画（AnimatedXxx）满足不了时才上它。
 
 ## 循环旋转（repeat）

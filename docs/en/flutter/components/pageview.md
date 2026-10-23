@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # PageView
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `PageView` shows one page at a time, switching with horizontal (or vertical) swipes. Good for onboarding guides, image carousels and tab-style full-screen paging.
 
 ## Basic paging

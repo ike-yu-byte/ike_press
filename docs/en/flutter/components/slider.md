@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Slider
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Slider` lets users drag within a range to pick a value -- volume, brightness, price filters.
 
 ## Basic continuous slider

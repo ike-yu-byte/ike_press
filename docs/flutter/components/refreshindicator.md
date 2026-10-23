@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # RefreshIndicator 下拉刷新
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `RefreshIndicator` 包裹一个可滚动组件，用户下拉时显示加载圈，松手触发异步刷新任务。
 
 ## 基本下拉刷新

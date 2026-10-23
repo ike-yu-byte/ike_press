@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Image
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Image` loads from assets, the network, files or memory -- the constructor picks the source.
 
 ## Network image + fill

@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # NavigationRail 侧边导航
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `NavigationRail` 是竖向的导航栏，常用于平板/桌面/宽屏布局（左侧竖排导航）。它是 `BottomNavigationBar` 的"竖版"对应物。
 
 ## 基本用法

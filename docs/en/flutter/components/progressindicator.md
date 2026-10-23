@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # ProgressIndicator
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 Progress indicators come in two flavors: **indeterminate** (spinning, unknown remaining time) and **determinate** (percentage). They map to `CircularProgressIndicator` and `LinearProgressIndicator`.
 
 ## Indeterminate progress (loading)

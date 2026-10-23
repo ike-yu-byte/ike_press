@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Scaffold
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Scaffold` is the **skeleton container** of a Material page — the outermost widget of most pages. It wires up slots for the AppBar, body, bottom navigation, FAB, drawer and SnackBars in one place.
 
 ## Full skeleton

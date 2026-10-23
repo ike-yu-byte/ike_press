@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # TabBar / TabBarView
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `TabBar` is the top tab strip, `TabBarView` is the swipeable content pager; the two sync through a `TabController`. Often placed in `AppBar.bottom`.
 
 ## DefaultTabController (least code)

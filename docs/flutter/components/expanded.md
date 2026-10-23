@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Expanded / Flexible 伸展
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Expanded` 和 `Flexible` 只能作为 `Row` / `Column` / `Flex` 的直接子，用来按比例分配主轴上的剩余空间。
 
 ## 吃满剩余空间

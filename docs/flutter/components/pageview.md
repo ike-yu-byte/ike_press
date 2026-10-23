@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # PageView 翻页
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `PageView` 一次显示一页，左右（或上下）滑动切换。适合引导页、图片轮播、Tab 式全屏翻页。
 
 ## 基本翻页

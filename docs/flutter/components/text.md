@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Text 文本
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Text` 渲染一段具有相同样式的文本，样式细节由 `TextStyle` 承载。
 
 ## 基本样式

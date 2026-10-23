@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Button
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 Flutter ships a family of Material button widgets in `package:flutter/material.dart` -- no third-party package needed. They all derive from `ButtonStyleButton`, **so the parameters are nearly identical; only the default styling differs**.
 
 Division of labor under Material 3:

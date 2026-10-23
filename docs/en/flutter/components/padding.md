@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Padding
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Padding` inserts whitespace around its `child`. It only handles spacing -- no background, no sizing -- which makes it lighter than `Container`.
 
 ## Padding on all sides

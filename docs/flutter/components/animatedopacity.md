@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # AnimatedOpacity 透明度动画
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `AnimatedOpacity` 在 `opacity` 变化时自动做淡入淡出过渡。适合显示/隐藏元素时加个柔和过渡，而不是生硬地出现消失。
 
 ## 淡入淡出

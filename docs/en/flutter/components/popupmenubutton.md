@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # PopupMenuButton
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `PopupMenuButton` reveals a small menu of choices on tap (commonly the ⋮ at the top-right of an AppBar); selecting an item fires `onSelected`.
 
 ## Basic usage

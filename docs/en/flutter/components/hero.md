@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Hero
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `Hero` creates a shared-element transition where an element **flies smoothly from the old page to the new one** during navigation (the classic: tapping a list thumbnail to open a full-size detail page).
 
 ## Basic usage: same tag on both pages

@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # AnimatedBuilder / Explicit animation
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 When you need **full control** over an animation (play, pause, reverse, loop, orchestrating multiple animations), go explicit: `AnimationController` + `AnimatedBuilder`. This is the core of Flutter's animation system — reach for it only when implicit animations (AnimatedXxx) fall short.
 
 ## Endless rotation (repeat)

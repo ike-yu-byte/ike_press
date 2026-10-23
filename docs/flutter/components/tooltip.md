@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Tooltip 提示气泡
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Tooltip` 给某个 widget 加一段悬浮/长按提示文字，常用于图标按钮说明其含义。
 
 ## 基础提示

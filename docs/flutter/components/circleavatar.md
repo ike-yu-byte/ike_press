@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # CircleAvatar 头像
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `CircleAvatar` 画一个圆形占位，常显示用户头像：图片、图标或文字首字母。
 
 ## 图片头像

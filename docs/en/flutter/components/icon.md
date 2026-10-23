@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Icon
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Icon` renders a monochrome vector glyph. The <a href="https://fonts.google.com/icons" target="_blank" rel="noopener noreferrer">Material Icons</a> font set is built in and referenced through the `Icons` static constants.
 
 ## Basic icons

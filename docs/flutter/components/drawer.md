@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Drawer 抽屉
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `Drawer` 是从屏幕侧边滑出的面板，常放账号信息、次要导航。挂到 `Scaffold.drawer`，AppBar 会自动出现 ☰ 按钮。
 
 ## 基本抽屉

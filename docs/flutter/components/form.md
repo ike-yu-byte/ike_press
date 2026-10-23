@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Form 表单校验
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Form` 把一组 `TextFormField` 等输入项聚合成一个整体，统一校验、统一重置。校验逻辑写在每个字段的 `validator` 里。
 
 ## 登录表单（完整校验流程）

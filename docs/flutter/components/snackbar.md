@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # SnackBar 消息条
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `SnackBar` 是从屏幕底部短暂弹出的轻提示（"已保存""发送失败"），不打断操作，几秒后自动消失，可带一个"撤销"动作。
 
 ## 基本提示

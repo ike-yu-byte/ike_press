@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Column
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Column` stacks its children vertically -- the mirror image of `Row`, with the main axis = vertical.
 
 ## Basic vertical stack

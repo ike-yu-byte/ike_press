@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # SingleChildScrollView
 
+> 🔵 Stateful widget · `StatefulWidget`
+
 `SingleChildScrollView` makes **one** child scrollable. Use it when you have a single block of fixed content (a Column, a long article) that needs scrolling, but with few children and no need for lazy building.
 
 ## Vertical scrolling for long content

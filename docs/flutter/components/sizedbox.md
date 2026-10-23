@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # SizedBox 尺寸占位
 
+> 🟢 无状态组件 · `StatelessWidget`
+
 `SizedBox` 强制 `child` 采用固定尺寸；无 `child` 时就是撑间距的占位块。
 
 ## 撑出间距

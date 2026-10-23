@@ -5,6 +5,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 # Drawer
 
+> 🟢 Stateless widget · `StatelessWidget`
+
 `Drawer` is a panel that slides in from the screen edge, usually holding account info and secondary navigation. Attach it to `Scaffold.drawer` and the AppBar shows a ☰ button automatically.
 
 ## Basic drawer

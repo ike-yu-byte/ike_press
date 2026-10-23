@@ -5,6 +5,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 
 # Image 图片
 
+> 🔵 有状态组件 · `StatefulWidget`
+
 `Image` 支持从资源、网络、文件、内存加载，用不同构造函数区分来源。
 
 ## 网络图片 + 填充
