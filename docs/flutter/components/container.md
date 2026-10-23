@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 背景色 + 圆角 + 内边距。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: container-basic —— 圆角背景盒子
 class ContainerBasicDemo extends StatelessWidget {
   const ContainerBasicDemo({super.key});
@@ -40,6 +42,8 @@ class ContainerBasicDemo extends StatelessWidget {
 `BoxDecoration` 支持渐变与投影。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: container-decorated —— 渐变阴影卡片
 class ContainerDecoratedDemo extends StatelessWidget {
   const ContainerDecoratedDemo({super.key});
@@ -72,6 +76,8 @@ class ContainerDecoratedDemo extends StatelessWidget {
 `Border.all` 加边框。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: container-border —— 带描边
 class ContainerBorderDemo extends StatelessWidget {
   const ContainerBorderDemo({super.key});

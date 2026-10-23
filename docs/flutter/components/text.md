@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 字号、字重、颜色、字间距。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: text-style —— 标题文本样式
 class TextStyleDemo extends StatelessWidget {
   const TextStyleDemo({super.key});
@@ -38,6 +40,8 @@ class TextStyleDemo extends StatelessWidget {
 超长文本按 `maxLines` 截断并显示省略号。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: text-overflow —— 两行截断
 class TextOverflowDemo extends StatelessWidget {
   const TextOverflowDemo({super.key});
@@ -63,6 +67,8 @@ class TextOverflowDemo extends StatelessWidget {
 一段文字里混排多种样式，用 `Text.rich` + `TextSpan`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: text-rich —— 局部变色加粗
 class TextRichDemo extends StatelessWidget {
   const TextRichDemo({super.key});
@@ -92,6 +98,8 @@ class TextRichDemo extends StatelessWidget {
 `DefaultTextStyle` 给整棵子树设默认文字样式，子 `Text` 的 `style` 会与之合并。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: text-default-style —— 统一子树文字样式
 class TextDefaultStyleDemo extends StatelessWidget {
   const TextDefaultStyleDemo({super.key});

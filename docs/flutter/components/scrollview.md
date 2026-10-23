@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 一整屏放不下的 Column，包一层就能滚。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: scrollview-vertical —— 纵向滚一整块 Column
 class ScrollViewVerticalDemo extends StatelessWidget {
   const ScrollViewVerticalDemo({super.key});
@@ -44,6 +46,8 @@ class ScrollViewVerticalDemo extends StatelessWidget {
 `scrollDirection: Axis.horizontal` 让一行 Row 横滚（不懒加载的简易横向内容）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: scrollview-horizontal —— 横向滚一排色块
 class ScrollViewHorizontalDemo extends StatelessWidget {
   const ScrollViewHorizontalDemo({super.key});
@@ -76,6 +80,8 @@ class ScrollViewHorizontalDemo extends StatelessWidget {
 内容不足一屏时默认不滚；加 `AlwaysScrollableScrollPhysics` 或 `Center` 撑满处理。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: scrollview-physics —— 内容不满也能下拉回弹
 class ScrollViewPhysicsDemo extends StatelessWidget {
   const ScrollViewPhysicsDemo({super.key});

@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Swipe right-to-left to delete an item, revealing a red background with a delete icon.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dismissible-basic —— swipe to delete
 class DismissibleBasicDemo extends StatefulWidget {
   const DismissibleBasicDemo({super.key});
@@ -65,6 +67,8 @@ class _DismissibleBasicDemoState extends State<DismissibleBasicDemo> {
 Swipe one way to archive, the other to delete -- per-direction backgrounds and handling.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dismissible-twoway —— different action per direction
 class DismissibleTwoWayDemo extends StatefulWidget {
   const DismissibleTwoWayDemo({super.key});
@@ -122,6 +126,8 @@ class _DismissibleTwoWayDemoState extends State<DismissibleTwoWayDemo> {
 Swiping open is not deleting -- pop a dialog in `confirmDismiss` and only return true when the user agrees.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dismissible-confirm —— second confirmation after swipe
 class DismissibleConfirmDemo extends StatefulWidget {
   const DismissibleConfirmDemo({super.key});

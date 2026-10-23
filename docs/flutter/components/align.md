@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 居中
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: align-center —— 居中
 class AlignCenterDemo extends StatelessWidget {
   const AlignCenterDemo({super.key});
@@ -35,6 +37,8 @@ class AlignCenterDemo extends StatelessWidget {
 `Alignment` 常量控制贴哪一角。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: align-corner —— 右下角
 class AlignCornerDemo extends StatelessWidget {
   const AlignCornerDemo({super.key});
@@ -61,6 +65,8 @@ class AlignCornerDemo extends StatelessWidget {
 RTL 语言（阿拉伯语等）下 `Alignment.centerLeft` 仍贴物理左侧；要"跟随文字起始边"须用 `AlignmentDirectional.centerStart`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: align-text-direction —— Directionality 切换左右
 class AlignTextDirectionDemo extends StatelessWidget {
   const AlignTextDirectionDemo({super.key});
@@ -109,6 +115,8 @@ class AlignTextDirectionDemo extends StatelessWidget {
 ## 强制宽高比
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: align-ratio —— 16:9 盒子
 class AlignRatioDemo extends StatelessWidget {
   const AlignRatioDemo({super.key});

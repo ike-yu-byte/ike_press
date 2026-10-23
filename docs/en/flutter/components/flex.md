@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Vertical (equivalent to Column)
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: flex-vertical —— vertical direction
 class FlexVerticalDemo extends StatelessWidget {
   const FlexVerticalDemo({super.key});
@@ -35,6 +37,8 @@ class FlexVerticalDemo extends StatelessWidget {
 Responsive: horizontal on wide screens, vertical on narrow ones.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: flex-responsive —— direction based on available width
 class FlexResponsiveDemo extends StatelessWidget {
   const FlexResponsiveDemo({super.key});

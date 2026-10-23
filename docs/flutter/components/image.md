@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 `fit: BoxFit.cover` 等比裁剪填满。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: image-network —— 网络图 cover 填充
 class ImageNetworkDemo extends StatelessWidget {
   const ImageNetworkDemo({super.key});
@@ -35,6 +37,8 @@ class ImageNetworkDemo extends StatelessWidget {
 `loadingBuilder` 显示进度、`errorBuilder` 兜底失败。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: image-placeholder —— 加载中/失败占位
 class ImagePlaceholderDemo extends StatelessWidget {
   const ImagePlaceholderDemo({super.key});
@@ -64,6 +68,8 @@ class ImagePlaceholderDemo extends StatelessWidget {
 `Image` 自身无圆角，靠外层 `ClipRRect` 裁剪。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: image-rounded —— ClipRRect 裁圆角
 class ImageRoundedDemo extends StatelessWidget {
   const ImageRoundedDemo({super.key});
@@ -90,6 +96,8 @@ class ImageRoundedDemo extends StatelessWidget {
 `Image.asset` 读取 `pubspec.yaml` 声明的 assets，多倍图放 `2.0x/`、`3.0x/` 子目录自动选。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: image-asset —— 读取打包资源
 class ImageAssetDemo extends StatelessWidget {
   const ImageAssetDemo({super.key});

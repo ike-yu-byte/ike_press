@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 点击/双击/长按
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gesture-tap —— 三种基础点击手势回显
 class GestureTapDemo extends StatefulWidget {
   const GestureTapDemo({super.key});
@@ -56,6 +58,8 @@ class _GestureTapDemoState extends State<GestureTapDemo> {
 `onPanUpdate` 每帧给增量 `delta`，累加进偏移。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gesture-drag —— 拖动方块随处移动
 class GestureDragDemo extends StatefulWidget {
   const GestureDragDemo({super.key});
@@ -95,6 +99,8 @@ class _GestureDragDemoState extends State<GestureDragDemo> {
 `onScaleUpdate` 的 `details.scale` 是相对起始的缩放倍数。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gesture-scale —— 双指缩放图片
 class GestureScaleDemo extends StatefulWidget {
   const GestureScaleDemo({super.key});
@@ -129,6 +135,8 @@ class _GestureScaleDemoState extends State<GestureScaleDemo> {
 ## 点击区域与行为细节
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gesture-behavior —— opaque 让空白区也能点
 class GestureBehaviorDemo extends StatelessWidget {
   const GestureBehaviorDemo({super.key});
@@ -154,6 +162,8 @@ class GestureBehaviorDemo extends StatelessWidget {
 子树里有 ListView 等滚动组件时，手势会"竞争"；`excludeFromSemantics`、`dragStartBehavior` 是常用调节项。
 
 ```dart
+import 'package:flutter/material.dart';
+
 // 常用缓解手段：
 GestureDetector(
   onHorizontalDragUpdate: (d) {},

@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Padding on all sides
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: padding-all —— even inset on all sides
 class PaddingAllDemo extends StatelessWidget {
   const PaddingAllDemo({super.key});
@@ -34,6 +36,8 @@ class PaddingAllDemo extends StatelessWidget {
 `EdgeInsets.only` / `symmetric` target specific edges.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: padding-symmetric —— separate horizontal/vertical
 class PaddingSymmetricDemo extends StatelessWidget {
   const PaddingSymmetricDemo({super.key});

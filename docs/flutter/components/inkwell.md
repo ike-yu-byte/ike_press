@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基础水波纹
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: inkwell-basic —— 点整块出波纹
 class InkWellBasicDemo extends StatelessWidget {
   const InkWellBasicDemo({super.key});
@@ -35,6 +37,8 @@ class InkWellBasicDemo extends StatelessWidget {
 波纹默认是矩形扩散，配 `customBorder` 或外层 `clipBehavior` 贴合形状。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: inkwell-rounded —— 圆角卡片可点
 class InkWellRoundedDemo extends StatelessWidget {
   const InkWellRoundedDemo({super.key});
@@ -60,6 +64,8 @@ class InkWellRoundedDemo extends StatelessWidget {
 `radius`、hover 色、选中高亮都能定制；桌面端 hover 也有效果。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: inkwell-states —— hover/selected 态颜色
 class InkWellStatesDemo extends StatefulWidget {
   const InkWellStatesDemo({super.key});
@@ -98,6 +104,8 @@ class _InkWellStatesDemoState extends State<InkWellStatesDemo> {
 想让文字/图片也"沾染"波纹（波纹画在 Ink 层而非 Material 层），用 `Ink`/`ColoredBox` 替代 Container 背景。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: ink-image-reveal —— 图片上盖波纹
 class InkImageDemo extends StatelessWidget {
   const InkImageDemo({super.key});

@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 controller `repeat()` + AnimatedBuilder 每帧重建。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animated-spin-repeat —— 无限旋转加载块
 class AnimatedSpinDemo extends StatefulWidget {
   const AnimatedSpinDemo({super.key});
@@ -62,6 +64,8 @@ class _AnimatedSpinDemoState extends State<AnimatedSpinDemo>
 显式动画的价值：随时 `pause` / `reverse` / `fling`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animated-control —— 按钮控制出入场
 class AnimatedControlDemo extends StatefulWidget {
   const AnimatedControlDemo({super.key});
@@ -128,6 +132,8 @@ class _AnimatedControlDemoState extends State<AnimatedControlDemo>
 一个 controller 驱动多段：先平移再缩放。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animated-sequence —— Interval 分段编排
 class AnimatedSequenceDemo extends StatefulWidget {
   const AnimatedSequenceDemo({super.key});
@@ -175,6 +181,8 @@ class _AnimatedSequenceDemoState extends State<AnimatedSequenceDemo>
 Flutter 3.10+ 中若只监听值不依赖每帧重建，`ListenableBuilder` 更语义化；动画场景 AnimatedBuilder 仍是标配。
 
 ```dart
+import 'package:flutter/material.dart';
+
 // AnimatedBuilder 本质：
 // AnimatedBuilder ≈ ListenableBuilder(listenable: animation,
 //     builder: (context, child) => ...每帧重算...)

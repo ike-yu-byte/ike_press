@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic divider
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: divider-basic —— between list items
 class DividerBasicDemo extends StatelessWidget {
   const DividerBasicDemo({super.key});
@@ -38,6 +40,8 @@ class DividerBasicDemo extends StatelessWidget {
 Customize with `indent` / `thickness` / `color`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: divider-styled —— indented, thicker, colored
 class DividerStyledDemo extends StatelessWidget {
   const DividerStyledDemo({super.key});
@@ -66,6 +70,8 @@ class DividerStyledDemo extends StatelessWidget {
 Flutter has no built-in interrupted divider; compose one with a `Row`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: divider-with-text —— label in the middle
 class DividerTextDemo extends StatelessWidget {
   const DividerTextDemo({super.key});

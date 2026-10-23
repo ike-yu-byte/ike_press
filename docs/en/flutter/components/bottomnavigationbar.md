@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic three tabs
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomnav-basic —— home / explore / me
 class BottomNavBasicDemo extends StatefulWidget {
   const BottomNavBasicDemo({super.key});
@@ -51,6 +53,8 @@ class _BottomNavBasicDemoState extends State<BottomNavBasicDemo> {
 `type: shifting` shows only icons when unselected and icon+label when selected, with flashier animation; often used past 3 items.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomnav-shifting —— selected item carries a background pill
 class BottomNavShiftingDemo extends StatefulWidget {
   const BottomNavShiftingDemo({super.key});
@@ -86,6 +90,8 @@ class _BottomNavShiftingDemoState extends State<BottomNavShiftingDemo> {
 Swapping the body directly destroys and rebuilds pages; use `IndexedStack` to preserve each tab's state (scroll position, etc.).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomnav-indexedstack —— tab switches keep state
 class BottomNavIndexedStackDemo extends StatefulWidget {
   const BottomNavIndexedStackDemo({super.key});
@@ -126,6 +132,8 @@ class _BottomNavIndexedStackDemoState extends State<BottomNavIndexedStackDemo> {
 Material 3's `NavigationBar` is the new-generation bottom nav (automatic pill highlight, theme-driven styling); prefer it in new projects.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomnav-m3-navigationbar —— the new NavigationBar widget
 class BottomNavM3Demo extends StatefulWidget {
   const BottomNavM3Demo({super.key});

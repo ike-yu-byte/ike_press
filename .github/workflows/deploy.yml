@@ -1,0 +1,45 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 把仓库代码拉到runner上
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install dependencies & Build
+        run: |
+          npm install
+          npm run build
+
+      - name: SCP dist to server /tmp/deploy_dist
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/*"
+          target: "/tmp/deploy_dist"
+          strip_components: 1
+
+      - name: SSH move files + chmod
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            WEB_ROOT="/www/wwwroot/www.panglai.online"
+            rm -rf ${WEB_ROOT}/*
+            mv /tmp/deploy_dist/* ${WEB_ROOT}/
+            rm -rf /tmp/deploy_dist
+            chown -R www:www ${WEB_ROOT}
+            chmod -R 755 ${WEB_ROOT}

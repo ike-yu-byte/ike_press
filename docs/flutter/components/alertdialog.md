@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 确认对话框
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: alert-confirm —— 删除二次确认
 class AlertDialogConfirmDemo extends StatefulWidget {
   const AlertDialogConfirmDemo({super.key});
@@ -67,6 +69,8 @@ class _AlertDialogConfirmDemoState extends State<AlertDialogConfirmDemo> {
 对话框里放表单，确认时读取 controller。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: alert-input —— 重命名输入弹窗
 class AlertDialogInputDemo extends StatefulWidget {
   const AlertDialogInputDemo({super.key});
@@ -125,6 +129,8 @@ class _AlertDialogInputDemoState extends State<AlertDialogInputDemo> {
 纯"挑一个"场景用 `SimpleDialog`，选项即按钮。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: alert-simple-dialog —— 打开方式选择
 class SimpleDialogDemo extends StatefulWidget {
   const SimpleDialogDemo({super.key});
@@ -172,6 +178,8 @@ class _SimpleDialogDemoState extends State<SimpleDialogDemo> {
 ## 不可取消 & 富样式
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: alert-unclosable —— barrierDismissible false + 自定义 icon/形状
 class AlertDialogStyledDemo extends StatelessWidget {
   const AlertDialogStyledDemo({super.key});

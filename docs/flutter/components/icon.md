@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 尺寸与颜色。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: icon-basic —— 不同尺寸颜色
 class IconBasicDemo extends StatelessWidget {
   const IconBasicDemo({super.key});
@@ -39,6 +41,8 @@ class IconBasicDemo extends StatelessWidget {
 同一图标有 `_border`/`_outlined`/`_rounded`/`_sharp` 等变体。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: icon-variants —— 实心/描边/圆角
 class IconVariantsDemo extends StatelessWidget {
   const IconVariantsDemo({super.key});
@@ -66,6 +70,8 @@ class IconVariantsDemo extends StatelessWidget {
 `IconButton` 给图标加点击与水波纹。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: icon-button —— IconButton
 class IconButtonDemo extends StatelessWidget {
   const IconButtonDemo({super.key});

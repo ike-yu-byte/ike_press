@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 竖直方向（等价 Column）
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: flex-vertical —— direction 竖直
 class FlexVerticalDemo extends StatelessWidget {
   const FlexVerticalDemo({super.key});
@@ -35,6 +37,8 @@ class FlexVerticalDemo extends StatelessWidget {
 响应式：宽屏横排、窄屏竖排。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: flex-responsive —— 按宽度切换方向
 class FlexResponsiveDemo extends StatelessWidget {
   const FlexResponsiveDemo({super.key});

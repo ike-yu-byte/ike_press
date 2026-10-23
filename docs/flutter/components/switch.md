@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基础开关
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: switch-basic —— Wi-Fi 开关即时生效
 class SwitchBasicDemo extends StatefulWidget {
   const SwitchBasicDemo({super.key});
@@ -46,6 +48,8 @@ class _SwitchBasicDemoState extends State<SwitchBasicDemo> {
 设置页标准形态，点标题也能切换。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: switch-listtile —— 设置列表风格
 class SwitchListTileDemo extends StatefulWidget {
   const SwitchListTileDemo({super.key});
@@ -92,6 +96,8 @@ class _SwitchListTileDemoState extends State<SwitchListTileDemo> {
 新版用 `WidgetStateProperty` 按状态（选中/未选中/禁用）给色。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: switch-colored —— M3 状态属性配色
 class SwitchColoredDemo extends StatefulWidget {
   const SwitchColoredDemo({super.key});
@@ -134,6 +140,8 @@ class _SwitchColoredDemoState extends State<SwitchColoredDemo> {
 ## 禁用与加载确认
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: switch-async —— 拨动后异步确认，期间显示加载
 class SwitchAsyncDemo extends StatefulWidget {
   const SwitchAsyncDemo({super.key});

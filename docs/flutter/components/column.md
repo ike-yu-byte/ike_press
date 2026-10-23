@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本竖排
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: column-basic —— 竖排三块
 class ColumnBasicDemo extends StatelessWidget {
   const ColumnBasicDemo({super.key});
@@ -35,6 +37,8 @@ class ColumnBasicDemo extends StatelessWidget {
 `mainAxisAlignment` 控制垂直排布。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: column-main-axis —— spaceAround 分布
 class ColumnMainAxisDemo extends StatelessWidget {
   const ColumnMainAxisDemo({super.key});
@@ -63,6 +67,8 @@ class ColumnMainAxisDemo extends StatelessWidget {
 `CrossAxisAlignment.stretch` 让子项横向撑满。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: column-stretch —— 子项满宽
 class ColumnStretchDemo extends StatelessWidget {
   const ColumnStretchDemo({super.key});
@@ -90,6 +96,8 @@ class ColumnStretchDemo extends StatelessWidget {
 某项吃掉剩余高度。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: column-expanded —— 头部/内容/底部
 class ColumnExpandedDemo extends StatelessWidget {
   const ColumnExpandedDemo({super.key});

@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 拖起方块放进接收区。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: drag-target-basic —— 拖入投递完整流程
 class DragTargetBasicDemo extends StatefulWidget {
   const DragTargetBasicDemo({super.key});
@@ -89,6 +91,8 @@ class _DragTargetBasicDemoState extends State<DragTargetBasicDemo> {
 只想"把东西拖走/扔掉"，用一个全屏 DragTarget 或在 onDragEnd 判断位置。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: drag-end-anywhere —— 松手即处理，不依赖 DragTarget
 class DragEndDemo extends StatefulWidget {
   const DragEndDemo({super.key});
@@ -134,6 +138,8 @@ class _DragEndDemoState extends State<DragEndDemo> {
 ## 多个源拖一个目标（按数据区分）
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: drag-multi-source —— 颜色分类游戏
 class DragMultiSourceDemo extends StatefulWidget {
   const DragMultiSourceDemo({super.key});

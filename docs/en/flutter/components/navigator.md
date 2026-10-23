@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Arguments go through the target page's constructor — the most direct way.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: navigator-push —— go to detail page with params
 class NavigatorPushDemo extends StatelessWidget {
   const NavigatorPushDemo({super.key});
@@ -57,6 +59,8 @@ class DetailPage extends StatelessWidget {
 `push` returns a `Future`; read the outcome when the page calls `pop(context, value)`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: navigator-result —— picker page returns a value
 class NavigatorResultDemo extends StatefulWidget {
   const NavigatorResultDemo({super.key});
@@ -115,6 +119,8 @@ class CityPickerPage extends StatelessWidget {
 ## Back and replace
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: navigator-pop-replace —— pop / replace current page
 void _back(BuildContext context) {
   Navigator.pop(context); // close current page
@@ -142,6 +148,8 @@ class HomePage extends StatelessWidget {
 Register a table in `MaterialApp.routes` and jump by path name; arguments travel in `arguments`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: navigator-named —— named routes with arguments
 // Registered in main.dart:
 void main() {
@@ -190,6 +198,8 @@ class NamedRouteDetail extends StatelessWidget {
 `PopScope` intercepts first when the user hits back or uses the predictive-back gesture.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: navigator-popscope —— confirm dialog before leaving
 class NavigatorPopScopeDemo extends StatelessWidget {
   const NavigatorPopScopeDemo({super.key});

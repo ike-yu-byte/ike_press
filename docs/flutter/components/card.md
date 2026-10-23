@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 Card + 内部 Column 组合一张内容卡。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: card-basic —— 标题 + 正文的内容卡
 class CardBasicDemo extends StatelessWidget {
   const CardBasicDemo({super.key});
@@ -46,6 +48,8 @@ class CardBasicDemo extends StatelessWidget {
 Card 本身不处理点击，内嵌 `InkWell`（注意 `clipBehavior` 让水波纹不溢出圆角）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: card-clickable —— 整卡可点带水波纹
 class CardClickableDemo extends StatelessWidget {
   const CardClickableDemo({super.key});
@@ -83,6 +87,8 @@ class CardClickableDemo extends StatelessWidget {
 上图下文的典型 feed 卡片。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: card-media —— 图片 + 文字 + 操作区
 class CardMediaDemo extends StatelessWidget {
   const CardMediaDemo({super.key});
@@ -137,6 +143,8 @@ class CardMediaDemo extends StatelessWidget {
 `shape` 换边框/圆角，`elevation` 控制阴影层级（0 为无阴影扁平）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: card-shape —— 不同圆角与阴影对比
 class CardShapeDemo extends StatelessWidget {
   const CardShapeDemo({super.key});

@@ -12,6 +12,8 @@ When you need **full control** over an animation (play, pause, reverse, loop, or
 controller `repeat()` + AnimatedBuilder rebuilding each frame.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animated-spin-repeat —— infinitely spinning loader block
 class AnimatedSpinDemo extends StatefulWidget {
   const AnimatedSpinDemo({super.key});
@@ -62,6 +64,8 @@ class _AnimatedSpinDemoState extends State<AnimatedSpinDemo>
 The value of explicit animation: `pause` / `reverse` / `fling` at any time.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animated-control —— buttons drive enter/exit
 class AnimatedControlDemo extends StatefulWidget {
   const AnimatedControlDemo({super.key});
@@ -128,6 +132,8 @@ class _AnimatedControlDemoState extends State<AnimatedControlDemo>
 One controller drives several phases: translate first, then scale.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animated-sequence —— Interval-based staging
 class AnimatedSequenceDemo extends StatefulWidget {
   const AnimatedSequenceDemo({super.key});
@@ -175,6 +181,8 @@ class _AnimatedSequenceDemoState extends State<AnimatedSequenceDemo>
 Since Flutter 3.10, if you only listen to a value without needing per-frame subtree rebuilds, `ListenableBuilder` reads better; for animations AnimatedBuilder remains the standard.
 
 ```dart
+import 'package:flutter/material.dart';
+
 // AnimatedBuilder in essence:
 // AnimatedBuilder ≈ ListenableBuilder(listenable: animation,
 //     builder: (context, child) => ...recompute each frame...)

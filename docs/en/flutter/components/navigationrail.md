@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic usage
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: rail-basic —— two-destination left rail
 class RailBasicDemo extends StatefulWidget {
   const RailBasicDemo({super.key});
@@ -55,6 +57,8 @@ class _RailBasicDemoState extends State<RailBasicDemo> {
 `NavigationRail.extended` is the expanded form: text slides out next to the selected item — typical on desktop.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: rail-extended —— expandable desktop style
 class RailExtendedDemo extends StatefulWidget {
   const RailExtendedDemo({super.key});
@@ -97,6 +101,8 @@ class _RailExtendedDemoState extends State<RailExtendedDemo> {
 Put a logo/menu button in `leading`, secondary actions like settings in `trailing`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: rail-leading-trailing —— top/bottom extension slots
 class RailSlotsDemo extends StatelessWidget {
   const RailSlotsDemo({super.key});
@@ -133,6 +139,8 @@ class RailSlotsDemo extends StatelessWidget {
 Same index state, switch between two navigations by width.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: rail-responsive —— adapts to window width
 class RailResponsiveDemo extends StatefulWidget {
   const RailResponsiveDemo({super.key});

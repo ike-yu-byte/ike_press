@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 Font size, weight, color, letter spacing.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: text-style —— headline text style
 class TextStyleDemo extends StatelessWidget {
   const TextStyleDemo({super.key});
@@ -38,6 +40,8 @@ class TextStyleDemo extends StatelessWidget {
 Text longer than `maxLines` gets truncated with an ellipsis.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: text-overflow —— clamp to two lines
 class TextOverflowDemo extends StatelessWidget {
   const TextOverflowDemo({super.key});
@@ -63,6 +67,8 @@ class TextOverflowDemo extends StatelessWidget {
 Mixing several styles within one paragraph: `Text.rich` + `TextSpan`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: text-rich —— partially recolored and bolded
 class TextRichDemo extends StatelessWidget {
   const TextRichDemo({super.key});
@@ -92,6 +98,8 @@ class TextRichDemo extends StatelessWidget {
 `DefaultTextStyle` sets a default text style for the whole subtree; child `Text.style` values merge with it.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: text-default-style —— one style for the subtree
 class TextDefaultStyleDemo extends StatelessWidget {
   const TextDefaultStyleDemo({super.key});

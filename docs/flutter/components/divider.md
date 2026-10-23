@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本分割线
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: divider-basic —— 列表项之间
 class DividerBasicDemo extends StatelessWidget {
   const DividerBasicDemo({super.key});
@@ -38,6 +40,8 @@ class DividerBasicDemo extends StatelessWidget {
 `indent` / `thickness` / `color` 定制。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: divider-styled —— 缩进加粗变色
 class DividerStyledDemo extends StatelessWidget {
   const DividerStyledDemo({super.key});
@@ -66,6 +70,8 @@ class DividerStyledDemo extends StatelessWidget {
 Flutter 无内置打断式分割线，用 `Row` 拼。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: divider-with-text —— 中间放文字
 class DividerTextDemo extends StatelessWidget {
   const DividerTextDemo({super.key});

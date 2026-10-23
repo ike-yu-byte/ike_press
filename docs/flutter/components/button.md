@@ -27,6 +27,8 @@ Material 3 规范下的分工：
 四种文本按钮 + 图标按钮的横向对比。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-family —— 按钮家族一览
 class ButtonFamilyDemo extends StatelessWidget {
   const ButtonFamilyDemo({super.key});
@@ -60,6 +62,8 @@ class ButtonFamilyDemo extends StatelessWidget {
 `onPressed` 传 `null` 即禁用——颜色变灰、不响应点击，**不需要**额外的 `disabled` 参数。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-disabled —— onPressed 为 null 即禁用
 class ButtonDisabledDemo extends StatelessWidget {
   const ButtonDisabledDemo({super.key});
@@ -92,6 +96,8 @@ class ButtonDisabledDemo extends StatelessWidget {
 `IconButton` 只有图标；`ElevatedButton.icon` / `FilledButton.icon` 等提供图标 + 文字组合。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-icon —— 纯图标按钮与图标文字按钮
 class ButtonIconDemo extends StatelessWidget {
   const ButtonIconDemo({super.key});
@@ -128,6 +134,8 @@ class ButtonIconDemo extends StatelessWidget {
 放在 `Scaffold.floatingActionButton`，通常是页面单一主行动；`FloatingActionButton.extended` 支持图标 + 文字。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-fab —— 普通 FAB 与扩展 FAB
 class ButtonFabDemo extends StatelessWidget {
   const ButtonFabDemo({super.key});
@@ -160,6 +168,8 @@ class ButtonFabDemo extends StatelessWidget {
 Flutter 没有内置 `loading` 属性，通用做法是自己换 child 并在加载时禁用点击。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-loading —— 提交时切换为进度圈并禁用
 class ButtonLoadingDemo extends StatefulWidget {
   const ButtonLoadingDemo({super.key});
@@ -200,6 +210,8 @@ class _ButtonLoadingDemoState extends State<ButtonLoadingDemo> {
 每个按钮都有 `style`，更常用的快捷方式是 `组件名.styleFrom()`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-style —— styleFrom 改颜色/尺寸/圆角
 class ButtonStyleDemo extends StatelessWidget {
   const ButtonStyleDemo({super.key});
@@ -229,6 +241,8 @@ class ButtonStyleDemo extends StatelessWidget {
 需要按悬停/按下/禁用给不同值时，用 `WidgetStateProperty`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: button-state-style —— WidgetStateProperty 分状态配色
 class ButtonStateStyleDemo extends StatelessWidget {
   const ButtonStateStyleDemo({super.key});

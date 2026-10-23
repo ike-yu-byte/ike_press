@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 `fit: BoxFit.cover` scales proportionally and crops to fill.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: image-network —— network image with cover fill
 class ImageNetworkDemo extends StatelessWidget {
   const ImageNetworkDemo({super.key});
@@ -35,6 +37,8 @@ class ImageNetworkDemo extends StatelessWidget {
 `loadingBuilder` shows progress, `errorBuilder` provides a fallback.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: image-placeholder —— loading / failed placeholders
 class ImagePlaceholderDemo extends StatelessWidget {
   const ImagePlaceholderDemo({super.key});
@@ -64,6 +68,8 @@ class ImagePlaceholderDemo extends StatelessWidget {
 `Image` itself has no radius -- clip with an outer `ClipRRect`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: image-rounded —— ClipRRect rounded corners
 class ImageRoundedDemo extends StatelessWidget {
   const ImageRoundedDemo({super.key});
@@ -90,6 +96,8 @@ class ImageRoundedDemo extends StatelessWidget {
 `Image.asset` reads assets declared in `pubspec.yaml`; put density variants under `2.0x/`, `3.0x/` subfolders and Flutter picks automatically.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: image-asset —— bundled resource image
 class ImageAssetDemo extends StatelessWidget {
   const ImageAssetDemo({super.key});

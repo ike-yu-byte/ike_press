@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Shown on mouse hover for desktop, on long press for mobile.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tooltip-basic —— icon with explanation
 class TooltipBasicDemo extends StatelessWidget {
   const TooltipBasicDemo({super.key});
@@ -33,6 +35,8 @@ class TooltipBasicDemo extends StatelessWidget {
 `triggerMode` switches to tap triggering; `waitDuration` / `showDuration` control the rhythm.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tooltip-trigger —— tap to show, custom duration
 class TooltipTriggerDemo extends StatelessWidget {
   const TooltipTriggerDemo({super.key});
@@ -54,6 +58,8 @@ class TooltipTriggerDemo extends StatelessWidget {
 ## Position and style
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tooltip-style —— preferBelow + custom decoration
 class TooltipStyleDemo extends StatelessWidget {
   const TooltipStyleDemo({super.key});
@@ -82,6 +88,8 @@ class TooltipStyleDemo extends StatelessWidget {
 `richMessage` lets the content be more than plain text.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tooltip-rich —— hint with styled layout
 class TooltipRichDemo extends StatelessWidget {
   const TooltipRichDemo({super.key});
@@ -110,6 +118,8 @@ class TooltipRichDemo extends StatelessWidget {
 With `manualTrigger: true`, external logic (e.g. keyboard focus) decides when to show.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tooltip-manual —— controlled by external state
 class TooltipManualDemo extends StatefulWidget {
   const TooltipManualDemo({super.key});

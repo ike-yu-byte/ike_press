@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic vertical stack
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: column-basic —— three blocks stacked
 class ColumnBasicDemo extends StatelessWidget {
   const ColumnBasicDemo({super.key});
@@ -35,6 +37,8 @@ class ColumnBasicDemo extends StatelessWidget {
 `mainAxisAlignment` controls the vertical distribution.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: column-main-axis —— spaceAround distribution
 class ColumnMainAxisDemo extends StatelessWidget {
   const ColumnMainAxisDemo({super.key});
@@ -63,6 +67,8 @@ class ColumnMainAxisDemo extends StatelessWidget {
 `CrossAxisAlignment.stretch` makes children fill the horizontal space.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: column-stretch —— full-width children
 class ColumnStretchDemo extends StatelessWidget {
   const ColumnStretchDemo({super.key});
@@ -90,6 +96,8 @@ class ColumnStretchDemo extends StatelessWidget {
 One child consumes the remaining height.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: column-expanded —— header / body / footer
 class ColumnExpandedDemo extends StatelessWidget {
   const ColumnExpandedDemo({super.key});

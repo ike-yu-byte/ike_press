@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Use a `TextEditingController` to read and write the text.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: textfield-basic —— labeled field with live echo
 class TextFieldBasicDemo extends StatefulWidget {
   const TextFieldBasicDemo({super.key});
@@ -62,6 +64,8 @@ class _TextFieldBasicDemoState extends State<TextFieldBasicDemo> {
 `obscureText` masks input; a trailing eye button toggles visibility.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: textfield-password —— show/hide password
 class TextFieldPasswordDemo extends StatefulWidget {
   const TextFieldPasswordDemo({super.key});
@@ -101,6 +105,8 @@ class _TextFieldPasswordDemoState extends State<TextFieldPasswordDemo> {
 `keyboardType` raises the matching keyboard; `maxLength` caps length and shows a counter.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: textfield-keyboard —— phone keyboard, 11 chars max
 class TextFieldKeyboardDemo extends StatelessWidget {
   const TextFieldKeyboardDemo({super.key});
@@ -132,6 +138,8 @@ class TextFieldKeyboardDemo extends StatelessWidget {
 `maxLines: null` grows automatically -- good for remarks/feedback boxes.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: textfield-multiline —— auto-growing multiline text
 class TextFieldMultilineDemo extends StatelessWidget {
   const TextFieldMultilineDemo({super.key});
@@ -160,6 +168,8 @@ class TextFieldMultilineDemo extends StatelessWidget {
 The three mainstream `InputDecoration` looks: underline, outlined, filled.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: textfield-decoration —— three decoration styles
 class TextFieldDecorationDemo extends StatelessWidget {
   const TextFieldDecorationDemo({super.key});

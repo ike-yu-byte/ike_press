@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基础单选
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: radio-basic —— 性别二选一
 class RadioBasicDemo extends StatefulWidget {
   const RadioBasicDemo({super.key});
@@ -51,6 +53,8 @@ class _RadioBasicDemoState extends State<RadioBasicDemo> {
 单选场景几乎都该用 `RadioListTile`，点标题文字也能选中。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: radio-listtile —— 支付方式单选
 class RadioListTileDemo extends StatefulWidget {
   const RadioListTileDemo({super.key});
@@ -104,6 +108,8 @@ class _RadioListTileDemoState extends State<RadioListTileDemo> {
 泛型用枚举而不是字符串，编译期防写错值。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: radio-enum —— 用 enum 做类型安全的单选
 enum DeliverySpeed { standard, express, sameDay }
 
@@ -142,6 +148,8 @@ class _RadioEnumDemoState extends State<RadioEnumDemo> {
 ## 禁用单项
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: radio-disabled —— onChanged 传 null 该项不可选
 class RadioDisabledDemo extends StatefulWidget {
   const RadioDisabledDemo({super.key});
@@ -183,6 +191,8 @@ class _RadioDisabledDemoState extends State<RadioDisabledDemo> {
 `groupValue` / `onChanged` 已从单项上废弃，改由祖先 `RadioGroup` 统一接管组状态：
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: radio-group-new-api —— RadioGroup 管理单选组
 class RadioGroupNewDemo extends StatefulWidget {
   const RadioGroupNewDemo({super.key});

@@ -10,6 +10,8 @@ Progress indicators come in two flavors: **indeterminate** (spinning, unknown re
 ## Indeterminate progress (loading)
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: progress-indeterminate —— circular + linear spinners
 class ProgressIndeterminateDemo extends StatelessWidget {
   const ProgressIndeterminateDemo({super.key});
@@ -38,6 +40,8 @@ class ProgressIndeterminateDemo extends StatelessWidget {
 Giving `value` (0.0~1.0) switches to determinate mode, filled proportionally.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: progress-determinate —— download at 60%
 class ProgressDeterminateDemo extends StatelessWidget {
   const ProgressDeterminateDemo({super.key});
@@ -66,6 +70,8 @@ class ProgressDeterminateDemo extends StatelessWidget {
 The most common async page pattern: pick between a loading state and the content state.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: progress-conditional —— show content after simulated loading
 class ProgressConditionalDemo extends StatefulWidget {
   const ProgressConditionalDemo({super.key});
@@ -123,6 +129,8 @@ class _ProgressConditionalDemoState extends State<ProgressConditionalDemo> {
 Newer versions express "done x/total" segment-style progress (M3).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: progress-steps —— step progress
 class ProgressStepsDemo extends StatelessWidget {
   const ProgressStepsDemo({super.key});

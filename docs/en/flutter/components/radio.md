@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic single choice
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: radio-basic —— gender two-way choice
 class RadioBasicDemo extends StatefulWidget {
   const RadioBasicDemo({super.key});
@@ -51,6 +53,8 @@ class _RadioBasicDemoState extends State<RadioBasicDemo> {
 Nearly all radio scenarios should use `RadioListTile` so the label is tappable too.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: radio-listtile —— payment method single choice
 class RadioListTileDemo extends StatefulWidget {
   const RadioListTileDemo({super.key});
@@ -104,6 +108,8 @@ class _RadioListTileDemoState extends State<RadioListTileDemo> {
 Use an enum as the generic type instead of strings -- typos become compile errors.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: radio-enum —— type-safe single choice with an enum
 enum DeliverySpeed { standard, express, sameDay }
 
@@ -142,6 +148,8 @@ class _RadioEnumDemoState extends State<RadioEnumDemo> {
 ## Disabling one option
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: radio-disabled —— null onChanged makes an option unselectable
 class RadioDisabledDemo extends StatefulWidget {
   const RadioDisabledDemo({super.key});
@@ -183,6 +191,8 @@ class _RadioDisabledDemoState extends State<RadioDisabledDemo> {
 `groupValue` / `onChanged` are deprecated on individual radios; an ancestor `RadioGroup` now owns the group state:
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: radio-group-new-api —— RadioGroup manages the radio set
 class RadioGroupNewDemo extends StatefulWidget {
   const RadioGroupNewDemo({super.key});

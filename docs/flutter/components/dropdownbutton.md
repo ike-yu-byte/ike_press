@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基础用法
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dropdown-basic —— 城市单选下拉
 class DropdownBasicDemo extends StatefulWidget {
   const DropdownBasicDemo({super.key});
@@ -45,6 +47,8 @@ class _DropdownBasicDemoState extends State<DropdownBasicDemo> {
 裸 `DropdownButton` 没有边框，表单场景用 `DropdownButtonFormField` 直接获得 `InputDecoration`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dropdown-form-field —— 带描边和标签的下拉
 class DropdownFormFieldDemo extends StatefulWidget {
   const DropdownFormFieldDemo({super.key});
@@ -85,6 +89,8 @@ class _DropdownFormFieldDemoState extends State<DropdownFormFieldDemo> {
 菜单项可放图标、颜色等任意 widget。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dropdown-rich —— 带图标的选项
 class DropdownRichDemo extends StatefulWidget {
   const DropdownRichDemo({super.key});
@@ -133,6 +139,8 @@ class _DropdownRichDemoState extends State<DropdownRichDemo> {
 下拉菜单不适合长列表（>10 项滚动困难），改用底部弹层或对话框列表。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dropdown-bottom-sheet —— 长列表走底部选择器
 class DropdownBottomSheetDemo extends StatefulWidget {
   const DropdownBottomSheetDemo({super.key});

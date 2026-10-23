@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 参数通过目标页构造函数传，最直接。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: navigator-push —— 带参跳转详情页
 class NavigatorPushDemo extends StatelessWidget {
   const NavigatorPushDemo({super.key});
@@ -57,6 +59,8 @@ class DetailPage extends StatelessWidget {
 `push` 返回 `Future`，`pop(context, value)` 时拿到结果。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: navigator-result —— 选择页回传结果
 class NavigatorResultDemo extends StatefulWidget {
   const NavigatorResultDemo({super.key});
@@ -115,6 +119,8 @@ class CityPickerPage extends StatelessWidget {
 ## 返回与替换
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: navigator-pop-replace —— 返回 / 替换当前页
 void _back(BuildContext context) {
   Navigator.pop(context); // 关闭当前页
@@ -142,6 +148,8 @@ class HomePage extends StatelessWidget {
 `MaterialApp.routes` 注册表，按路径名跳转；参数走 `arguments`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: navigator-named —— 命名路由与参数
 // main.dart 注册：
 void main() {
@@ -190,6 +198,8 @@ class NamedRouteDetail extends StatelessWidget {
 `PopScope` 在用户点返回/侧滑手势时先行拦截。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: navigator-popscope —— 返回前弹确认
 class NavigatorPopScopeDemo extends StatelessWidget {
   const NavigatorPopScopeDemo({super.key});

@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 All major slots configured at once.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: scaffold-full —— appBar + body + FAB + bottom nav + drawer
 class ScaffoldFullDemo extends StatefulWidget {
   const ScaffoldFullDemo({super.key});
@@ -59,6 +61,8 @@ class _ScaffoldFullDemoState extends State<ScaffoldFullDemo> {
 `body` doesn't avoid system bars automatically; wrap non-scrolling content in `SafeArea`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: scaffold-safearea —— content avoids notch / gesture bar
 class ScaffoldSafeAreaDemo extends StatelessWidget {
   const ScaffoldSafeAreaDemo({super.key});
@@ -83,6 +87,8 @@ class ScaffoldSafeAreaDemo extends StatelessWidget {
 Overlay the `AppBar` on body imagery: `transparent` + `flexibleSpace`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: scaffold-flexible-appbar —— image header + collapsing title
 class ScaffoldFlexibleDemo extends StatelessWidget {
   const ScaffoldFlexibleDemo({super.key});

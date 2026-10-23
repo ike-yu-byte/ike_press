@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 菜单头 + 列表项，点项先关抽屉再跳转。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: drawer-basic —— 标准侧边菜单
 class DrawerBasicDemo extends StatefulWidget {
   const DrawerBasicDemo({super.key});
@@ -68,6 +70,8 @@ class _DrawerBasicDemoState extends State<DrawerBasicDemo> {
 `GlobalKey<ScaffoldState>` 或 `Scaffold.of` 控制开关。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: drawer-programmatic —— 按钮唤开抽屉
 class DrawerProgrammaticDemo extends StatefulWidget {
   const DrawerProgrammaticDemo({super.key});
@@ -102,6 +106,8 @@ class _DrawerProgrammaticDemoState extends State<DrawerProgrammaticDemo> {
 ## 右侧抽屉 endDrawer
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: drawer-end —— 右侧筛选面板
 class EndDrawerDemo extends StatefulWidget {
   const EndDrawerDemo({super.key});

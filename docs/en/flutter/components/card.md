@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Card + an inner Column makes one content card.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: card-basic —— title + body content card
 class CardBasicDemo extends StatelessWidget {
   const CardBasicDemo({super.key});
@@ -46,6 +48,8 @@ class CardBasicDemo extends StatelessWidget {
 Card itself doesn't handle taps -- embed an `InkWell` (and mind `clipBehavior` so the ripple stays inside the rounded corners).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: card-clickable —— whole card tappable with ripple
 class CardClickableDemo extends StatelessWidget {
   const CardClickableDemo({super.key});
@@ -83,6 +87,8 @@ class CardClickableDemo extends StatelessWidget {
 The classic image-on-top, text-below feed card.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: card-media —— image + text + actions
 class CardMediaDemo extends StatelessWidget {
   const CardMediaDemo({super.key});
@@ -137,6 +143,8 @@ class CardMediaDemo extends StatelessWidget {
 `shape` swaps border/radius, `elevation` sets the shadow level (0 = flat).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: card-shape —— different radii and shadows side by side
 class CardShapeDemo extends StatelessWidget {
   const CardShapeDemo({super.key});

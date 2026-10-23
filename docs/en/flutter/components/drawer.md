@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Menu header + list items; tapping an item closes the drawer first, then navigates.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: drawer-basic —— standard side menu
 class DrawerBasicDemo extends StatefulWidget {
   const DrawerBasicDemo({super.key});
@@ -68,6 +70,8 @@ class _DrawerBasicDemoState extends State<DrawerBasicDemo> {
 Control it with a `GlobalKey<ScaffoldState>` or `Scaffold.of`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: drawer-programmatic —— button opens the drawer
 class DrawerProgrammaticDemo extends StatefulWidget {
   const DrawerProgrammaticDemo({super.key});
@@ -102,6 +106,8 @@ class _DrawerProgrammaticDemoState extends State<DrawerProgrammaticDemo> {
 ## Right-side endDrawer
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: drawer-end —— right filter panel
 class EndDrawerDemo extends StatefulWidget {
   const EndDrawerDemo({super.key});

@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 数字徽标
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: badge-count —— 通知图标带数字
 class BadgeCountDemo extends StatelessWidget {
   const BadgeCountDemo({super.key});
@@ -29,6 +31,8 @@ class BadgeCountDemo extends StatelessWidget {
 ## 小红点（不显示数字）
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: badge-dot —— 仅未读点
 class BadgeDotDemo extends StatelessWidget {
   const BadgeDotDemo({super.key});
@@ -48,6 +52,8 @@ class BadgeDotDemo extends StatelessWidget {
 ## 自定义外观 + 大数截断
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: badge-styled —— 颜色/位置/99+ 截断
 class BadgeStyledDemo extends StatelessWidget {
   const BadgeStyledDemo({super.key});
@@ -85,6 +91,8 @@ class BadgeStyledDemo extends StatelessWidget {
 ## 配合 IconButton / ListTile
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: badge-on-appbar-action —— 顶栏消息入口
 class BadgeActionDemo extends StatelessWidget {
   const BadgeActionDemo({super.key});

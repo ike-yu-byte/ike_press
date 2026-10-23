@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 少量写死的条目直接用 `children`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listview-children —— 固定三项
 class ListViewChildrenDemo extends StatelessWidget {
   const ListViewChildrenDemo({super.key});
@@ -41,6 +43,8 @@ class ListViewChildrenDemo extends StatelessWidget {
 数据多时必须用 `ListView.builder`，按需构建可见项。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listview-builder —— 100 条数据懒加载
 class ListViewBuilderDemo extends StatelessWidget {
   const ListViewBuilderDemo({super.key});
@@ -67,6 +71,8 @@ class ListViewBuilderDemo extends StatelessWidget {
 `separatorBuilder` 在每两项之间插入分隔线，比手动塞 Divider 干净。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listview-separated —— 项间自动插 Divider
 class ListViewSeparatedDemo extends StatelessWidget {
   const ListViewSeparatedDemo({super.key});
@@ -94,6 +100,8 @@ class ListViewSeparatedDemo extends StatelessWidget {
 `scrollDirection: Axis.horizontal` 让列表横着滚，常做标签栏、卡片流。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listview-horizontal —— 横向卡片流
 class ListViewHorizontalDemo extends StatelessWidget {
   const ListViewHorizontalDemo({super.key});
@@ -127,6 +135,8 @@ class ListViewHorizontalDemo extends StatelessWidget {
 多段不同结构拼一个滚动流时，用 `CustomScrollView` + `SliverList`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listview-slivers —— 头部 + 列表拼成一个滚动流
 class ListViewSliversDemo extends StatelessWidget {
   const ListViewSliversDemo({super.key});

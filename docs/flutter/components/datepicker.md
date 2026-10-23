@@ -10,6 +10,8 @@ Flutter 的日期选择不是一个 widget，而是通过 `showDatePicker` 弹�
 ## 选择日期
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: datepicker-basic —— 点按钮弹日历选日期
 class DatePickerBasicDemo extends StatefulWidget {
   const DatePickerBasicDemo({super.key});
@@ -55,6 +57,8 @@ class _DatePickerBasicDemoState extends State<DatePickerBasicDemo> {
 ## 选择时间
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: datepicker-time —— TimePicker 24/12 小时制
 class TimePickerDemo extends StatefulWidget {
   const TimePickerDemo({super.key});
@@ -100,6 +104,8 @@ class _TimePickerDemoState extends State<TimePickerDemo> {
 `selectableDayPredicate` 精确控制哪些天可点（如只能选未来 7 天）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: datepicker-restrict —— 只允许选今天起 7 天内
 class DatePickerRestrictDemo extends StatefulWidget {
   const DatePickerRestrictDemo({super.key});
@@ -152,6 +158,8 @@ class _DatePickerRestrictDemoState extends State<DatePickerRestrictDemo> {
 `MaterialApp` 配 `localizationsDelegates` + `locale: Locale('zh')` 即汉化日历；外观走 `showDatePicker` 的 `builder` 钩子或主题。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: datepicker-styled —— 定制确认/取消按钮文案
 Future<DateTime?> _pickWithCustomButtons(BuildContext context) {
   return showDatePicker(

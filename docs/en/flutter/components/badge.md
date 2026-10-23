@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Count badge
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: badge-count —— notification icon with number
 class BadgeCountDemo extends StatelessWidget {
   const BadgeCountDemo({super.key});
@@ -29,6 +31,8 @@ class BadgeCountDemo extends StatelessWidget {
 ## Red dot (no number)
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: badge-dot —— unread dot only
 class BadgeDotDemo extends StatelessWidget {
   const BadgeDotDemo({super.key});
@@ -48,6 +52,8 @@ class BadgeDotDemo extends StatelessWidget {
 ## Custom look + big-number truncation
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: badge-styled —— color/position/99+ truncation
 class BadgeStyledDemo extends StatelessWidget {
   const BadgeStyledDemo({super.key});
@@ -85,6 +91,8 @@ class BadgeStyledDemo extends StatelessWidget {
 ## With IconButton / ListTile
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: badge-on-appbar-action —— app bar message entry
 class BadgeActionDemo extends StatelessWidget {
   const BadgeActionDemo({super.key});

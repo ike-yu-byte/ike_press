@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 图片头像
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: circleavatar-image —— 网络头像
 class CircleAvatarImageDemo extends StatelessWidget {
   const CircleAvatarImageDemo({super.key});
@@ -31,6 +33,8 @@ class CircleAvatarImageDemo extends StatelessWidget {
 无图时用图标占位。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: circleavatar-icon —— 图标头像
 class CircleAvatarIconDemo extends StatelessWidget {
   const CircleAvatarIconDemo({super.key});
@@ -51,6 +55,8 @@ class CircleAvatarIconDemo extends StatelessWidget {
 ## 文字首字母
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: circleavatar-letter —— 首字母头像
 class CircleAvatarLetterDemo extends StatelessWidget {
   const CircleAvatarLetterDemo({super.key});
@@ -73,6 +79,8 @@ class CircleAvatarLetterDemo extends StatelessWidget {
 配合 `ListTile.leading` 做用户列表。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: circleavatar-listtile —— 用户列表项
 class CircleAvatarListTileDemo extends StatelessWidget {
   const CircleAvatarListTileDemo({super.key});

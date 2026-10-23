@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本横排
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: row-basic —— 三个子横排
 class RowBasicDemo extends StatelessWidget {
   const RowBasicDemo({super.key});
@@ -35,6 +37,8 @@ class RowBasicDemo extends StatelessWidget {
 `mainAxisAlignment` 控制水平排布。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: row-main-axis —— spaceBetween 分布
 class RowMainAxisDemo extends StatelessWidget {
   const RowMainAxisDemo({super.key});
@@ -63,6 +67,8 @@ class RowMainAxisDemo extends StatelessWidget {
 不同高度子项按 `crossAxisAlignment` 垂直对齐。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: row-cross-axis —— center 垂直居中
 class RowCrossAxisDemo extends StatelessWidget {
   const RowCrossAxisDemo({super.key});
@@ -89,6 +95,8 @@ class RowCrossAxisDemo extends StatelessWidget {
 `Expanded` 吃掉剩余宽度，`flex` 按比例分配。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: row-expanded —— 1:2 权重分宽
 class RowExpandedDemo extends StatelessWidget {
   const RowExpandedDemo({super.key});

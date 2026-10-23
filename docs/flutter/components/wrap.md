@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 `spacing` 主轴间距、`runSpacing` 行间距。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: wrap-chips —— 标签自动折行
 class WrapChipsDemo extends StatelessWidget {
   const WrapChipsDemo({super.key});
@@ -41,6 +43,8 @@ class WrapChipsDemo extends StatelessWidget {
 `alignment` 控制每行内部排布。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: wrap-alignment —— spaceEvenly 分布
 class WrapAlignmentDemo extends StatelessWidget {
   const WrapAlignmentDemo({super.key});

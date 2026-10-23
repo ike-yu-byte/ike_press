@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 `crossAxisCount` sets how many columns per row; the most common choice.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gridview-count —— 3 equal columns
 class GridViewCountDemo extends StatelessWidget {
   const GridViewCountDemo({super.key});
@@ -47,6 +49,8 @@ class GridViewCountDemo extends StatelessWidget {
 `maxCrossAxisExtent` caps each cell's width and fits as many columns as possible -- responsive-friendly.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gridview-extent —— cells at most 100 wide, column count auto
 class GridViewExtentDemo extends StatelessWidget {
   const GridViewExtentDemo({super.key});
@@ -82,6 +86,8 @@ class GridViewExtentDemo extends StatelessWidget {
 For large data sets use `GridView.builder` + a `SliverGridDelegate`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gridview-builder —— 100 cells built lazily
 class GridViewBuilderDemo extends StatelessWidget {
   const GridViewBuilderDemo({super.key});
@@ -117,6 +123,8 @@ class GridViewBuilderDemo extends StatelessWidget {
 `childAspectRatio` sets the cell shape; combine with `Image.network` for a photo wall.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gridview-image —— 2-column photo wall
 class GridViewImageDemo extends StatelessWidget {
   const GridViewImageDemo({super.key});

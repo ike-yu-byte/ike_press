@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 A Column taller than the viewport becomes scrollable with one wrapper.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: scrollview-vertical —— scroll a whole Column block
 class ScrollViewVerticalDemo extends StatelessWidget {
   const ScrollViewVerticalDemo({super.key});
@@ -44,6 +46,8 @@ class ScrollViewVerticalDemo extends StatelessWidget {
 `scrollDirection: Axis.horizontal` scrolls a Row sideways (simple non-lazy horizontal content).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: scrollview-horizontal —— scroll a row of text sideways
 class ScrollViewHorizontalDemo extends StatelessWidget {
   const ScrollViewHorizontalDemo({super.key});
@@ -76,6 +80,8 @@ class ScrollViewHorizontalDemo extends StatelessWidget {
 When content is shorter than the viewport it won't scroll by default; add `AlwaysScrollableScrollPhysics` to keep the overscroll bounce.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: scrollview-physics —— bounce even when underfilled
 class ScrollViewPhysicsDemo extends StatelessWidget {
   const ScrollViewPhysicsDemo({super.key});

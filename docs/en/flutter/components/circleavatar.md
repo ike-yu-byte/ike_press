@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Image avatar
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: circleavatar-image —— network avatar
 class CircleAvatarImageDemo extends StatelessWidget {
   const CircleAvatarImageDemo({super.key});
@@ -31,6 +33,8 @@ class CircleAvatarImageDemo extends StatelessWidget {
 Use an icon when there is no picture.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: circleavatar-icon —— icon avatar
 class CircleAvatarIconDemo extends StatelessWidget {
   const CircleAvatarIconDemo({super.key});
@@ -51,6 +55,8 @@ class CircleAvatarIconDemo extends StatelessWidget {
 ## Initial letter
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: circleavatar-letter —— initials avatar
 class CircleAvatarLetterDemo extends StatelessWidget {
   const CircleAvatarLetterDemo({super.key});
@@ -73,6 +79,8 @@ class CircleAvatarLetterDemo extends StatelessWidget {
 Combine with `ListTile.leading` for user lists.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: circleavatar-listtile —— user list row
 class CircleAvatarListTileDemo extends StatelessWidget {
   const CircleAvatarListTileDemo({super.key});

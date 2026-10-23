@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Pull the list down -> spinner -> auto hides once data updates.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: refresh-basic —— regenerate list data on pull
 class RefreshBasicDemo extends StatefulWidget {
   const RefreshBasicDemo({super.key});
@@ -55,6 +57,8 @@ class _RefreshBasicDemoState extends State<RefreshBasicDemo> {
 A `GlobalKey<RefreshIndicatorState>` can summon the refresh without a swipe (e.g. first page load).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: refresh-programmatic —— button triggers the refresh animation
 class RefreshProgrammaticDemo extends StatefulWidget {
   const RefreshProgrammaticDemo({super.key});
@@ -111,6 +115,8 @@ class _RefreshProgrammaticDemoState extends State<RefreshProgrammaticDemo> {
 Color, background and displacement are all adjustable.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: refresh-styled —— custom spinner look
 class RefreshStyledDemo extends StatefulWidget {
   const RefreshStyledDemo({super.key});

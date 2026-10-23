@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Fade in and out
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animatedopacity-toggle —— show/hide transition
 class AnimatedOpacityToggleDemo extends StatefulWidget {
   const AnimatedOpacityToggleDemo({super.key});
@@ -56,6 +58,8 @@ class _AnimatedOpacityToggleDemoState extends State<AnimatedOpacityToggleDemo> {
 opacity 0 only makes things unseen — the layout space stays and taps still land. This is the most common mental pitfall.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animatedopacity-placeholder —— hiding doesn't remove the gap
 class AnimatedOpacityPlaceholderDemo extends StatefulWidget {
   const AnimatedOpacityPlaceholderDemo({super.key});
@@ -94,6 +98,8 @@ class _AnimatedOpacityPlaceholderDemoState extends State<AnimatedOpacityPlacehol
 After the fade-out, swap in `SizedBox.shrink()`, or use `Visibility` to do it in one step.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animatedopacity-gone —— fully collapsed after fading
 class AnimatedOpacityGoneDemo extends StatefulWidget {
   const AnimatedOpacityGoneDemo({super.key});
@@ -135,6 +141,8 @@ class _AnimatedOpacityGoneDemoState extends State<AnimatedOpacityGoneDemo> {
 ## Sibling implicit animations
 
 ```dart
+import 'package:flutter/material.dart';
+
 AnimatedOpacity   // opacity
 AnimatedDefaultTextStyle // text style transition
 // translucent over a background: FadeTransition (explicit) achieves the same effect

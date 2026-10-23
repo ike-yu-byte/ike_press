@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 `spacing` = gap along the main axis, `runSpacing` = gap between lines.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: wrap-chips —— tags flow onto new lines
 class WrapChipsDemo extends StatelessWidget {
   const WrapChipsDemo({super.key});
@@ -41,6 +43,8 @@ class WrapChipsDemo extends StatelessWidget {
 `alignment` distributes children within each line.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: wrap-alignment —— spaceEvenly distribution
 class WrapAlignmentDemo extends StatelessWidget {
   const WrapAlignmentDemo({super.key});

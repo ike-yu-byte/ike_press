@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 改属性 + setState，剩下的交给动画。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animatedcontainer-toggle —— 尺寸颜色圆角三属性同变
 class AnimatedContainerToggleDemo extends StatefulWidget {
   const AnimatedContainerToggleDemo({super.key});
@@ -56,6 +58,8 @@ class _AnimatedContainerToggleDemoState extends State<AnimatedContainerToggleDem
 列表点击项变化高度与背景，是 AnimatedContainer 的主战场。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animatedcontainer-expand —— FAQ 手风琴单项
 class AnimatedContainerExpandDemo extends StatefulWidget {
   const AnimatedContainerExpandDemo({super.key});
@@ -107,6 +111,8 @@ class _AnimatedContainerExpandDemoState extends State<AnimatedContainerExpandDem
 同一变化里不同属性想不同节奏，外套两层各管一段。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animatedcontainer-stagger —— 先变大后变色
 class AnimatedContainerStaggerDemo extends StatefulWidget {
   const AnimatedContainerStaggerDemo({super.key});
@@ -150,6 +156,8 @@ class _AnimatedContainerStaggerDemoState extends State<AnimatedContainerStaggerD
 ## 原理与同族
 
 ```dart
+import 'package:flutter/material.dart';
+
 // AnimatedXxx 家族（用法同款）：
 AnimatedOpacity   // opacity 变化过渡
 AnimatedPadding   // padding 变化过渡

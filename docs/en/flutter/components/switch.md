@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic switch
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: switch-basic —— Wi-Fi toggle applied instantly
 class SwitchBasicDemo extends StatefulWidget {
   const SwitchBasicDemo({super.key});
@@ -46,6 +48,8 @@ class _SwitchBasicDemoState extends State<SwitchBasicDemo> {
 The standard settings-page shape -- tapping the title toggles too.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: switch-listtile —— settings list style
 class SwitchListTileDemo extends StatefulWidget {
   const SwitchListTileDemo({super.key});
@@ -92,6 +96,8 @@ class _SwitchListTileDemoState extends State<SwitchListTileDemo> {
 The new API colors by state (selected / unselected / disabled) via `WidgetStateProperty`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: switch-colored —— M3 state-property colors
 class SwitchColoredDemo extends StatefulWidget {
   const SwitchColoredDemo({super.key});
@@ -134,6 +140,8 @@ class _SwitchColoredDemoState extends State<SwitchColoredDemo> {
 ## Disabled while confirming asynchronously
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: switch-async —— async confirm after flipping, shows progress meanwhile
 class SwitchAsyncDemo extends StatefulWidget {
   const SwitchAsyncDemo({super.key});

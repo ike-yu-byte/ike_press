@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 A handful of hard-coded entries can go straight into `children`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listview-children —— three fixed rows
 class ListViewChildrenDemo extends StatelessWidget {
   const ListViewChildrenDemo({super.key});
@@ -41,6 +43,8 @@ class ListViewChildrenDemo extends StatelessWidget {
 With lots of data you must use `ListView.builder`, building only visible items.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listview-builder —— 100 items built lazily
 class ListViewBuilderDemo extends StatelessWidget {
   const ListViewBuilderDemo({super.key});
@@ -67,6 +71,8 @@ class ListViewBuilderDemo extends StatelessWidget {
 `separatorBuilder` inserts a divider between each pair of items -- cleaner than stuffing Dividers in manually.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listview-separated —— auto dividers between rows
 class ListViewSeparatedDemo extends StatelessWidget {
   const ListViewSeparatedDemo({super.key});
@@ -94,6 +100,8 @@ class ListViewSeparatedDemo extends StatelessWidget {
 `scrollDirection: Axis.horizontal` scrolls sideways -- often used for tag strips and card flows.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listview-horizontal —— horizontal card strip
 class ListViewHorizontalDemo extends StatelessWidget {
   const ListViewHorizontalDemo({super.key});
@@ -127,6 +135,8 @@ class ListViewHorizontalDemo extends StatelessWidget {
 To compose one scroll stream from differently structured sections, use `CustomScrollView` + `SliverList`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listview-slivers —— header + list in one scroll stream
 class ListViewSliversDemo extends StatelessWidget {
   const ListViewSliversDemo({super.key});

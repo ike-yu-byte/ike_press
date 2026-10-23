@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 淡入淡出
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animatedopacity-toggle —— 显隐过渡
 class AnimatedOpacityToggleDemo extends StatefulWidget {
   const AnimatedOpacityToggleDemo({super.key});
@@ -56,6 +58,8 @@ class _AnimatedOpacityToggleDemoState extends State<AnimatedOpacityToggleDemo> {
 opacity 0 只是看不见，仍占布局空间、仍可点——这是最常见的认知坑。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animatedopacity-placeholder —— 隐身后位置没消失
 class AnimatedOpacityPlaceholderDemo extends StatefulWidget {
   const AnimatedOpacityPlaceholderDemo({super.key});
@@ -94,6 +98,8 @@ class _AnimatedOpacityPlaceholderDemoState extends State<AnimatedOpacityPlacehol
 淡出结束后换成 `SizedBox.shrink()`，或用 `Visibility` 一步到位。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: animatedopacity-gone —— 淡出后彻底收起
 class AnimatedOpacityGoneDemo extends StatefulWidget {
   const AnimatedOpacityGoneDemo({super.key});
@@ -135,6 +141,8 @@ class _AnimatedOpacityGoneDemoState extends State<AnimatedOpacityGoneDemo> {
 ## 同族属性动画
 
 ```dart
+import 'package:flutter/material.dart';
+
 AnimatedOpacity   // opacity
 AnimatedDefaultTextStyle // 文字样式过渡
 // 半透明叠背景：FadeTransition（显式）也可达到同样效果

@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 列表页与详情页各放一个相同 `tag` 的 Hero，跳转即自动飞。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: hero-basic —— 缩略图点开大图页
 class HeroListDemo extends StatelessWidget {
   const HeroListDemo({super.key});
@@ -77,6 +79,8 @@ class HeroDetailDemo extends StatelessWidget {
 默认飞行是直接拉伸源/目标 widget 插值；想让途中先淡出再飞，接管 `flightShuttleBuilder`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: hero-flight-shuttle —— 飞行途中带缩放淡入
 final _bigUrl = 'https://picsum.photos/seed/shuttle/900/900';
 

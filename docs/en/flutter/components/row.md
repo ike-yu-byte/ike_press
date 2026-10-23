@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic horizontal line
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: row-basic —— three children in a line
 class RowBasicDemo extends StatelessWidget {
   const RowBasicDemo({super.key});
@@ -35,6 +37,8 @@ class RowBasicDemo extends StatelessWidget {
 `mainAxisAlignment` controls the horizontal distribution.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: row-main-axis —— spaceBetween distribution
 class RowMainAxisDemo extends StatelessWidget {
   const RowMainAxisDemo({super.key});
@@ -63,6 +67,8 @@ class RowMainAxisDemo extends StatelessWidget {
 Children of different heights align vertically via `crossAxisAlignment`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: row-cross-axis —— center vertical alignment
 class RowCrossAxisDemo extends StatelessWidget {
   const RowCrossAxisDemo({super.key});
@@ -89,6 +95,8 @@ class RowCrossAxisDemo extends StatelessWidget {
 `Expanded` consumes the remaining width; `flex` distributes it proportionally.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: row-expanded —— 1:2 weighted widths
 class RowExpandedDemo extends StatelessWidget {
   const RowExpandedDemo({super.key});

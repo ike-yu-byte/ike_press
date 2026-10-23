@@ -10,6 +10,8 @@ Dialogs interrupt the user to request confirmation or show critical information.
 ## Confirmation dialog
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: alert-confirm —— delete double confirmation
 class AlertDialogConfirmDemo extends StatefulWidget {
   const AlertDialogConfirmDemo({super.key});
@@ -67,6 +69,8 @@ class _AlertDialogConfirmDemoState extends State<AlertDialogConfirmDemo> {
 Put a form inside the dialog, read the controller on confirm.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: alert-input —— rename input dialog
 class AlertDialogInputDemo extends StatefulWidget {
   const AlertDialogInputDemo({super.key});
@@ -125,6 +129,8 @@ class _AlertDialogInputDemoState extends State<AlertDialogInputDemo> {
 For pure "pick one" scenarios use `SimpleDialog` -- every option is a button.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: alert-simple-dialog —— "open with" chooser
 class SimpleDialogDemo extends StatefulWidget {
   const SimpleDialogDemo({super.key});
@@ -172,6 +178,8 @@ class _SimpleDialogDemoState extends State<SimpleDialogDemo> {
 ## Uncancelable & rich styling
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: alert-unclosable —— barrierDismissible false + custom icon/shape
 class AlertDialogStyledDemo extends StatelessWidget {
   const AlertDialogStyledDemo({super.key});

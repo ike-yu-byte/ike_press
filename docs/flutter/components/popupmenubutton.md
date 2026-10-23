@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本用法
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: popup-basic —— 编辑/删除两项
 class PopupBasicDemo extends StatelessWidget {
   const PopupBasicDemo({super.key});
@@ -38,6 +40,8 @@ class PopupBasicDemo extends StatelessWidget {
 默认按钮是 ⋮，可换 icon 或整个 child；`offset` 控制菜单弹出位置。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: popup-custom-trigger —— 文字按钮触发 + 下方弹出
 class PopupCustomTriggerDemo extends StatelessWidget {
   const PopupCustomTriggerDemo({super.key});
@@ -72,6 +76,8 @@ class PopupCustomTriggerDemo extends StatelessWidget {
 `CheckedPopupMenuItem` 单选项、`PopupMenuDivider` 分组。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: popup-rich —— 图标 + 选中态 + 分隔线
 class PopupRichDemo extends StatefulWidget {
   const PopupRichDemo({super.key});
@@ -110,6 +116,8 @@ class _PopupRichDemoState extends State<PopupRichDemo> {
 每项自带 `onTap`，不需要统一 `onSelected` 时用 `onClosed`/空泛型。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: popup-callback —— 每项独立回调
 class PopupCallbackDemo extends StatelessWidget {
   const PopupCallbackDemo({super.key});
@@ -137,6 +145,8 @@ class PopupCallbackDemo extends StatelessWidget {
 ## 启用条件
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: popup-disabled —— 禁用态
 class PopupDisabledDemo extends StatelessWidget {
   const PopupDisabledDemo({super.key});

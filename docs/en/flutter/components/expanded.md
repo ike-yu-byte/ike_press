@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Expanded: fill the remaining space
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: expanded-fill —— text field eats the remaining width
 class ExpandedFillDemo extends StatelessWidget {
   const ExpandedFillDemo({super.key});
@@ -37,6 +39,8 @@ class ExpandedFillDemo extends StatelessWidget {
 `flex: 1 / 2` splits the remaining space 1:2.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: expanded-flex —— 1:2 blue-red split
 class ExpandedFlexDemo extends StatelessWidget {
   const ExpandedFlexDemo({super.key});
@@ -63,6 +67,8 @@ class ExpandedFlexDemo extends StatelessWidget {
 In the same 1:2 ratio, the `Flexible` child stays at its intrinsic size instead of filling the slot.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: flexible-loose —— Flexible vs Expanded comparison
 class FlexibleLooseDemo extends StatelessWidget {
   const FlexibleLooseDemo({super.key});
@@ -106,6 +112,8 @@ class FlexibleLooseDemo extends StatelessWidget {
 `Expanded` defaults to tight constraints; `Flexible` defaults to loose. Use `Expanded` to make a child "fill"; use `Flexible` to keep it from "overflowing".
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: expanded-fit-compare —— Row with fit: loose / tight
 class ExpandedFitDemo extends StatelessWidget {
   const ExpandedFitDemo({super.key});

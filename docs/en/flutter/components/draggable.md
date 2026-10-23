@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Drag a box into the drop zone.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: drag-target-basic —— full drag-and-deliver flow
 class DragTargetBasicDemo extends StatefulWidget {
   const DragTargetBasicDemo({super.key});
@@ -89,6 +91,8 @@ class _DragTargetBasicDemoState extends State<DragTargetBasicDemo> {
 If you just want "drag something away / throw it out", use one full-screen DragTarget or judge position in onDragEnd.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: drag-end-anywhere —— handle on release, no DragTarget needed
 class DragEndDemo extends StatefulWidget {
   const DragEndDemo({super.key});
@@ -134,6 +138,8 @@ class _DragEndDemoState extends State<DragEndDemo> {
 ## Multiple sources into one target (dispatch by data)
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: drag-multi-source —— color sorting game
 class DragMultiSourceDemo extends StatefulWidget {
   const DragMultiSourceDemo({super.key});

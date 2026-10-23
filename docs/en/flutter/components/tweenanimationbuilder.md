@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Whenever `end` changes, it glides smoothly from the current value.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tween-size —— tap to toggle square between 60~160
 class TweenSizeDemo extends StatefulWidget {
   const TweenSizeDemo({super.key});
@@ -59,6 +61,8 @@ class _TweenSizeDemoState extends State<TweenSizeDemo> {
 Angle tweens 0 → π, dropped into Transform.rotate inside the builder.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tween-rotate —— tap to rotate 180°
 class TweenRotateDemo extends StatefulWidget {
   const TweenRotateDemo({super.key});
@@ -108,6 +112,8 @@ class _TweenRotateDemoState extends State<TweenRotateDemo> {
 The type isn't limited to double — `IntTween`, `Color`, custom Tweens all work.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tween-counter —— number rolls from 0 up to target
 class TweenCounterDemo extends StatefulWidget {
   const TweenCounterDemo({super.key});
@@ -152,6 +158,8 @@ class _TweenCounterDemoState extends State<TweenCounterDemo> {
 ## Color tween
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tween-color —— tap to switch with a color transition
 class TweenColorDemo extends StatefulWidget {
   const TweenColorDemo({super.key});
@@ -189,6 +197,8 @@ class _TweenColorDemoState extends State<TweenColorDemo> {
 Pass the frame-invariant part as `child` so it isn't rebuilt every frame.
 
 ```dart
+import 'package:flutter/material.dart';
+
 // The third builder parameter child is exactly the top-level child field;
 // it is not rebuilt during the animation — put static content in it:
 TweenAnimationBuilder<double>(

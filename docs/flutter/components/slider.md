@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基础连续滑块
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: slider-basic —— 0-100 连续拖动
 class SliderBasicDemo extends StatefulWidget {
   const SliderBasicDemo({super.key});
@@ -49,6 +51,8 @@ class _SliderBasicDemoState extends State<SliderBasicDemo> {
 `divisions` 切档位，`label` 在拖动时显示气泡。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: slider-divisions —— 5 档价格选择
 class SliderDivisionsDemo extends StatefulWidget {
   const SliderDivisionsDemo({super.key});
@@ -89,6 +93,8 @@ class _SliderDivisionsDemoState extends State<SliderDivisionsDemo> {
 一次选一段（价格区间筛选）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: slider-range —— RangeSlider 双端选择
 class SliderRangeDemo extends StatefulWidget {
   const SliderRangeDemo({super.key});
@@ -133,6 +139,8 @@ class _SliderRangeDemoState extends State<SliderRangeDemo> {
 拖动过程只更新 UI，松手才发请求——省掉连续请求风暴。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: slider-commit —— 松手时才真正应用
 class SliderCommitDemo extends StatefulWidget {
   const SliderCommitDemo({super.key});
@@ -178,6 +186,8 @@ class _SliderCommitDemoState extends State<SliderCommitDemo> {
 ## M3 样式（带图标）
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: slider-m3-icons —— 两端图标 + 主题色
 class SliderM3IconsDemo extends StatefulWidget {
   const SliderM3IconsDemo({super.key});

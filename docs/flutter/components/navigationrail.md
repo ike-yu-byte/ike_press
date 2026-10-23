@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本用法
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: rail-basic —— 左侧双项导航
 class RailBasicDemo extends StatefulWidget {
   const RailBasicDemo({super.key});
@@ -55,6 +57,8 @@ class _RailBasicDemoState extends State<RailBasicDemo> {
 `NavigationRail.extended` 展开态：选中项旁边滑出文字，桌面端典型。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: rail-extended —— 可展开的桌面风格
 class RailExtendedDemo extends StatefulWidget {
   const RailExtendedDemo({super.key});
@@ -97,6 +101,8 @@ class _RailExtendedDemoState extends State<RailExtendedDemo> {
 `leading` 放 logo/菜单键，`trailing` 放设置按钮等次要项。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: rail-leading-trailing —— 上下扩展槽位
 class RailSlotsDemo extends StatelessWidget {
   const RailSlotsDemo({super.key});
@@ -133,6 +139,8 @@ class RailSlotsDemo extends StatelessWidget {
 同一套 index 状态，按宽度切换两种导航。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: rail-responsive —— 窗口宽窄自适应
 class RailResponsiveDemo extends StatefulWidget {
   const RailResponsiveDemo({super.key});

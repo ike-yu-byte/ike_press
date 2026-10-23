@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基础勾选
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: checkbox-basic —— 单个开关勾选
 class CheckboxBasicDemo extends StatefulWidget {
   const CheckboxBasicDemo({super.key});
@@ -44,6 +46,8 @@ class _CheckboxBasicDemoState extends State<CheckboxBasicDemo> {
 一组独立选项，value 存进 Set 管理。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: checkbox-group —— 兴趣爱好多选
 class CheckboxGroupDemo extends StatefulWidget {
   const CheckboxGroupDemo({super.key});
@@ -84,6 +88,8 @@ class _CheckboxGroupDemoState extends State<CheckboxGroupDemo> {
 `tristate: true` 允许 null（部分选中），做"全选框 + 子项"经典联动。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: checkbox-tristate —— 全选框三态联动子项
 class CheckboxTristateDemo extends StatefulWidget {
   const CheckboxTristateDemo({super.key});
@@ -136,6 +142,8 @@ class _CheckboxTristateDemoState extends State<CheckboxTristateDemo> {
 ## 禁用态
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: checkbox-disabled —— onChanged 传 null 即禁用
 class CheckboxDisabledDemo extends StatelessWidget {
   const CheckboxDisabledDemo({super.key});

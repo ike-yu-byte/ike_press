@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 leading / title / subtitle / trailing all configured in one go.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listtile-basic —— avatar + title + subtitle + chevron
 class ListTileBasicDemo extends StatelessWidget {
   const ListTileBasicDemo({super.key});
@@ -39,6 +41,8 @@ class ListTileBasicDemo extends StatelessWidget {
 `selected` tints the title; combine with `selectedTileColor` to paint the whole row.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listtile-selected —— tap to switch selection
 class ListTileSelectedDemo extends StatefulWidget {
   const ListTileSelectedDemo({super.key});
@@ -81,6 +85,8 @@ class _ListTileSelectedDemoState extends State<ListTileSelectedDemo> {
 When the subtitle may wrap to two lines, declare `isThreeLine: true` so vertical spacing is allocated correctly.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listtile-threeline —— long subtitle wraps
 class ListTileThreeLineDemo extends StatelessWidget {
   const ListTileThreeLineDemo({super.key});
@@ -107,6 +113,8 @@ class ListTileThreeLineDemo extends StatelessWidget {
 For packed settings pages use `dense: true` to compress row height.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listtile-dense —— default vs dense row heights
 class ListTileDenseDemo extends StatelessWidget {
   const ListTileDenseDemo({super.key});
@@ -136,6 +144,8 @@ class ListTileDenseDemo extends StatelessWidget {
 When you need "whole row tappable + control", use `CheckboxListTile` / `RadioListTile` / `SwitchListTile` rather than hand-assembling a Row.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: listtile-controls —— the three ListTile variants
 class ListTileControlsDemo extends StatefulWidget {
   const ListTileControlsDemo({super.key});

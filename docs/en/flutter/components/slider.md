@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic continuous slider
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: slider-basic —— continuous drag from 0 to 100
 class SliderBasicDemo extends StatefulWidget {
   const SliderBasicDemo({super.key});
@@ -49,6 +51,8 @@ class _SliderBasicDemoState extends State<SliderBasicDemo> {
 `divisions` snaps to steps; `label` shows a bubble while dragging.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: slider-divisions —— 5-step price picker
 class SliderDivisionsDemo extends StatefulWidget {
   const SliderDivisionsDemo({super.key});
@@ -89,6 +93,8 @@ class _SliderDivisionsDemoState extends State<SliderDivisionsDemo> {
 Pick a span in one gesture (price range filters).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: slider-range —— RangeSlider two-thumb selection
 class SliderRangeDemo extends StatefulWidget {
   const SliderRangeDemo({super.key});
@@ -133,6 +139,8 @@ class _SliderRangeDemoState extends State<SliderRangeDemo> {
 Only update UI while dragging, fire requests on release -- avoids request storms.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: slider-commit —— actually applied only on release
 class SliderCommitDemo extends StatefulWidget {
   const SliderCommitDemo({super.key});
@@ -178,6 +186,8 @@ class _SliderCommitDemoState extends State<SliderCommitDemo> {
 ## M3 style (with end icons)
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: slider-m3-icons —— icons flanking a theme-colored slider
 class SliderM3IconsDemo extends StatefulWidget {
   const SliderM3IconsDemo({super.key});

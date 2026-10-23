@@ -10,6 +10,8 @@ A bottom sheet slides up from the bottom of the screen. It suits medium-complexi
 ## Modal bottom sheet (most common)
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomsheet-modal —— share channel list
 class BottomSheetModalDemo extends StatelessWidget {
   const BottomSheetModalDemo({super.key});
@@ -55,6 +57,8 @@ class BottomSheetModalDemo extends StatelessWidget {
 When content exceeds half the screen, use `isScrollControlled: true` plus a self-limited max height.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomsheet-scrollable —— long filter panel
 class BottomSheetScrollableDemo extends StatelessWidget {
   const BottomSheetScrollableDemo({super.key});
@@ -102,6 +106,8 @@ class BottomSheetScrollableDemo extends StatelessWidget {
 `showBottomSheet` doesn't block the whole screen and can stay around; manage it manually through the returned controller.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: bottomsheet-persistent —— map-style persistent panel (simplified)
 class PersistentSheetDemo extends StatefulWidget {
   const PersistentSheetDemo({super.key});

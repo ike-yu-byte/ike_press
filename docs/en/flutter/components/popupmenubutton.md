@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic usage
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: popup-basic —— edit / delete pair
 class PopupBasicDemo extends StatelessWidget {
   const PopupBasicDemo({super.key});
@@ -38,6 +40,8 @@ class PopupBasicDemo extends StatelessWidget {
 The default button is ⋮; swap the icon or provide a whole `child`; `offset` controls where the menu pops.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: popup-custom-trigger —— text button trigger + menu below
 class PopupCustomTriggerDemo extends StatelessWidget {
   const PopupCustomTriggerDemo({super.key});
@@ -72,6 +76,8 @@ class PopupCustomTriggerDemo extends StatelessWidget {
 `CheckedPopupMenuItem` for checkable options, `PopupMenuDivider` for grouping.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: popup-rich —— icons + checked state + divider
 class PopupRichDemo extends StatefulWidget {
   const PopupRichDemo({super.key});
@@ -110,6 +116,8 @@ class _PopupRichDemoState extends State<PopupRichDemo> {
 Each item carries its own `onTap`; when you don't need a unified `onSelected`, use `onClosed` / a void generic.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: popup-callback —— independent per-item callbacks
 class PopupCallbackDemo extends StatelessWidget {
   const PopupCallbackDemo({super.key});
@@ -137,6 +145,8 @@ class PopupCallbackDemo extends StatelessWidget {
 ## Enabled condition
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: popup-disabled —— disabled state
 class PopupDisabledDemo extends StatelessWidget {
   const PopupDisabledDemo({super.key});

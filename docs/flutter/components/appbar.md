@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本顶栏
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: appbar-basic —— 居中标题 + 右侧两个操作
 class AppBarBasicDemo extends StatelessWidget {
   const AppBarBasicDemo({super.key});
@@ -36,6 +38,8 @@ class AppBarBasicDemo extends StatelessWidget {
 有上一页时自动出现 ←；挂了 `drawer` 时自动出现 ☰，都可手动覆盖。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: appbar-leading —— 手动指定左侧按钮
 class AppBarLeadingDemo extends StatelessWidget {
   const AppBarLeadingDemo({super.key});
@@ -62,6 +66,8 @@ class AppBarLeadingDemo extends StatelessWidget {
 `bottom` 是最常用扩展位，优先 `PreferredSize` 定制高度。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: appbar-bottom-tab —— 顶栏下方选项卡
 class AppBarBottomTabDemo extends StatelessWidget {
   const AppBarBottomTabDemo({super.key});
@@ -95,6 +101,8 @@ class AppBarBottomTabDemo extends StatelessWidget {
 标题位置换成输入框（点图标展开是常见交互）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: appbar-search —— 标题即搜索框
 class AppBarSearchDemo extends StatefulWidget {
   const AppBarSearchDemo({super.key});

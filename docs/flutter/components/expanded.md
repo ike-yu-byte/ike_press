@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 `Expanded` 强制子填满分配到的空间，最常见的用法是撑开输入框。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: expanded-fill —— 输入框吃掉剩余宽度
 class ExpandedFillDemo extends StatelessWidget {
   const ExpandedFillDemo({super.key});
@@ -43,6 +45,8 @@ class ExpandedFillDemo extends StatelessWidget {
 多个 `Expanded` 按 `flex` 比例瓜分剩余空间（默认 `flex: 1`）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: expanded-flex —— 1:2:3 权重瓜分
 class ExpandedFlexDemo extends StatelessWidget {
   const ExpandedFlexDemo({super.key});
@@ -70,6 +74,8 @@ class ExpandedFlexDemo extends StatelessWidget {
 `Flexible`（`fit: loose`）只保证子**不超过**分配上限，可小于上限；`Expanded`（`fit: tight`）强制填满。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: flexible-loose —— 文字不撑满、按需占位
 class FlexibleLooseDemo extends StatelessWidget {
   const FlexibleLooseDemo({super.key});
@@ -103,6 +109,8 @@ class FlexibleLooseDemo extends StatelessWidget {
 同一行内紧排三个色块：`tight` 铺满整行，`loose` 只按内容占位。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: expanded-fit-compare —— tight 与 loose 的差别
 class ExpandedFitCompareDemo extends StatelessWidget {
   const ExpandedFitCompareDemo({super.key});

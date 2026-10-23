@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 用 `TextEditingController` 读写文本。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: textfield-basic —— 带标签的输入框并实时显示内容
 class TextFieldBasicDemo extends StatefulWidget {
   const TextFieldBasicDemo({super.key});
@@ -62,6 +64,8 @@ class _TextFieldBasicDemoState extends State<TextFieldBasicDemo> {
 `obscureText` 遮蔽输入，右侧眼睛按钮切换明文。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: textfield-password —— 显隐切换密码框
 class TextFieldPasswordDemo extends StatefulWidget {
   const TextFieldPasswordDemo({super.key});
@@ -101,6 +105,8 @@ class _TextFieldPasswordDemoState extends State<TextFieldPasswordDemo> {
 `keyboardType` 弹对应键盘，`maxLength` 限字数并显示计数器。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: textfield-keyboard —— 手机号键盘 + 限 11 位
 class TextFieldKeyboardDemo extends StatelessWidget {
   const TextFieldKeyboardDemo({super.key});
@@ -132,6 +138,8 @@ class TextFieldKeyboardDemo extends StatelessWidget {
 `maxLines: null` 自动增高，做备注/留言框。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: textfield-multiline —— 自适应高度的多行文本
 class TextFieldMultilineDemo extends StatelessWidget {
   const TextFieldMultilineDemo({super.key});
@@ -160,6 +168,8 @@ class TextFieldMultilineDemo extends StatelessWidget {
 `InputDecoration` 的下划线、填充、描边三种主流风格。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: textfield-decoration —— 三种装饰风格
 class TextFieldDecorationDemo extends StatelessWidget {
   const TextFieldDecorationDemo({super.key});

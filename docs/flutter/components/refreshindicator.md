@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 列表下拉 → 转圈 → 数据更新后自动收起。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: refresh-basic —— 下拉重新生成列表数据
 class RefreshBasicDemo extends StatefulWidget {
   const RefreshBasicDemo({super.key});
@@ -55,6 +57,8 @@ class _RefreshBasicDemoState extends State<RefreshBasicDemo> {
 `GlobalKey<RefreshIndicatorState>` 可以在不手滑时代码唤起刷新（如页面首次加载）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: refresh-programmatic —— 按钮触发下拉刷新动画
 class RefreshProgrammaticDemo extends StatefulWidget {
   const RefreshProgrammaticDemo({super.key});
@@ -111,6 +115,8 @@ class _RefreshProgrammaticDemoState extends State<RefreshProgrammaticDemo> {
 颜色、背景色、位移高度都可调。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: refresh-styled —— 自定义加载圈外观
 class RefreshStyledDemo extends StatefulWidget {
   const RefreshStyledDemo({super.key});

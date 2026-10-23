@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 模态底部弹窗（最常用）
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomsheet-modal —— 分享渠道列表
 class BottomSheetModalDemo extends StatelessWidget {
   const BottomSheetModalDemo({super.key});
@@ -55,6 +57,8 @@ class BottomSheetModalDemo extends StatelessWidget {
 内容超过半屏时 `isScrollControlled: true` + 自限最大高。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomsheet-scrollable —— 长列表筛选面板
 class BottomSheetScrollableDemo extends StatelessWidget {
   const BottomSheetScrollableDemo({super.key});
@@ -102,6 +106,8 @@ class BottomSheetScrollableDemo extends StatelessWidget {
 `persistentBottomSheet` 不遮全屏、可常驻，配合 `BottomSheet` widget 手动管理。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomsheet-persistent —— 地图式常驻面板（简化示意）
 class PersistentSheetDemo extends StatefulWidget {
   const PersistentSheetDemo({super.key});

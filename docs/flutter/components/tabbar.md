@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 不写任何状态管理，TabBar 与 TabBarView 自动对上。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tabbar-default —— 三页联动
 class TabBarDefaultDemo extends StatelessWidget {
   const TabBarDefaultDemo({super.key});
@@ -49,6 +51,8 @@ class TabBarDefaultDemo extends StatelessWidget {
 `TickerProvider` 提供动画驱动，可监听切页、代码跳页。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tabbar-controller —— 监听 + 按钮跳页
 class TabBarControllerDemo extends StatefulWidget {
   const TabBarControllerDemo({super.key});
@@ -111,6 +115,8 @@ class _TabBarControllerDemoState extends State<TabBarControllerDemo>
 标签多到放不下用 `isScrollable`，横向滚而不是压缩。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tabbar-scrollable —— 可滚动的图标标签
 class TabBarScrollableDemo extends StatelessWidget {
   const TabBarScrollableDemo({super.key});
@@ -145,6 +151,8 @@ class TabBarScrollableDemo extends StatelessWidget {
 只要标签条不要滑动页（点击切 body），TabBar 单独配一个 TabController，监听 index 变化刷 body。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tabbar-only —— 仅标签条手动切 IndexedStack
 class TabBarOnlyDemo extends StatefulWidget {
   const TabBarOnlyDemo({super.key});

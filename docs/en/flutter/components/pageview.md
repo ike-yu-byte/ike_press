@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Three solid-color pages, swipe to switch.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: pageview-basic —— three pages side scrolling
 class PageViewBasicDemo extends StatelessWidget {
   const PageViewBasicDemo({super.key});
@@ -40,6 +42,8 @@ class PageViewBasicDemo extends StatelessWidget {
 `PageController` + `onPageChanged` drive the dots below.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: pageview-indicator —— carousel + dot indicator
 class PageViewIndicatorDemo extends StatefulWidget {
   const PageViewIndicatorDemo({super.key});
@@ -109,6 +113,8 @@ class _PageViewIndicatorDemoState extends State<PageViewIndicatorDemo> {
 `animateToPage` transitions smoothly; `jumpToPage` switches instantly.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: pageview-jump —— buttons control paging
 class PageViewJumpDemo extends StatefulWidget {
   const PageViewJumpDemo({super.key});
@@ -172,6 +178,8 @@ class _PageViewJumpDemoState extends State<PageViewJumpDemo> {
 `scrollDirection: Axis.vertical` -- common for full-screen guides.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: pageview-vertical —— swipe up/down
 class PageViewVerticalDemo extends StatelessWidget {
   const PageViewVerticalDemo({super.key});

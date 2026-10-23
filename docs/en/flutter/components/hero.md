@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Place a Hero with an identical `tag` on the list page and the detail page — the flight animation is automatic on navigation.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: hero-basic —— thumbnail opens the big-image page
 class HeroListDemo extends StatelessWidget {
   const HeroListDemo({super.key});
@@ -76,6 +78,8 @@ class HeroDetailDemo extends StatelessWidget {
 By default the flight stretches/interpolates source and target widgets; to fade in mid-flight, take over `flightShuttleBuilder`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: hero-flight-shuttle —— scale + fade during the flight
 final _bigUrl = 'https://picsum.photos/seed/shuttle/900/900';
 

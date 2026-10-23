@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Centering
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: align-center —— dead center
 class AlignCenterDemo extends StatelessWidget {
   const AlignCenterDemo({super.key});
@@ -35,6 +37,8 @@ class AlignCenterDemo extends StatelessWidget {
 `Alignment` constants pick which corner/edge to hug.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: align-corner —— bottom right
 class AlignCornerDemo extends StatelessWidget {
   const AlignCornerDemo({super.key});
@@ -61,6 +65,8 @@ class AlignCornerDemo extends StatelessWidget {
 Under RTL languages `Alignment.centerLeft` still pins the physical left edge; to follow the *start* edge use `AlignmentDirectional.centerStart`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: align-text-direction —— flipping with Directionality
 class AlignTextDirectionDemo extends StatelessWidget {
   const AlignTextDirectionDemo({super.key});
@@ -109,6 +115,8 @@ class AlignTextDirectionDemo extends StatelessWidget {
 ## Forced aspect ratio
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: align-ratio —— a 16:9 box
 class AlignRatioDemo extends StatelessWidget {
   const AlignRatioDemo({super.key});

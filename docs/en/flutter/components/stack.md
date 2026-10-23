@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Use `Positioned` for exact placement.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: stack-badge —— red dot badge at top-right
 class StackBadgeDemo extends StatelessWidget {
   const StackBadgeDemo({super.key});
@@ -45,6 +47,8 @@ class StackBadgeDemo extends StatelessWidget {
 Children without `Positioned` are placed by the shared `alignment`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: stack-watermark —— bottom-right watermark
 class StackWatermarkDemo extends StatelessWidget {
   const StackWatermarkDemo({super.key});

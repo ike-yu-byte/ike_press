@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 `GlobalKey<FormState>` -> `validate()` -> submit.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: form-login —— email + password two-field validation
 class FormLoginDemo extends StatefulWidget {
   const FormLoginDemo({super.key});
@@ -84,6 +86,8 @@ class _FormLoginDemoState extends State<FormLoginDemo> {
 By default validation only runs on button press; `autovalidateMode` validates while typing.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: form-autovalidate —— errors appear while typing
 class FormAutoValidateDemo extends StatefulWidget {
   const FormAutoValidateDemo({super.key});
@@ -124,6 +128,8 @@ class _FormAutoValidateDemoState extends State<FormAutoValidateDemo> {
 `reset()` clears the whole form in one shot; individual fields run `save()` into onSaved.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: form-reset —— one-click reset after editing
 class FormResetDemo extends StatefulWidget {
   const FormResetDemo({super.key});

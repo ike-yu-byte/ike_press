@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic ripple
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: inkwell-basic —— tap the whole block for a ripple
 class InkWellBasicDemo extends StatelessWidget {
   const InkWellBasicDemo({super.key});
@@ -35,6 +37,8 @@ class InkWellBasicDemo extends StatelessWidget {
 The ripple spreads as a rectangle by default; pair `customBorder` or an outer `clipBehavior` to fit the shape.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: inkwell-rounded —— rounded card that's tappable
 class InkWellRoundedDemo extends StatelessWidget {
   const InkWellRoundedDemo({super.key});
@@ -60,6 +64,8 @@ class InkWellRoundedDemo extends StatelessWidget {
 `radius`, hover color and selected highlight are all customizable; desktop hover works too.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: inkwell-states —— hover/selected colors
 class InkWellStatesDemo extends StatefulWidget {
   const InkWellStatesDemo({super.key});
@@ -98,6 +104,8 @@ class _InkWellStatesDemoState extends State<InkWellStatesDemo> {
 To let backgrounds/images "soak up" the ripple (painted on the Ink layer instead of the Material layer), use `Ink`/`ColoredBox` in place of a Container background.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: ink-image-reveal —— ripple over an image
 class InkImageDemo extends StatelessWidget {
   const InkImageDemo({super.key});

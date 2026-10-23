@@ -27,6 +27,8 @@ Division of labor under Material 3:
 A side-by-side comparison of the four text buttons plus the icon button.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-family —— the whole family at a glance
 class ButtonFamilyDemo extends StatelessWidget {
   const ButtonFamilyDemo({super.key});
@@ -60,6 +62,8 @@ class ButtonFamilyDemo extends StatelessWidget {
 Passing `null` for `onPressed` disables the button -- it greys out and stops responding. There is **no** separate `disabled` parameter.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-disabled —— null onPressed means disabled
 class ButtonDisabledDemo extends StatelessWidget {
   const ButtonDisabledDemo({super.key});
@@ -92,6 +96,8 @@ class ButtonDisabledDemo extends StatelessWidget {
 `IconButton` shows an icon only; `ElevatedButton.icon` / `FilledButton.icon` etc. provide icon + label combinations.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-icon —— pure icon buttons and icon+label buttons
 class ButtonIconDemo extends StatelessWidget {
   const ButtonIconDemo({super.key});
@@ -128,6 +134,8 @@ class ButtonIconDemo extends StatelessWidget {
 Put it in `Scaffold.floatingActionButton` -- usually the one primary action of a page. `FloatingActionButton.extended` supports icon + label.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-fab —— regular FAB and extended FAB
 class ButtonFabDemo extends StatelessWidget {
   const ButtonFabDemo({super.key});
@@ -160,6 +168,8 @@ class ButtonFabDemo extends StatelessWidget {
 Flutter has no built-in `loading` property. The common pattern is swapping the child yourself and disabling taps while loading.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-loading —— shows a spinner and disables while submitting
 class ButtonLoadingDemo extends StatefulWidget {
   const ButtonLoadingDemo({super.key});
@@ -200,6 +210,8 @@ class _ButtonLoadingDemoState extends State<ButtonLoadingDemo> {
 Every button has `style`; the more convenient shortcut is `WidgetName.styleFrom()`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-style —— styleFrom for color/size/radius
 class ButtonStyleDemo extends StatelessWidget {
   const ButtonStyleDemo({super.key});
@@ -229,6 +241,8 @@ class ButtonStyleDemo extends StatelessWidget {
 When hover / pressed / disabled need different values, use `WidgetStateProperty`.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: button-state-style —— per-state colors via WidgetStateProperty
 class ButtonStateStyleDemo extends StatelessWidget {
   const ButtonStateStyleDemo({super.key});

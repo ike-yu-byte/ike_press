@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 桌面端鼠标悬停显示，移动端长按显示。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tooltip-basic —— 图标加说明
 class TooltipBasicDemo extends StatelessWidget {
   const TooltipBasicDemo({super.key});
@@ -33,6 +35,8 @@ class TooltipBasicDemo extends StatelessWidget {
 `triggerMode` 改为点击触发；`waitDuration` / `showDuration` 控制节奏。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tooltip-trigger —— 点击即弹、自定义时长
 class TooltipTriggerDemo extends StatelessWidget {
   const TooltipTriggerDemo({super.key});
@@ -54,6 +58,8 @@ class TooltipTriggerDemo extends StatelessWidget {
 ## 位置与样式
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tooltip-style ——  preferBelow + 自定义装饰
 class TooltipStyleDemo extends StatelessWidget {
   const TooltipStyleDemo({super.key});
@@ -82,6 +88,8 @@ class TooltipStyleDemo extends StatelessWidget {
 `RichMessage` 让提示内容不只是纯文本。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tooltip-rich —— 提示里带图标排版
 class TooltipRichDemo extends StatelessWidget {
   const TooltipRichDemo({super.key});
@@ -110,6 +118,8 @@ class TooltipRichDemo extends StatelessWidget {
 `manualTrigger: true` 时由外部逻辑（如键盘焦点）决定何时展示。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tooltip-manual —— 外部状态控制
 class TooltipManualDemo extends StatefulWidget {
   const TooltipManualDemo({super.key});

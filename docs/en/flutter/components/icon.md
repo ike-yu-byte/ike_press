@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Size and color.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: icon-basic —— different sizes and colors
 class IconBasicDemo extends StatelessWidget {
   const IconBasicDemo({super.key});
@@ -39,6 +41,8 @@ class IconBasicDemo extends StatelessWidget {
 The same glyph comes in `_border` / `_outlined` / `_rounded` / `_sharp` variants.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: icon-variants —— filled / outlined / rounded
 class IconVariantsDemo extends StatelessWidget {
   const IconVariantsDemo({super.key});
@@ -66,6 +70,8 @@ class IconVariantsDemo extends StatelessWidget {
 `IconButton` adds tap handling and the ripple to an icon.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: icon-button —— IconButton
 class IconButtonDemo extends StatelessWidget {
   const IconButtonDemo({super.key});

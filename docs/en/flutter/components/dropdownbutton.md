@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic usage
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dropdown-basic —— city single choice
 class DropdownBasicDemo extends StatefulWidget {
   const DropdownBasicDemo({super.key});
@@ -45,6 +47,8 @@ class _DropdownBasicDemoState extends State<DropdownBasicDemo> {
 A bare `DropdownButton` has no border; in forms use `DropdownButtonFormField` to get an `InputDecoration` directly.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dropdown-form-field —— outlined, labeled dropdown
 class DropdownFormFieldDemo extends StatefulWidget {
   const DropdownFormFieldDemo({super.key});
@@ -85,6 +89,8 @@ class _DropdownFormFieldDemoState extends State<DropdownFormFieldDemo> {
 Menu items can hold icons, colors -- any widget.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dropdown-rich —— options with icons
 class DropdownRichDemo extends StatefulWidget {
   const DropdownRichDemo({super.key});
@@ -133,6 +139,8 @@ class _DropdownRichDemoState extends State<DropdownRichDemo> {
 Dropdown menus suit short lists (over ~10 items scrolling gets painful) -- switch to a bottom sheet or dialog list.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: dropdown-bottom-sheet —— long lists go to a bottom picker
 class DropdownBottomSheetDemo extends StatefulWidget {
   const DropdownBottomSheetDemo({super.key});

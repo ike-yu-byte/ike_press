@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 三页纯色，滑动切换。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: pageview-basic —— 三页横滑
 class PageViewBasicDemo extends StatelessWidget {
   const PageViewBasicDemo({super.key});
@@ -40,6 +42,8 @@ class PageViewBasicDemo extends StatelessWidget {
 用 `PageController` + `onPageChanged` 驱动底部圆点。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: pageview-indicator —— 轮播 + 圆点指示器
 class PageViewIndicatorDemo extends StatefulWidget {
   const PageViewIndicatorDemo({super.key});
@@ -109,6 +113,8 @@ class _PageViewIndicatorDemoState extends State<PageViewIndicatorDemo> {
 `animateToPage` 平滑过渡、`jumpToPage` 直接切换。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: pageview-jump —— 按钮控制翻页
 class PageViewJumpDemo extends StatefulWidget {
   const PageViewJumpDemo({super.key});
@@ -172,6 +178,8 @@ class _PageViewJumpDemoState extends State<PageViewJumpDemo> {
 `scrollDirection: Axis.vertical`，全屏引导页常见。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: pageview-vertical —— 上下滑翻页
 class PageViewVerticalDemo extends StatelessWidget {
   const PageViewVerticalDemo({super.key});

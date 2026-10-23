@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic check
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: checkbox-basic —— a single on/off check
 class CheckboxBasicDemo extends StatefulWidget {
   const CheckboxBasicDemo({super.key});
@@ -44,6 +46,8 @@ class _CheckboxBasicDemoState extends State<CheckboxBasicDemo> {
 A set of independent options, tracked in a Set.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: checkbox-group —— hobbies multi-select
 class CheckboxGroupDemo extends StatefulWidget {
   const CheckboxGroupDemo({super.key});
@@ -84,6 +88,8 @@ class _CheckboxGroupDemoState extends State<CheckboxGroupDemo> {
 `tristate: true` allows null (partial selection) -- the classic "select-all + children" linkage.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: checkbox-tristate —— parent tristate linked with children
 class CheckboxTristateDemo extends StatefulWidget {
   const CheckboxTristateDemo({super.key});
@@ -136,6 +142,8 @@ class _CheckboxTristateDemoState extends State<CheckboxTristateDemo> {
 ## Disabled state
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: checkbox-disabled —— null onChanged means disabled
 class CheckboxDisabledDemo extends StatelessWidget {
   const CheckboxDisabledDemo({super.key});

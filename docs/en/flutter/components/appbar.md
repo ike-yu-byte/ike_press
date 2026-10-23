@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic app bar
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: appbar-basic —— centered title + two actions
 class AppBarBasicDemo extends StatelessWidget {
   const AppBarBasicDemo({super.key});
@@ -36,6 +38,8 @@ class AppBarBasicDemo extends StatelessWidget {
 A ← appears when there's a previous route; a ☰ appears when a `drawer` is attached — both can be overridden manually.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: appbar-leading —— manually specify the leading button
 class AppBarLeadingDemo extends StatelessWidget {
   const AppBarLeadingDemo({super.key});
@@ -62,6 +66,8 @@ class AppBarLeadingDemo extends StatelessWidget {
 `bottom` is the most used extension slot; prefer `PreferredSize` to customize height.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: appbar-bottom-tab —— tabs under the app bar
 class AppBarBottomTabDemo extends StatelessWidget {
   const AppBarBottomTabDemo({super.key});
@@ -95,6 +101,8 @@ class AppBarBottomTabDemo extends StatelessWidget {
 Replace the title with an input field (tap an icon to expand is the common interaction).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: appbar-search —— title becomes the search field
 class AppBarSearchDemo extends StatefulWidget {
   const AppBarSearchDemo({super.key});

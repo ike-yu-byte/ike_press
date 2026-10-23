@@ -12,6 +12,8 @@ Beyond what a plain `Container` does, `AnimatedContainer` **tween-transitions au
 Change properties + setState, let the animation do the rest.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animatedcontainer-toggle —— size, color and radius change together
 class AnimatedContainerToggleDemo extends StatefulWidget {
   const AnimatedContainerToggleDemo({super.key});
@@ -56,6 +58,8 @@ class _AnimatedContainerToggleDemoState extends State<AnimatedContainerToggleDem
 List items changing height and background on tap is AnimatedContainer's home turf.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animatedcontainer-expand —— single FAQ accordion item
 class AnimatedContainerExpandDemo extends StatefulWidget {
   const AnimatedContainerExpandDemo({super.key});
@@ -107,6 +111,8 @@ class _AnimatedContainerExpandDemoState extends State<AnimatedContainerExpandDem
 For different rhythms within one change, nest two layers each handling part.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: animatedcontainer-stagger —— grow first, recolor later
 class AnimatedContainerStaggerDemo extends StatefulWidget {
   const AnimatedContainerStaggerDemo({super.key});
@@ -150,6 +156,8 @@ class _AnimatedContainerStaggerDemoState extends State<AnimatedContainerStaggerD
 ## How it works and the family
 
 ```dart
+import 'package:flutter/material.dart';
+
 // The AnimatedXxx family (same usage pattern):
 AnimatedOpacity   // transitions opacity changes
 AnimatedPadding   // transitions padding changes

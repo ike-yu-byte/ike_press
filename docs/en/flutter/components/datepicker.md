@@ -10,6 +10,8 @@ Flutter's date picker is not a widget -- you call `showDatePicker` which pops a 
 ## Picking a date
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: datepicker-basic —— button opens the calendar dialog
 class DatePickerBasicDemo extends StatefulWidget {
   const DatePickerBasicDemo({super.key});
@@ -55,6 +57,8 @@ class _DatePickerBasicDemoState extends State<DatePickerBasicDemo> {
 ## Picking a time
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: datepicker-time —— TimePicker in 24/12-hour form
 class TimePickerDemo extends StatefulWidget {
   const TimePickerDemo({super.key});
@@ -100,6 +104,8 @@ class _TimePickerDemoState extends State<TimePickerDemo> {
 `selectableDayPredicate` controls exactly which days are tappable (e.g. only the next 7 days).
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: datepicker-restrict —— only within 7 days from today, weekdays only
 class DatePickerRestrictDemo extends StatefulWidget {
   const DatePickerRestrictDemo({super.key});
@@ -152,6 +158,8 @@ class _DatePickerRestrictDemoState extends State<DatePickerRestrictDemo> {
 Configure `localizationsDelegates` + `locale` on `MaterialApp` to localize the calendar; tweak appearance via `showDatePicker`'s `builder` hook or the theme.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: datepicker-styled —— custom confirm/cancel button text
 Future<DateTime?> _pickWithCustomButtons(BuildContext context) {
   return showDatePicker(

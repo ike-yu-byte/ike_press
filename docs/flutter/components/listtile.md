@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 leading / title / subtitle / trailing 一次配齐。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listtile-basic —— 头像 + 标题 + 副标题 + 右箭头
 class ListTileBasicDemo extends StatelessWidget {
   const ListTileBasicDemo({super.key});
@@ -39,6 +41,8 @@ class ListTileBasicDemo extends StatelessWidget {
 `selected` 高亮标题颜色，配合 `selectedTileColor` 给整行铺底色。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listtile-selected —— 点击切换选中高亮
 class ListTileSelectedDemo extends StatefulWidget {
   const ListTileSelectedDemo({super.key});
@@ -81,6 +85,8 @@ class _ListTileSelectedDemoState extends State<ListTileSelectedDemo> {
 副标题可能占两行时声明 `isThreeLine: true`，让垂直留白正确分配。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listtile-threeline —— 长副标题换行
 class ListTileThreeLineDemo extends StatelessWidget {
   const ListTileThreeLineDemo({super.key});
@@ -107,6 +113,8 @@ class ListTileThreeLineDemo extends StatelessWidget {
 设置页等密排场景用 `dense: true` 压缩行高。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listtile-dense —— 紧凑行高对比
 class ListTileDenseDemo extends StatelessWidget {
   const ListTileDenseDemo({super.key});
@@ -136,6 +144,8 @@ class ListTileDenseDemo extends StatelessWidget {
 需要“整行可点 + 控件”时，用 `CheckboxListTile` / `RadioListTile` / `SwitchListTile`，比手动 Row 拼装更规范。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: listtile-controls —— 三种 ListTile 变体
 class ListTileControlsDemo extends StatefulWidget {
   const ListTileControlsDemo({super.key});

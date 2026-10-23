@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 `GlobalKey<FormState>` → `validate()` → 提交。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: form-login —— 邮箱 + 密码双字段校验
 class FormLoginDemo extends StatefulWidget {
   const FormLoginDemo({super.key});
@@ -84,6 +86,8 @@ class _FormLoginDemoState extends State<FormLoginDemo> {
 默认点按钮才校验；设 `autovalidateMode` 边输边验。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: form-autovalidate —— 输入过程实时报错
 class FormAutoValidateDemo extends StatefulWidget {
   const FormAutoValidateDemo({super.key});
@@ -124,6 +128,8 @@ class _FormAutoValidateDemoState extends State<FormAutoValidateDemo> {
 `reset()` 一键清空全表；单个字段可 `save()` 落到 onSaved。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: form-reset —— 填写后一键重置
 class FormResetDemo extends StatefulWidget {
   const FormResetDemo({super.key});

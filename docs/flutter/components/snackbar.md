@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本提示
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: snackbar-basic —— 操作成功轻提示
 class SnackBarBasicDemo extends StatelessWidget {
   const SnackBarBasicDemo({super.key});
@@ -38,6 +40,8 @@ class SnackBarBasicDemo extends StatelessWidget {
 `SnackBarAction` 提供单个按钮，点击即回调。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: snackbar-undo —— 删除 + 撤销
 class SnackBarUndoDemo extends StatefulWidget {
   const SnackBarUndoDemo({super.key});
@@ -91,6 +95,8 @@ class _SnackBarUndoDemoState extends State<SnackBarUndoDemo> {
 `behavior: floating` 浮起不贴底；`backgroundColor` 语义色区分成功/失败。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: snackbar-styles —— 三种外观对比
 class SnackBarStylesDemo extends StatelessWidget {
   const SnackBarStylesDemo({super.key});
@@ -139,6 +145,8 @@ class SnackBarStylesDemo extends StatelessWidget {
 默认多条消息排队显示；`clearSnackBars()` 先清再弹，保证只看到最新一条。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: snackbar-replace —— 清掉旧消息再弹新的
 void _showFresh(BuildContext context) {
   final messenger = ScaffoldMessenger.of(context);

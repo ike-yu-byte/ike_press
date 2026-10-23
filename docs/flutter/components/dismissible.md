@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 右滑删除一项，露出红色背景 + 删除图标。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dismissible-basic —— 右滑删除
 class DismissibleBasicDemo extends StatefulWidget {
   const DismissibleBasicDemo({super.key});
@@ -65,6 +67,8 @@ class _DismissibleBasicDemoState extends State<DismissibleBasicDemo> {
 左滑归档、右滑删除，按方向显示不同背景和处理。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dismissible-twoway —— 左右滑不同操作
 class DismissibleTwoWayDemo extends StatefulWidget {
   const DismissibleTwoWayDemo({super.key});
@@ -122,6 +126,8 @@ class _DismissibleTwoWayDemoState extends State<DismissibleTwoWayDemo> {
 滑开不等于删除——在 `confirmDismiss` 里弹框，用户确认才返回 true。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: dismissible-confirm —— 滑开后二次确认
 class DismissibleConfirmDemo extends StatefulWidget {
   const DismissibleConfirmDemo({super.key});

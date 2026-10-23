@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Basic message
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: snackbar-basic —— success hint after an action
 class SnackBarBasicDemo extends StatelessWidget {
   const SnackBarBasicDemo({super.key});
@@ -38,6 +40,8 @@ class SnackBarBasicDemo extends StatelessWidget {
 `SnackBarAction` adds a single button that fires a callback when tapped.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: snackbar-undo —— delete + undo
 class SnackBarUndoDemo extends StatefulWidget {
   const SnackBarUndoDemo({super.key});
@@ -91,6 +95,8 @@ class _SnackBarUndoDemoState extends State<SnackBarUndoDemo> {
 `behavior: floating` lifts it off the bottom edge; `backgroundColor` carries success/error semantics.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: snackbar-styles —— three looks compared
 class SnackBarStylesDemo extends StatelessWidget {
   const SnackBarStylesDemo({super.key});
@@ -139,6 +145,8 @@ class SnackBarStylesDemo extends StatelessWidget {
 Multiple messages queue by default; `clearSnackBars()` wipes the queue so only the newest shows.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: snackbar-replace —— clear stale bars before showing the latest
 void _showFresh(BuildContext context) {
   final messenger = ScaffoldMessenger.of(context);

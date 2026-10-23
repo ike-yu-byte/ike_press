@@ -10,6 +10,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 ## Tap / double tap / long press
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gesture-tap —— echo of the three basic tap gestures
 class GestureTapDemo extends StatefulWidget {
   const GestureTapDemo({super.key});
@@ -56,6 +58,8 @@ class _GestureTapDemoState extends State<GestureTapDemo> {
 `onPanUpdate` delivers an incremental `delta` each frame; accumulate it into an offset.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gesture-drag —— drag the box anywhere
 class GestureDragDemo extends StatefulWidget {
   const GestureDragDemo({super.key});
@@ -95,6 +99,8 @@ class _GestureDragDemoState extends State<GestureDragDemo> {
 In `onScaleUpdate`, `details.scale` is the multiplier relative to the gesture start.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gesture-scale —— pinch to zoom an image
 class GestureScaleDemo extends StatefulWidget {
   const GestureScaleDemo({super.key});
@@ -129,6 +135,8 @@ class _GestureScaleDemoState extends State<GestureScaleDemo> {
 ## Hit area and behavior details
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: gesture-behavior —— opaque makes blank areas tappable too
 class GestureBehaviorDemo extends StatelessWidget {
   const GestureBehaviorDemo({super.key});
@@ -154,6 +162,8 @@ class GestureBehaviorDemo extends StatelessWidget {
 With scrollable widgets like ListView in the subtree, gestures "compete"; `excludeFromSemantics` and `dragStartBehavior` are the usual tuning knobs.
 
 ```dart
+import 'package:flutter/material.dart';
+
 // Common mitigations:
 GestureDetector(
   onHorizontalDragUpdate: (d) {},

@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 Background color + rounded corners + inner padding.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: container-basic —— rounded background box
 class ContainerBasicDemo extends StatelessWidget {
   const ContainerBasicDemo({super.key});
@@ -40,6 +42,8 @@ class ContainerBasicDemo extends StatelessWidget {
 `BoxDecoration` supports gradients and drop shadows.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: container-decorated —— gradient card with shadow
 class ContainerDecoratedDemo extends StatelessWidget {
   const ContainerDecoratedDemo({super.key});
@@ -72,6 +76,8 @@ class ContainerDecoratedDemo extends StatelessWidget {
 `Border.all` adds a stroke.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: container-border —— with a border
 class ContainerBorderDemo extends StatelessWidget {
   const ContainerBorderDemo({super.key});

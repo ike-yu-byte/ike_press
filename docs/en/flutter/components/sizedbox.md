@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 The most common way to add spacing inside Column / Row.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: sizedbox-gap —— vertical spacer
 class SizedBoxGapDemo extends StatelessWidget {
   const SizedBoxGapDemo({super.key});
@@ -35,6 +37,8 @@ class SizedBoxGapDemo extends StatelessWidget {
 ## Fixed-size box
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: sizedbox-fixed —— fixed width and height
 class SizedBoxFixedDemo extends StatelessWidget {
   const SizedBoxFixedDemo({super.key});
@@ -57,6 +61,8 @@ class SizedBoxFixedDemo extends StatelessWidget {
 `width: double.infinity` stretches the child across the parent's width.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: sizedbox-infinite —— full-width button
 class SizedBoxInfiniteDemo extends StatelessWidget {
   const SizedBoxInfiniteDemo({super.key});

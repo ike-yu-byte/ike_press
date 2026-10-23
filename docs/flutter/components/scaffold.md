@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 所有主要槽位一次配齐。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: scaffold-full —— appBar + body + FAB + 底部导航 + 抽屉
 class ScaffoldFullDemo extends StatefulWidget {
   const ScaffoldFullDemo({super.key});
@@ -59,6 +61,8 @@ class _ScaffoldFullDemoState extends State<ScaffoldFullDemo> {
 `body` 不会自动避开系统栏，非滚动内容记得包 `SafeArea`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: scaffold-safearea —— 内容避开刘海/手势条
 class ScaffoldSafeAreaDemo extends StatelessWidget {
   const ScaffoldSafeAreaDemo({super.key});
@@ -83,6 +87,8 @@ class ScaffoldSafeAreaDemo extends StatelessWidget {
 `AppBar` 叠在 body 图片上：`transparent` + `flexibleSpace`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: scaffold-flexible-appbar —— 图片头 + 渐隐标题栏
 class ScaffoldFlexibleDemo extends StatelessWidget {
   const ScaffoldFlexibleDemo({super.key});

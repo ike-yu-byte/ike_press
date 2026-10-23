@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 用 `Positioned` 精确定位。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: stack-badge —— 右上角红点角标
 class StackBadgeDemo extends StatelessWidget {
   const StackBadgeDemo({super.key});
@@ -45,6 +47,8 @@ class StackBadgeDemo extends StatelessWidget {
 未用 `Positioned` 的子按 `alignment` 统一对齐。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: stack-watermark —— 右下角水印
 class StackWatermarkDemo extends StatelessWidget {
   const StackWatermarkDemo({super.key});

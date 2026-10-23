@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 `end` 值一变，就从当前值平滑滑过去。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tween-size —— 点击方形在 60~160 间变化
 class TweenSizeDemo extends StatefulWidget {
   const TweenSizeDemo({super.key});
@@ -59,6 +61,8 @@ class _TweenSizeDemoState extends State<TweenSizeDemo> {
 角度从 0 补间到 π，builder 里塞进 Transform.rotate。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tween-rotate —— 点击旋转 180°
 class TweenRotateDemo extends StatefulWidget {
   const TweenRotateDemo({super.key});
@@ -108,6 +112,8 @@ class _TweenRotateDemoState extends State<TweenRotateDemo> {
 类型不限于 double——`Intensity`、`Color`、自定义 Tween 都行。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tween-counter —— 数字从 0 滚到目标值
 class TweenCounterDemo extends StatefulWidget {
   const TweenCounterDemo({super.key});
@@ -152,6 +158,8 @@ class _TweenCounterDemoState extends State<TweenCounterDemo> {
 ## 颜色补间
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: tween-color —— 点击切换并过渡颜色
 class TweenColorDemo extends StatefulWidget {
   const TweenColorDemo({super.key});
@@ -189,6 +197,8 @@ class _TweenColorDemoState extends State<TweenColorDemo> {
 builder 不随帧变化的固定部分传 `child`，避免每帧重建。
 
 ```dart
+import 'package:flutter/material.dart';
+
 // builder 的第三个参数 child 就是顶层 child 字段，
 // 它在动画期间不会重复构建——把静态内容放进去：
 TweenAnimationBuilder<double>(

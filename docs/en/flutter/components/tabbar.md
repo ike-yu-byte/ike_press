@@ -12,6 +12,8 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 No state management at all — TabBar and TabBarView line up automatically.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tabbar-default —— three linked pages
 class TabBarDefaultDemo extends StatelessWidget {
   const TabBarDefaultDemo({super.key});
@@ -49,6 +51,8 @@ class TabBarDefaultDemo extends StatelessWidget {
 `TickerProvider` drives the animation; you can listen for page changes and jump programmatically.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tabbar-controller —— listener + button jump
 class TabBarControllerDemo extends StatefulWidget {
   const TabBarControllerDemo({super.key});
@@ -111,6 +115,8 @@ class _TabBarControllerDemoState extends State<TabBarControllerDemo>
 When tabs don't all fit, use `isScrollable` — scroll horizontally instead of squeezing.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tabbar-scrollable —— scrollable icon tabs
 class TabBarScrollableDemo extends StatelessWidget {
   const TabBarScrollableDemo({super.key});
@@ -145,6 +151,8 @@ class TabBarScrollableDemo extends StatelessWidget {
 Want only the tab strip without the swipeable pages (tap switches the body): give TabBar its own TabController and rebuild the body on index changes.
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// Example: tabbar-only —— strip only, manual IndexedStack switching
 class TabBarOnlyDemo extends StatefulWidget {
   const TabBarOnlyDemo({super.key});

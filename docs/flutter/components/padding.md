@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 四周内边距
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: padding-all —— 四周留白
 class PaddingAllDemo extends StatelessWidget {
   const PaddingAllDemo({super.key});
@@ -34,6 +36,8 @@ class PaddingAllDemo extends StatelessWidget {
 `EdgeInsets.only` / `symmetric` 指定不同边。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: padding-symmetric —— 水平/垂直分别设
 class PaddingSymmetricDemo extends StatelessWidget {
   const PaddingSymmetricDemo({super.key});

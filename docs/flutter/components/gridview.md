@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 `crossAxisCount` 指定每行几列，最常用。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gridview-count —— 3 列等宽网格
 class GridViewCountDemo extends StatelessWidget {
   const GridViewCountDemo({super.key});
@@ -47,6 +49,8 @@ class GridViewCountDemo extends StatelessWidget {
 `maxCrossAxisExtent` 每格最宽多少、能塞几列塞几列，响应式友好。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gridview-extent —— 每格最宽 100，自动决定列数
 class GridViewExtentDemo extends StatelessWidget {
   const GridViewExtentDemo({super.key});
@@ -82,6 +86,8 @@ class GridViewExtentDemo extends StatelessWidget {
 数据多时用 `GridView.builder` + `SliverGridDelegate`。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gridview-builder —— 100 项懒加载网格
 class GridViewBuilderDemo extends StatelessWidget {
   const GridViewBuilderDemo({super.key});
@@ -117,6 +123,8 @@ class GridViewBuilderDemo extends StatelessWidget {
 `childAspectRatio` 控制单元格宽高比，配合 `Image.network` 做瀑布式图片墙。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: gridview-image —— 2 列图片墙
 class GridViewImageDemo extends StatelessWidget {
   const GridViewImageDemo({super.key});

@@ -12,6 +12,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 Column / Row 里最常用的间隔方式。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: sizedbox-gap —— 垂直撑间距
 class SizedBoxGapDemo extends StatelessWidget {
   const SizedBoxGapDemo({super.key});
@@ -35,6 +37,8 @@ class SizedBoxGapDemo extends StatelessWidget {
 ## 固定尺寸盒子
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: sizedbox-fixed —— 固定宽高
 class SizedBoxFixedDemo extends StatelessWidget {
   const SizedBoxFixedDemo({super.key});
@@ -57,6 +61,8 @@ class SizedBoxFixedDemo extends StatelessWidget {
 `width: double.infinity` 让子撑满父级宽度。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: sizedbox-infinite —— 全宽按钮
 class SizedBoxInfiniteDemo extends StatelessWidget {
   const SizedBoxInfiniteDemo({super.key});

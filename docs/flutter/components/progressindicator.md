@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 不确定进度（加载中）
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: progress-indeterminate —— 圆形 + 线性转圈
 class ProgressIndeterminateDemo extends StatelessWidget {
   const ProgressIndeterminateDemo({super.key});
@@ -38,6 +40,8 @@ class ProgressIndeterminateDemo extends StatelessWidget {
 给 `value`（0.0~1.0）即变成确定进度，按比例填充。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: progress-determinate —— 下载进度 60%
 class ProgressDeterminateDemo extends StatelessWidget {
   const ProgressDeterminateDemo({super.key});
@@ -66,6 +70,8 @@ class ProgressDeterminateDemo extends StatelessWidget {
 最常见的异步页写法：loading 态与内容态二选一。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: progress-conditional —— 模拟加载后显示内容
 class ProgressConditionalDemo extends StatefulWidget {
   const ProgressConditionalDemo({super.key});
@@ -123,6 +129,8 @@ class _ProgressConditionalDemoState extends State<ProgressConditionalDemo> {
 新版支持 `value` + `total` 表达"完成 x/total"的分段式进度（M3）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: progress-steps —— 分段步骤进度
 class ProgressStepsDemo extends StatelessWidget {
   const ProgressStepsDemo({super.key});

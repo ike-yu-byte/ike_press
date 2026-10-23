@@ -10,6 +10,8 @@ preview: '' # 该页 Flutter Web 预览地址（后续传入）
 ## 基本三 Tab
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomnav-basic —— 首页/发现/我的
 class BottomNavBasicDemo extends StatefulWidget {
   const BottomNavBasicDemo({super.key});
@@ -51,6 +53,8 @@ class _BottomNavBasicDemoState extends State<BottomNavBasicDemo> {
 `type: shifting` 未选中只有图标、选中后图标+文字，动效更炫；超过 3 项常用。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomnav-shifting —— 选中态带背景 pill
 class BottomNavShiftingDemo extends StatefulWidget {
   const BottomNavShiftingDemo({super.key});
@@ -86,6 +90,8 @@ class _BottomNavShiftingDemoState extends State<BottomNavShiftingDemo> {
 直接换 body 会销毁重建页面；用 `IndexedStack` 保留各 Tab 的状态（滚动位置等）。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomnav-indexedstack —— Tab 切换不丢状态
 class BottomNavIndexedStackDemo extends StatefulWidget {
   const BottomNavIndexedStackDemo({super.key});
@@ -126,6 +132,8 @@ class _BottomNavIndexedStackDemoState extends State<BottomNavIndexedStackDemo> {
 Material 3 的 `NavigationBar` 是新一代底部导航（自动 pill 高亮、样式跟随主题），新项目优先。
 
 ```dart
+import 'package:flutter/material.dart';
+
 /// 示例: bottomnav-m3-navigationbar —— NavigationBar 新组件
 class BottomNavM3Demo extends StatefulWidget {
   const BottomNavM3Demo({super.key});
