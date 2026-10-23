@@ -479,6 +479,53 @@ void main() {
 
 Flutter 里常见 `Padding(padding: ..., child: Column(...)..add(...))` 风格的 builder 代码，看懂 `..` 就通了。
 
+### extension：给任意类加方法
+
+Dart 允许你给**任何已有类**（包括 `String`、`int` 这种核心类，甚至第三方包里的类）追加方法——前端视角 ≈ JS 的 `String.prototype.myFn = ...` 打补丁 / TS 的 module augmentation。不同点是 Dart 把它做成受控语法：不污染全局、可命名、可按需导入。
+
+```dart
+void main() {
+  // 给 String 扩展：isBlank 是扩展出来的 getter，lastChar 是扩展出来的方法
+  print('   '.isBlank);          // true
+  print('hello'.lastChar);       // o
+
+  // 给 int 扩展：数字也是对象，照样能加方法
+  print(3.seconds);              // 0:00:03.000000 —— 注意：这是核心库 int 类自带的 getter，不是扩展；
+                                 //   但生态包（如 intl 的 Duration 扩展）正是用 extension 复刻这种写法
+  print(3.millis);               // 0:00:00.003000 —— 这才是下方 TimeX 扩展真正加出来的
+
+  // 命名冲突或想绕过语法糖时，可显式调用：扩展名(目标值).成员
+  print(Shorthand('hi').second); // i —— 不走 .second 语法，直接点名调用
+
+  // 扩展里还能定义静态成员，用扩展名当命名空间调用
+  print(StringX.digit('7'));     // 7
+}
+
+// on String 声明了被扩展的类型，它会自动成为扩展体里的隐式 this：
+// 故 trim()、length、substring() 前面看着空着，其实都是 this.trim() 等——与普通类实例方法完全一致
+extension StringX on String {
+  bool get isBlank => trim().isEmpty;          // 扩展可以加 getter（trim() ≡ this.trim()）
+  String get lastChar => substring(length - 1); // substring/length 同理隐含 this
+  static int digit(String s) => int.parse(s); // 静态方法无 this，靠入参 s
+}
+
+extension Shorthand on String {
+  String get second => length > 1 ? this[1] : ''; // 同一行里：length 是隐式 this，this[1] 是显式 this（下标访问需个接收者）
+}
+
+extension TimeX on int {
+  Duration get millis => Duration(milliseconds: this); // 自己给 int 加一个（int.seconds 核心库已占用，同名扩展会冲突）
+}
+```
+
+三条边界：
+
+1. **只能加方法/getter/静态成员，不能加实例字段**——扩展无状态，塞不了新属性
+2. **静态解析、不参与多态**：调用哪个扩展由变量的**声明类型**决定——变量声明为父类 `Shape` 时，即使运行时值是 `Circle`，挂在 `Circle` 上的扩展也找不到（只有 `Shape` 的扩展可见），也不会按运行时类型动态派发
+3. **不能被 implements / 当类型用**：`StringX` 不是类型，只是语法糖，本质是编译期改写成 `StringX(值).成员` 的静态调用
+
+Flutter 生态里扩展无处不在：`BuildContext` 的常用能力（如 `Theme.of(context)` 的简写、go_router 的 `context.push()`）基本都是扩展提供的——看到 `context.xxx` 别去 BuildContext 源码里找方法，多半是某个 `extension ... on BuildContext`。
+
 ## 异步：Future / Stream ≈ Promise / 可观察流
 
 Dart 的异步模型与 JS **同构**：单隔离区事件循环、微任务优先。`async/await` 写法几乎可以原样平移。
@@ -746,6 +793,7 @@ class Rectangle extends Shape { final double width = 1, height = 1; const Rectan
 | `{...o, k: v}` | `{...o, 'k': v}` | Map 展开 |
 | `arr.map(f).filter(g)` | `arr.map(f).where(g).toList()` | Dart 中间是惰性 Iterable |
 | `class A extends B {}` | `class A extends B {}` | 真类，无原型 |
+| `String.prototype.fn = ...` | `extension X on String {}` | 受控版原型打补丁，不污染全局 |
 | `super()` | `super()` / 初始化列表 `: super(x)` | |
 | `get x() {}` | `int get x => _x;` | 相同 |
 | `Promise` / `async` / `await` | `Future` / `async` / `await` | 语义一致 |

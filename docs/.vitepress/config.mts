@@ -40,8 +40,8 @@ export default defineConfig({
               text: '开始',
               collapsed: false,
               items: [
-                { text: '分区首页', link: '/flutter/index' },
                 { text: 'Dart 基础语法', link: '/flutter/dart-basics' },
+                { text: '开始 Flutter', link: '/flutter/index' },
               ],
             },
             {
@@ -234,8 +234,8 @@ export default defineConfig({
               text: 'Get Started',
               collapsed: false,
               items: [
-                { text: 'Section Home', link: '/en/flutter/index' },
                 { text: 'Dart Basics', link: '/en/flutter/dart-basics' },
+                { text: 'Start Flutter', link: '/en/flutter/index' },
               ],
             },
             {

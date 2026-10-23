@@ -478,6 +478,53 @@ void main() {
 
 Once you see builder code like `Column(children: [...])` combined with `..add(...)`, cascades are what make it tick.
 
+### Extensions: bolt methods onto any class
+
+Dart lets you add methods to **any existing class** — even core types like `String`/`int`, even third-party ones. Frontend frame of reference: ≈ JS's `String.prototype.myFn = ...` patching / TS's module augmentation. The difference: Dart makes it a controlled feature — no global pollution, named, importable on demand.
+
+```dart
+void main() {
+  // Extending String: isBlank is an extension getter, lastChar an extension method
+  print('   '.isBlank);          // true
+  print('hello'.lastChar);       // o
+
+  // Extending int: numbers are objects too
+  print(3.seconds);              // 0:00:03.000000 — note: a built-in getter on core int, NOT an extension;
+                                 //   but ecosystem packages (intl's Duration extensions) recreate exactly this feel via extension
+  print(3.millis);               // 0:00:00.003000 — this one really is added by TimeX below
+
+  // On name clashes, or to bypass the sugar, call explicitly: ExtensionName(value).member
+  print(Shorthand('hi').second); // i — not via .second syntax, called by name
+
+  // Extensions can also hold static members; the name acts as a namespace
+  print(StringX.digit('7'));     // 7
+}
+
+// `on String` declares the type being extended, which becomes an implicit `this` inside the body:
+// so trim(), length, substring() look receiver-less but are really this.trim() etc. — exactly like instance methods in a normal class
+extension StringX on String {
+  bool get isBlank => trim().isEmpty;          // getters are fine (trim() ≡ this.trim())
+  String get lastChar => substring(length - 1); // substring/length likewise carry an implicit this
+  static int digit(String s) => int.parse(s);  // static methods have no this, they use the parameter s
+}
+
+extension Shorthand on String {
+  String get second => length > 1 ? this[1] : ''; // same line: length is implicit this, this[1] is explicit this (indexing needs a receiver)
+}
+
+extension TimeX on int {
+  Duration get millis => Duration(milliseconds: this); // your own addition (int.seconds is taken by the core class)
+}
+```
+
+Three boundaries:
+
+1. **Methods/getters/statics only — no instance fields**: extensions are stateless, you can't bolt on new properties
+2. **Statically resolved, no polymorphism**: which extension applies is decided by the variable's *declared type* — if it's typed `Shape`, an extension on `Circle` won't be found even when the runtime value is a Circle (only Shape's extensions are visible); nothing dispatches on runtime type
+3. **Not a type, can't be implemented**: `StringX` is pure sugar — the compiler rewrites `v.isBlank` into a static call `StringX(v).isBlank`
+
+Extensions are everywhere in Flutter: much of what makes `context` pleasant to use (`context.push(...)` from go_router, shorthand accessors in packages like shadcn_flutter) comes from `extension ... on BuildContext` — if a `context.xxx` isn't in BuildContext's source, it's an extension.
+
 ## Async: Future / Stream ≈ Promises / observable streams
 
 Dart's async model is **isomorphic** with JS: single-threaded event loop, microtasks first. `async/await` ports over almost verbatim.
@@ -746,6 +793,7 @@ class Rectangle extends Shape { const Rectangle(); }
 | `{...o, k: v}` | `{...o, 'k': v}` | Map spread |
 | `arr.map(f).filter(g)` | `arr.map(f).where(g).toList()` | middle steps are lazy Iterables |
 | `class A extends B {}` | `class A extends B {}` | real classes, no prototypes |
+| `String.prototype.fn = ...` | `extension X on String {}` | a controlled prototype patch, no global pollution |
 | `super()` | `super()` / initializer list `: super(x)` | |
 | `get x() {}` | `int get x => _x;` | identical |
 | `Promise` / `async` / `await` | `Future` / `async` / `await` | same semantics |
