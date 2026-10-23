@@ -62,11 +62,13 @@ int count = 3;                 // 整数
 double ratio = 1.5;            // 浮点数——注意：写 1 不行，必须 1.0（见易错点）
 num either = 3;                // int 和 double 的公共父类型
 either = 3.5;                  // ✅ num 两者都能接
-String s = 'hello';
+String s = 'hello';            // 大写 S：String 是类名，遵循大驼峰命名规范
 bool flag = true;
 var inferred = 3.5;            // 推断为 double，之后再赋 int 会报错
 // inferred = 3;               // ❌ double 变量不能放 int
 ```
+
+为什么 `String` 大写开头而 `int` / `double` / `bool` 小写？Dart 里**一切皆对象，没有基本类型**——这些全是 `dart:core` 里的类名。`String`、`List`、`Map`、`Future` 遵循类名大驼峰的常规规范；`int` / `num` / `double` / `bool` 是官方刻意保留的小写特例，为的是让写起来像其他语言的原始类型。TS 转来的读者注意别顺手写 `string s`——编译直接报错。
 
 `dynamic` 类型才是 Dart 世界里那个"真正的 JS"——关闭一切编译期检查：
 

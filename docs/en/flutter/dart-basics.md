@@ -62,11 +62,13 @@ int count = 3;                 // integer
 double ratio = 1.5;            // floating point — note: writing 1 is invalid, must be 1.0 (see pitfalls)
 num either = 3;                // common supertype of int and double
 either = 3.5;                  // ✅ num accepts both
-String s = 'hello';
+String s = 'hello';            // capital S: String is a class name, UpperCamelCase by convention
 bool flag = true;
 var inferred = 3.5;            // inferred double; assigning an int later fails
 // inferred = 3;               // ❌ a double variable can't hold an int
 ```
+
+Why is `String` capitalized while `int` / `double` / `bool` are not? In Dart **everything is an object — there are no primitives**; all of these are class names from `dart:core`. `String`, `List`, `Map`, `Future` follow the regular UpperCamelCase class-name convention, while `int` / `num` / `double` / `bool` are deliberate lowercase exceptions the language keeps so they read like primitives elsewhere. Coming from TS, don't type `string s` — that's an immediate compile error.
 
 The `dynamic` type is the "real JavaScript" inside Dart — it switches off compile-time checking:
 
