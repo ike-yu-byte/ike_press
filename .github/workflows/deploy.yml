@@ -2,6 +2,8 @@ name: Build and Deploy
 on:
   push:
     branches: [ master ]
+    # 手动触发：Actions 页面 → 本 workflow → Run workflow（文件进默认分支后才会出现）
+  workflow_dispatch:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
