@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vitepress dev docs --host 0.0.0.0",
     "build": "vitepress build docs",
-    "preview": "vitepress preview docs --host 0.0.0.0"
+    "preview": "vitepress preview docs --host 0.0.0.0",
+    "link:skills": "node scripts/link-agent-skills.mjs",
+    "postinstall": "node scripts/link-agent-skills.mjs"
   },
   "devDependencies": {
     "vitepress": "^1.6.4",

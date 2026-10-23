@@ -4,3 +4,7 @@ docs/.vitepress/cache
 *.log
 .DS_Store
 /dist
+
+# 注意：各 AI 工具目录下的 skills 是指向 .agents/skills 的符号链接，随仓库提交（仿 ant-design），
+# 因此这里【不】忽略它们。唯一实体来源是 .agents/skills。
+# 若 Windows 克隆后链接被检出成纯文本文件，运行 `npm run link:skills` 修复。
