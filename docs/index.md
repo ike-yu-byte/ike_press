@@ -28,9 +28,14 @@ features:
   - icon: 🖖
     title: Vue 组件支持
     details: 可在 Markdown 中直接使用 Vue 组件，也可以使用全局组件和布局插槽。
-  - icon: 🔍
-    title: 本地全文搜索
-    details: 内置本地搜索能力，无需任何外部服务即可索引整站文档。
+  - icon:
+      src: /nestjs.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: NestJS 后端笔记
+    details: 给前端工程师的后端入门笔记：从框架原理到实战，用 TypeScript 搞懂服务端。
+    link: /nestjs/
   - icon: 🌗
     title: 深色模式
     details: 默认支持浅色/深色主题切换，可自定义品牌色与排版。

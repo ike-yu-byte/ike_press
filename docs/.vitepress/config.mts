@@ -20,6 +20,7 @@ export default defineConfig({
           { text: '首页', link: '/' },
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
+          { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
         sidebar: {
@@ -31,6 +32,48 @@ export default defineConfig({
                 { text: '介绍', link: '/guide/index' },
                 { text: '快速开始', link: '/guide/getting-started' },
                 { text: '目录结构', link: '/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/nestjs/': [
+            {
+              text: '开始',
+              collapsed: false,
+              items: [
+                { text: 'NestJS 是什么', link: '/nestjs/index' },
+                { text: '框架原理：IoC 与依赖注入', link: '/nestjs/principles' },
+                { text: '快速开始：第一个项目', link: '/nestjs/first-app' },
+              ],
+            },
+            {
+              text: '核心概念',
+              collapsed: false,
+              items: [
+                { text: '控制器与路由', link: '/nestjs/controllers' },
+                { text: 'Provider 与 Service', link: '/nestjs/providers' },
+                { text: '模块系统', link: '/nestjs/modules' },
+                { text: '一次请求的完整生命周期', link: '/nestjs/request-lifecycle' },
+              ],
+            },
+            {
+              text: '请求处理',
+              collapsed: false,
+              items: [
+                { text: '中间件', link: '/nestjs/middleware' },
+                { text: '管道与数据校验', link: '/nestjs/pipes-validation' },
+                { text: '守卫与 JWT 认证', link: '/nestjs/guards-auth' },
+                { text: '拦截器与异常过滤器', link: '/nestjs/interceptors-filters' },
+              ],
+            },
+            {
+              text: '进阶实战',
+              collapsed: false,
+              items: [
+                { text: '数据库：TypeORM 与 Prisma', link: '/nestjs/database' },
+                { text: '配置、环境变量与 CORS', link: '/nestjs/config-deploy' },
+                { text: '单元测试与 E2E 测试', link: '/nestjs/testing' },
+                { text: '速查表与学习路线', link: '/nestjs/cheatsheet' },
               ],
             },
           ],
