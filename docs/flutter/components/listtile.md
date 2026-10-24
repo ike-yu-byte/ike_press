@@ -174,11 +174,13 @@ class _ListTileControlsDemoState extends State<ListTileControlsDemo> {
               value: _notify,
               onChanged: (v) => setState(() => _notify = v ?? false),
             ),
-            RadioListTile<String>(
-              title: const Text('微信支付'),
-              value: 'wechat',
+            RadioGroup<String>(
               groupValue: _pay,
               onChanged: (v) => setState(() => _pay = v!),
+              child: const RadioListTile<String>(
+                title: Text('微信支付'),
+                value: 'wechat',
+              ),
             ),
             SwitchListTile(
               title: const Text('深色模式'),

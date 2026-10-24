@@ -7,7 +7,7 @@ preview: '' # Flutter Web preview URL for this page (to be filled later)
 
 > 🔵 Stateful widget · `StatefulWidget`
 
-`Radio` picks one option from a mutually exclusive set. A lone `Radio` is meaningless -- exclusivity comes from **sharing one `groupValue`**: the radio whose `value == groupValue` is the lit one.
+`Radio` picks one option from a mutually exclusive set. A lone `Radio` is meaningless -- since Flutter 3.32+ an ancestor `RadioGroup` owns the group state: the radio whose `value == RadioGroup.groupValue` is the lit one, and children only declare `value`.
 
 ## Basic single choice
 
@@ -28,22 +28,19 @@ class _RadioBasicDemoState extends State<RadioBasicDemo> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Radio<String>(
-            value: 'male',
-            groupValue: _gender,
-            onChanged: (v) => setState(() => _gender = v),
-          ),
-          const Text('Male'),
-          Radio<String>(
-            value: 'female',
-            groupValue: _gender,
-            onChanged: (v) => setState(() => _gender = v),
-          ),
-          const Text('Female'),
-        ],
+      // group state lives on the RadioGroup; children only declare value
+      child: RadioGroup<String>(
+        groupValue: _gender,
+        onChanged: (v) => setState(() => _gender = v),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Radio<String>(value: 'male'),
+            Text('Male'),
+            Radio<String>(value: 'female'),
+            Text('Female'),
+          ],
+        ),
       ),
     );
   }
@@ -73,31 +70,29 @@ class _RadioListTileDemoState extends State<RadioListTileDemo> {
     return Center(
       child: SizedBox(
         width: 300,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            RadioListTile<String>(
-              title: const Text('WeChat Pay'),
-              secondary: const Icon(Icons.chat),
-              value: 'wechat',
-              groupValue: _pay,
-              onChanged: (v) => setState(() => _pay = v!),
-            ),
-            RadioListTile<String>(
-              title: const Text('Alipay'),
-              secondary: const Icon(Icons.account_balance),
-              value: 'alipay',
-              groupValue: _pay,
-              onChanged: (v) => setState(() => _pay = v!),
-            ),
-            RadioListTile<String>(
-              title: const Text('Bank card'),
-              secondary: const Icon(Icons.credit_card),
-              value: 'bank',
-              groupValue: _pay,
-              onChanged: (v) => setState(() => _pay = v!),
-            ),
-          ],
+        child: RadioGroup<String>(
+          groupValue: _pay,
+          onChanged: (v) => setState(() => _pay = v!),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              RadioListTile<String>(
+                title: Text('WeChat Pay'),
+                secondary: Icon(Icons.chat),
+                value: 'wechat',
+              ),
+              RadioListTile<String>(
+                title: Text('Alipay'),
+                secondary: Icon(Icons.account_balance),
+                value: 'alipay',
+              ),
+              RadioListTile<String>(
+                title: Text('Bank card'),
+                secondary: Icon(Icons.credit_card),
+                value: 'bank',
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -131,13 +126,20 @@ class _RadioEnumDemoState extends State<RadioEnumDemo> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (final (i, label) in const ['Standard', 'Express', 'Same day'].indexed)
-            RadioListTile<DeliverySpeed>(
-              title: Text(label),
-              value: DeliverySpeed.values[i],
-              groupValue: _speed,
-              onChanged: (v) => setState(() => _speed = v!),
+          RadioGroup<DeliverySpeed>(
+            groupValue: _speed,
+            onChanged: (v) => setState(() => _speed = v!),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (final (i, label) in const ['Standard', 'Express', 'Same day'].indexed)
+                  RadioListTile<DeliverySpeed>(
+                    title: Text(label),
+                    value: DeliverySpeed.values[i],
+                  ),
+              ],
             ),
+          ),
           const SizedBox(height: 8),
           Text('Current: ${_speed.name}'),
         ],
@@ -152,7 +154,7 @@ class _RadioEnumDemoState extends State<RadioEnumDemo> {
 ```dart
 import 'package:flutter/material.dart';
 
-/// Example: radio-disabled —— null onChanged makes an option unselectable
+/// Example: radio-disabled —— enabled: false makes an option unselectable
 class RadioDisabledDemo extends StatefulWidget {
   const RadioDisabledDemo({super.key});
 
@@ -166,22 +168,16 @@ class _RadioDisabledDemoState extends State<RadioDisabledDemo> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          RadioListTile<int>(
-            title: const Text('Available option'),
-            value: 0,
-            groupValue: _selected,
-            onChanged: (v) => setState(() => _selected = v!),
-          ),
-          RadioListTile<int>(
-            title: const Text('Sold out, unselectable'),
-            value: 1,
-            groupValue: _selected,
-            onChanged: null, // disabled
-          ),
-        ],
+      child: RadioGroup<int>(
+        groupValue: _selected,
+        onChanged: (v) => setState(() => _selected = v!),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            RadioListTile<int>(title: Text('Available option'), value: 0),
+            RadioListTile<int>(title: Text('Sold out, unselectable'), value: 1, enabled: false),
+          ],
+        ),
       ),
     );
   }
@@ -238,22 +234,23 @@ The old pattern repeated `groupValue` + `onChanged` on every option -- miss one 
 
 | Property | Description |
 | --- | --- |
-| `value` / `groupValue` | This option's id / currently selected value (equal = selected) |
-| `onChanged` | Callback; null disables |
+| `RadioGroup`'s `groupValue` / `onChanged` | Group selected value / change callback (on the ancestor container) |
+| `Radio` / `RadioListTile`'s `value` | This option's id; equals `groupValue` = selected |
+| `enabled` | Pass `false` to disable a single option |
 | `activeColor` / `fillColor` | Selected colors |
 | `RadioListTile`'s `title` / `subtitle` / `secondary` / `controlAffinity` | Whole-row layout slots |
 | `groupDirection` (ListTile variant) | Radio on the left (leading) or right (trailing) |
 
 ## Pitfalls
 
-::: danger groupValue types must match
-The generic of `Radio<T>`, value, groupValue and the onChanged parameter must be the same type -- mixing String/int fails compilation.
+::: danger Generic types must match
+The generic of `RadioGroup<T>`, its `groupValue`, and each child `Radio<T>` / `RadioListTile<T>`'s `value` must be the same type -- mixing String/int fails compilation.
 :::
 
 ::: warning No setState = never selected
-Like Checkbox this is a controlled widget; onChanged must setState a new groupValue.
+Like Checkbox this is a controlled widget; `RadioGroup.onChanged` must setState a new groupValue.
 :::
 
-::: tip Prefer RadioGroup
-New projects should use the `RadioGroup` container directly; the legacy groupValue pattern still works but emits deprecation warnings -- migrate as you upgrade the SDK.
+::: tip Use RadioGroup directly
+`groupValue` / `onChanged` on individual `Radio` / `RadioListTile` are deprecated (Flutter 3.32+); use an ancestor `RadioGroup` instead; disable a single option with `enabled: false` rather than `onChanged: null`.
 :::

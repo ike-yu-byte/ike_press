@@ -72,7 +72,7 @@ class ButtonDisabledDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bool canSubmit = false;
+    final bool canSubmit = ''.isNotEmpty; // 表单为空 → 不可提交
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
