@@ -238,6 +238,49 @@ class ButtonStyleDemo extends StatelessWidget {
 }
 ```
 
+## 圆角弧度
+
+按钮圆角由 `style` 里的 `shape` 控制，配合 `RoundedRectangleBorder(borderRadius: ...)`：`BorderRadius.zero` 直角、`BorderRadius.circular(n)` 四角同弧度、超大值即胶囊，`BorderRadius.only(...)` 可只圆某几个角。
+
+```dart
+import 'package:flutter/material.dart';
+
+/// 示例: button-radius —— shape + BorderRadius 调整圆角弧度
+class ButtonRadiusDemo extends StatelessWidget {
+  const ButtonRadiusDemo({super.key});
+
+  FilledButton _make(String label, BorderRadius radius) => FilledButton(
+        onPressed: () {},
+        style: FilledButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: radius),
+        ),
+        child: Text(label),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Wrap(
+        spacing: 12,
+        runSpacing: 12,
+        alignment: WrapAlignment.center,
+        children: [
+          _make('直角', BorderRadius.zero),
+          _make('小圆角', BorderRadius.circular(8)),
+          _make('大圆角', BorderRadius.circular(20)),
+          _make('胶囊', BorderRadius.circular(999)),
+          _make('仅左上圆', const BorderRadius.only(topLeft: Radius.circular(24))),
+        ],
+      ),
+    );
+  }
+}
+```
+
+::: tip 圆角裁不住溢出内容？
+若按钮内有图片等子组件溢出圆角，给按钮加 `clipBehavior: Clip.antiAlias`，让裁剪跟随 `shape`。
+:::
+
 ## 状态样式
 
 需要按悬停/按下/禁用给不同值时，用 `WidgetStateProperty`。

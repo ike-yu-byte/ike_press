@@ -85,6 +85,60 @@ class _CheckboxGroupDemoState extends State<CheckboxGroupDemo> {
 }
 ```
 
+## Horizontal layout
+
+To lay options out in a row, wrap a set of `Checkbox + Text` pairs in a `Row` -- or a `Wrap`, which reflows to the next line when width runs out.
+
+```dart
+import 'package:flutter/material.dart';
+
+/// Example: checkbox-inline —— horizontally arranged multi-select tags
+class CheckboxInlineDemo extends StatefulWidget {
+  const CheckboxInlineDemo({super.key});
+
+  @override
+  State<CheckboxInlineDemo> createState() => _CheckboxInlineDemoState();
+}
+
+class _CheckboxInlineDemoState extends State<CheckboxInlineDemo> {
+  final _options = ['WeChat', 'Alipay', 'Bank card', 'PayPal'];
+  final _selected = <String>{'WeChat'};
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            alignment: WrapAlignment.center,
+            children: [
+              for (final opt in _options)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Checkbox(
+                      value: _selected.contains(opt),
+                      onChanged: (v) => setState(() {
+                        v == true ? _selected.add(opt) : _selected.remove(opt);
+                      }),
+                    ),
+                    Text(opt),
+                  ],
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text('Selected: ${_selected.join(', ')}'),
+        ],
+      ),
+    );
+  }
+}
+```
+
 ## Tristate select-all
 
 `tristate: true` allows null (partial selection) -- the classic "select-all + children" linkage.

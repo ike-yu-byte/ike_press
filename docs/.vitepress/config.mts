@@ -117,6 +117,8 @@ export default defineConfig({
                 { text: 'Wrap 流式布局', link: '/flutter/components/wrap' },
                 { text: 'Center / Align 对齐', link: '/flutter/components/align' },
                 { text: 'Expanded / Flexible 伸展', link: '/flutter/components/expanded' },
+                { text: 'SafeArea 安全区', link: '/flutter/components/safearea' },
+                { text: 'Table 表格', link: '/flutter/components/table' },
               ],
             },
             {
@@ -315,6 +317,8 @@ export default defineConfig({
                 { text: 'Wrap', link: '/en/flutter/components/wrap' },
                 { text: 'Center / Align', link: '/en/flutter/components/align' },
                 { text: 'Expanded / Flexible', link: '/en/flutter/components/expanded' },
+                { text: 'SafeArea', link: '/en/flutter/components/safearea' },
+                { text: 'Table', link: '/en/flutter/components/table' },
               ],
             },
             {

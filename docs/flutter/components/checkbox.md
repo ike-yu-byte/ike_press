@@ -85,6 +85,60 @@ class _CheckboxGroupDemoState extends State<CheckboxGroupDemo> {
 }
 ```
 
+## 水平排列
+
+想让选项横向排成一行，用 `Row` 或（怕宽度不够时）`Wrap` 包一组 `Checkbox + Text`；`Wrap` 会在空间不足时自动换行。
+
+```dart
+import 'package:flutter/material.dart';
+
+/// 示例: checkbox-inline —— 水平排列的多选标签
+class CheckboxInlineDemo extends StatefulWidget {
+  const CheckboxInlineDemo({super.key});
+
+  @override
+  State<CheckboxInlineDemo> createState() => _CheckboxInlineDemoState();
+}
+
+class _CheckboxInlineDemoState extends State<CheckboxInlineDemo> {
+  final _options = ['微信', '支付宝', '银行卡', 'PayPal'];
+  final _selected = <String>{'微信'};
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            alignment: WrapAlignment.center,
+            children: [
+              for (final opt in _options)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Checkbox(
+                      value: _selected.contains(opt),
+                      onChanged: (v) => setState(() {
+                        v == true ? _selected.add(opt) : _selected.remove(opt);
+                      }),
+                    ),
+                    Text(opt),
+                  ],
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text('已选：${_selected.join('、')}'),
+        ],
+      ),
+    );
+  }
+}
+```
+
 ## 三态与全选联动
 
 `tristate: true` 允许 null（部分选中），做"全选框 + 子项"经典联动。
