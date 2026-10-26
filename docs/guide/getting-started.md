@@ -25,7 +25,15 @@ npm run dev
 npm run build
 ```
 
-产物输出到 `docs/.vitepress/dist/`，是纯静态文件，可直接部署。
+构建产物输出到**仓库根目录的 `dist/`**，是纯静态文件，可直接部署。
+
+::: info 默认位置 vs 本项目的改动
+- **VitePress 默认**：产物输出到 `docs/.vitepress/dist/`（即 `srcDir` 下的 `.vitepress/dist`）。
+- **本项目改成了仓库根 `dist/`**：在 `docs/.vitepress/config.mts` 里加了一行 `outDir: '../dist'`（相对 `srcDir`（即 `docs/`）解析：`docs/../dist` → 根目录 `dist/`）。`outDir` 只认这一个配置，`npm run build` 脚本本身不带输出目录参数。
+- **为什么改**：部署工作流 `.github/workflows/deploy.yml` 直接取 `dist/*` 上传到服务器，放根目录路径最短、最直观。
+
+如果以后要改回默认，删掉 `outDir` 这行即可，但需同步把 `deploy.yml` 里的 `source: "dist/*"` 改成 `docs/.vitepress/dist/*`。另外 `dist/` 已在 `.gitignore` 中，不会被提交。
+:::
 
 ## 预览构建产物
 
