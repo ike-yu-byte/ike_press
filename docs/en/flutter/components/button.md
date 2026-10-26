@@ -72,7 +72,7 @@ class ButtonDisabledDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bool canSubmit = false;
+    final bool canSubmit = ''.isNotEmpty; // empty form -> cannot submit
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -237,6 +237,49 @@ class ButtonStyleDemo extends StatelessWidget {
   }
 }
 ```
+
+## Corner radius
+
+A button's corner radius comes from `shape` in its `style`, paired with `RoundedRectangleBorder(borderRadius: ...)`: `BorderRadius.zero` for square corners, `BorderRadius.circular(n)` for the same radius on all four corners (a huge value gives a pill), and `BorderRadius.only(...)` to round just some corners.
+
+```dart
+import 'package:flutter/material.dart';
+
+/// Example: button-radius —— tune corner radius with shape + BorderRadius
+class ButtonRadiusDemo extends StatelessWidget {
+  const ButtonRadiusDemo({super.key});
+
+  FilledButton _make(String label, BorderRadius radius) => FilledButton(
+        onPressed: () {},
+        style: FilledButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: radius),
+        ),
+        child: Text(label),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Wrap(
+        spacing: 12,
+        runSpacing: 12,
+        alignment: WrapAlignment.center,
+        children: [
+          _make('Square', BorderRadius.zero),
+          _make('Small', BorderRadius.circular(8)),
+          _make('Large', BorderRadius.circular(20)),
+          _make('Pill', BorderRadius.circular(999)),
+          _make('Top-left only', const BorderRadius.only(topLeft: Radius.circular(24))),
+        ],
+      ),
+    );
+  }
+}
+```
+
+::: tip Content overflowing the rounded corners?
+If an image or child spills past the rounded corner, add `clipBehavior: Clip.antiAlias` to the button so clipping follows its `shape`.
+:::
 
 ## State-dependent styling
 
