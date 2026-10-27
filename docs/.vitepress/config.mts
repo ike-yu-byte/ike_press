@@ -20,6 +20,7 @@ export default defineConfig({
           { text: '首页', link: '/' },
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
+          { text: 'React', link: '/react/', activeMatch: '/react/' },
           { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
@@ -32,6 +33,23 @@ export default defineConfig({
                 { text: '介绍', link: '/guide/index' },
                 { text: '快速开始', link: '/guide/getting-started' },
                 { text: '目录结构', link: '/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/react/': [
+            {
+              text: 'React',
+              collapsed: false,
+              items: [
+                { text: 'React 知识库入口', link: '/react/index' },
+                { text: 'JSX 与模板语法', link: '/react/jsx' },
+                { text: '组件与状态', link: '/react/components-state' },
+                { text: 'Hooks 详解', link: '/react/hooks' },
+                { text: '组件通信', link: '/react/communication' },
+                { text: '路由', link: '/react/router' },
+                { text: '状态管理', link: '/react/state-management' },
+                { text: '性能与高频踩坑', link: '/react/performance-pitfalls' },
               ],
             },
           ],
@@ -263,6 +281,7 @@ export default defineConfig({
           { text: 'Home', link: '/en/' },
           { text: 'Guide', link: '/en/guide/', activeMatch: '/en/guide/' },
           { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
+          { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
         ],
 
         sidebar: {
@@ -274,6 +293,23 @@ export default defineConfig({
                 { text: 'Introduction', link: '/en/guide/index' },
                 { text: 'Quick Start', link: '/en/guide/getting-started' },
                 { text: 'Project Structure', link: '/en/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/en/react/': [
+            {
+              text: 'React',
+              collapsed: false,
+              items: [
+                { text: 'React Knowledge Base', link: '/en/react/index' },
+                { text: 'JSX & Template Syntax', link: '/en/react/jsx' },
+                { text: 'Components & State', link: '/en/react/components-state' },
+                { text: 'Hooks in Depth', link: '/en/react/hooks' },
+                { text: 'Component Communication', link: '/en/react/communication' },
+                { text: 'Routing', link: '/en/react/router' },
+                { text: 'State Management', link: '/en/react/state-management' },
+                { text: 'Performance & Pitfalls', link: '/en/react/performance-pitfalls' },
               ],
             },
           ],

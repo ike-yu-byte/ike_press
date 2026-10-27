@@ -31,9 +31,14 @@ features:
   - icon: 🔍
     title: Local Full-text Search
     details: Built-in local search indexes the whole site without any external service.
-  - icon: 🌗
-    title: Dark Mode
-    details: Light/dark theme switching out of the box, with customizable brand colors and typography.
+  - icon:
+      src: /react.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: React Knowledge Base
+    details: A React migration map for Vue developers — mindset, hooks, routing, state management and top pitfalls.
+    link: /en/react/
   - icon: 📱
     title: Mobile Friendly
     details: Responsive design — sidebar and navigation adapt automatically on small screens.
