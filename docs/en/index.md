@@ -25,15 +25,25 @@ features:
     title: Flutter
     details: Cross-platform notes with Flutter — from the Dart language to shipping a complete app.
     link: /en/flutter/
-  - icon: 🖖
-    title: Vue Components
-    details: Use Vue components directly in Markdown, plus global components and layout slots.
+  - icon:
+      src: /vue.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Vue Knowledge Base
+    details: A systematic Vue 3 map — template syntax, reactivity, components, routing, Pinia and performance pitfalls.
+    link: /en/vue/
   - icon: 🔍
     title: Local Full-text Search
     details: Built-in local search indexes the whole site without any external service.
-  - icon: 🌗
-    title: Dark Mode
-    details: Light/dark theme switching out of the box, with customizable brand colors and typography.
+  - icon:
+      src: /react.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: React Knowledge Base
+    details: A React migration map for Vue developers — mindset, hooks, routing, state management and top pitfalls.
+    link: /en/react/
   - icon: 📱
     title: Mobile Friendly
     details: Responsive design — sidebar and navigation adapt automatically on small screens.

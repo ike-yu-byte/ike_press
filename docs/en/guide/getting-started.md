@@ -25,7 +25,15 @@ Then visit `http://localhost:5173`. Editing Markdown files under `docs/` hot-upd
 npm run build
 ```
 
-Output goes to `docs/.vitepress/dist/` — pure static files, ready to deploy.
+The build output goes to **`dist/` at the repository root** — pure static files, ready to deploy.
+
+::: info Default location vs this project's change
+- **VitePress default**: output lands in `docs/.vitepress/dist/` (i.e. `.vitepress/dist` under `srcDir`).
+- **This project moved it to the root `dist/`**: a single line `outDir: '../dist'` was added to `docs/.vitepress/config.mts` (resolved relative to `srcDir`, i.e. `docs/`: `docs/../dist` → root `dist/`). `outDir` is the only knob — the `npm run build` script itself takes no output-directory flag.
+- **Why**: the deploy workflow `.github/workflows/deploy.yml` uploads `dist/*` straight to the server, so a root-level path is the shortest and clearest.
+
+To revert to the default, just delete the `outDir` line — but also update `source: "dist/*"` in `deploy.yml` to `docs/.vitepress/dist/*`. Note `dist/` is already in `.gitignore`, so it's never committed.
+:::
 
 ## Preview the build output
 

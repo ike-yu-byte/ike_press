@@ -20,6 +20,8 @@ export default defineConfig({
           { text: '首页', link: '/' },
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
+          { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+          { text: 'React', link: '/react/', activeMatch: '/react/' },
           { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
@@ -32,6 +34,41 @@ export default defineConfig({
                 { text: '介绍', link: '/guide/index' },
                 { text: '快速开始', link: '/guide/getting-started' },
                 { text: '目录结构', link: '/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/vue/': [
+            {
+              text: 'Vue',
+              collapsed: false,
+              items: [
+                { text: 'Vue 知识库入口', link: '/vue/index' },
+                { text: '模板语法', link: '/vue/template-syntax' },
+                { text: '计算属性与侦听器', link: '/vue/computed-watch' },
+                { text: '组件系统', link: '/vue/components' },
+                { text: '响应式与生命周期', link: '/vue/reactivity-lifecycle' },
+                { text: '表单与组件通信', link: '/vue/forms-communication' },
+                { text: '路由 vue-router', link: '/vue/router' },
+                { text: '状态管理 Pinia', link: '/vue/state-management' },
+                { text: '性能与最佳实践', link: '/vue/performance-best-practices' },
+              ],
+            },
+          ],
+
+          '/react/': [
+            {
+              text: 'React',
+              collapsed: false,
+              items: [
+                { text: 'React 知识库入口', link: '/react/index' },
+                { text: 'JSX 与模板语法', link: '/react/jsx' },
+                { text: '组件与状态', link: '/react/components-state' },
+                { text: 'Hooks 详解', link: '/react/hooks' },
+                { text: '组件通信', link: '/react/communication' },
+                { text: '路由', link: '/react/router' },
+                { text: '状态管理', link: '/react/state-management' },
+                { text: '性能与高频踩坑', link: '/react/performance-pitfalls' },
               ],
             },
           ],
@@ -263,6 +300,8 @@ export default defineConfig({
           { text: 'Home', link: '/en/' },
           { text: 'Guide', link: '/en/guide/', activeMatch: '/en/guide/' },
           { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
+          { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
+          { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
         ],
 
         sidebar: {
@@ -274,6 +313,41 @@ export default defineConfig({
                 { text: 'Introduction', link: '/en/guide/index' },
                 { text: 'Quick Start', link: '/en/guide/getting-started' },
                 { text: 'Project Structure', link: '/en/guide/project-structure' },
+              ],
+            },
+          ],
+
+          '/en/vue/': [
+            {
+              text: 'Vue',
+              collapsed: false,
+              items: [
+                { text: 'Vue Knowledge Base', link: '/en/vue/index' },
+                { text: 'Template Syntax', link: '/en/vue/template-syntax' },
+                { text: 'Computed & Watch', link: '/en/vue/computed-watch' },
+                { text: 'Component System', link: '/en/vue/components' },
+                { text: 'Reactivity & Lifecycle', link: '/en/vue/reactivity-lifecycle' },
+                { text: 'Forms & Communication', link: '/en/vue/forms-communication' },
+                { text: 'Routing (vue-router)', link: '/en/vue/router' },
+                { text: 'State Management (Pinia)', link: '/en/vue/state-management' },
+                { text: 'Performance & Best Practices', link: '/en/vue/performance-best-practices' },
+              ],
+            },
+          ],
+
+          '/en/react/': [
+            {
+              text: 'React',
+              collapsed: false,
+              items: [
+                { text: 'React Knowledge Base', link: '/en/react/index' },
+                { text: 'JSX & Template Syntax', link: '/en/react/jsx' },
+                { text: 'Components & State', link: '/en/react/components-state' },
+                { text: 'Hooks in Depth', link: '/en/react/hooks' },
+                { text: 'Component Communication', link: '/en/react/communication' },
+                { text: 'Routing', link: '/en/react/router' },
+                { text: 'State Management', link: '/en/react/state-management' },
+                { text: 'Performance & Pitfalls', link: '/en/react/performance-pitfalls' },
               ],
             },
           ],
