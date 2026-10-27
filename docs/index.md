@@ -25,9 +25,14 @@ features:
     title: Flutter
     details: Flutter 跨端开发学习笔记，从 Dart 语言到上架一款完整 App。
     link: /flutter/
-  - icon: 🖖
-    title: Vue 组件支持
-    details: 可在 Markdown 中直接使用 Vue 组件，也可以使用全局组件和布局插槽。
+  - icon:
+      src: /vue.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Vue 知识库入口
+    details: Vue 3 知识体系梳理：模板语法、响应式原理、组件、路由、Pinia 与性能踩坑。
+    link: /vue/
   - icon:
       src: /nestjs.svg
       width: 28
