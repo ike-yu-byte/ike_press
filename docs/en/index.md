@@ -52,7 +52,20 @@ features:
     title: Agent Knowledge Base
     details: AI Agent from zero to production for web frontend devs — LLM APIs, prompting, RAG, MCP, framework selection and streaming UI.
     link: /en/agent/
-  - icon: 🚢
-    title: Static Export
-    details: One command produces a pure static site, deployable to any hosting platform.
+  - icon:
+      src: /java.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Java + Spring Boot Knowledge Base
+    details: Job-ready Java backend from zero to production — Java basics & concurrency, SQL/MySQL, Maven, Spring IoC/AOP, Spring Boot and the 3→4 migration.
+    link: /en/java/
+  - icon:
+      src: /python.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Python → AI Development Knowledge Base
+    details: The complete path from Python to AI development — language basics & advanced, Flask/Django, data analysis, ML/PyTorch, LLM apps and deployment.
+    link: /en/python/
 ---

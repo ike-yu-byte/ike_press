@@ -57,7 +57,20 @@ features:
     title: Agent 知识库入口
     details: 面向 Web 前端的 AI Agent 从入门到实战：LLM API、Prompt、RAG、MCP、框架选型与流式 UI 工程。
     link: /agent/
-  - icon: 🚢
-    title: 静态站点导出
-    details: 一条命令构建出纯静态产物，可部署到任意静态托管平台。
+  - icon:
+      src: /java.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Java + Spring Boot 知识库入口
+    details: 面向招聘市场的 Java 后端从入门到实战：Java 基础与并发、SQL/MySQL、Maven、Spring IoC/AOP、Spring Boot 与 3→4 迁移。
+    link: /java/
+  - icon:
+      src: /python.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Python → AI 开发知识库入口
+    details: 从 Python 基础到 AI 开发的完整路径：语法与进阶、Flask/Django、数据分析、机器学习/PyTorch、大模型应用与工程部署。
+    link: /python/
 ---
