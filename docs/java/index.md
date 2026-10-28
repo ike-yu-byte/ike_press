@@ -14,7 +14,7 @@ Java 后端是国内招聘需求量最大的岗位方向之一。初中级岗位
 | "熟悉 Spring 的 IoC、AOP" | 三级缓存解决循环依赖、Bean 生命周期、事务失效场景 | [Spring 核心](./spring-core) |
 | "有 Spring Boot 开发经验" | 自动配置原理、starter 机制、配置文件体系、Web 分层开发 | [Spring Boot 实战](./spring-boot) |
 | "使用过 Maven / Gradle" | 依赖范围、冲突解决、多模块聚合、镜像配置 | [Maven](./maven) |
-| "了解 Redis / 消息队列 / 微服务"（中高级必问） | 注册发现、网关、熔断限流、分布式事务/锁/幂等、缓存一致性 | [微服务](./microservices) / [分布式专题](./distributed) |
+| "了解 Redis / 消息队列 / 微服务"（中高级必问） | 数据类型、缓存三大问题、持久化、高可用；注册发现、网关、熔断限流、分布式事务/锁/幂等、缓存一致性 | [Redis](./redis) / [微服务](./microservices) / [分布式专题](./distributed) |
 | "抗压能力强、有团队协作精神" | 简历上用一个完整项目证明，而不是空话 | 下文项目路线 |
 
 **一个现实提醒**：2026 年的 Java 面试，"Spring Boot 3 升 4"、"虚拟线程"、"Java 21 新特性" 已经出现在大量 JD 和面试里——老项目还在 2.x/3.x，新项目直接 4.x，能说清版本演进就是加分项。这正是 [Spring Boot 3 vs 4](./spring-boot3-vs4) 一章要解决的。
@@ -27,13 +27,14 @@ Java 后端是国内招聘需求量最大的岗位方向之一。初中级岗位
 | 2 | [Java 进阶](./java-advanced) | 并发编程、JVM、反射、Java 8/17/21 新特性 | 面试深水区，中高级岗的分水岭 |
 | 3 | [SQL 从入门到实战](./sql) | DDL/DML/DQL、JOIN、子查询、窗口函数 | 会写复杂查询是后端日常刚需 |
 | 4 | [MySQL 数据库](./mysql) | 架构、索引原理、事务与 MVCC、锁、调优 | 面试必考 Top 3 |
-| 5 | [Maven 构建管理](./maven) | 坐标、依赖、生命周期、多模块、冲突解决 | 工具链，学完能看懂任何 pom.xml |
-| 6 | [Spring 核心](./spring-core) | IoC/DI、Bean 生命周期、AOP、事务 | 框架原理，理解 Spring Boot 的前提 |
-| 7 | [Spring Boot 实战](./spring-boot) | 自动配置、Web 开发、MyBatis 整合、配置体系 | 工作中 80% 时间在做的事 |
-| 8 | [Spring Boot 3 vs 4](./spring-boot3-vs4) | 版本演进、破坏性变更、迁移实战 | 2026 面试新热点 |
-| 9 | [微服务与 Spring Cloud](./microservices) | Nacos、OpenFeign、Gateway、Sentinel、链路追踪 | 中高级岗的架构题主战场 |
-| 10 | [分布式核心专题](./distributed) | 分布式锁/事务、幂等、消息队列、缓存一致性、分库分表 | 面试压轴题池 |
-| 11 | [Spring AI 应用开发](./spring-ai) | ChatClient、工具调用、RAG、MCP、对话记忆 | 2026 JD 新热点：Java + AI 应用开发 |
+| 5 | [Redis 缓存](./redis) | 数据类型、穿透/击穿/雪崩、持久化、主从/哨兵/Cluster | 面试必考 Top 3，缓存是高频考点 |
+| 6 | [Maven 构建管理](./maven) | 坐标、依赖、生命周期、多模块、冲突解决 | 工具链，学完能看懂任何 pom.xml |
+| 7 | [Spring 核心](./spring-core) | IoC/DI、Bean 生命周期、AOP、事务 | 框架原理，理解 Spring Boot 的前提 |
+| 8 | [Spring Boot 实战](./spring-boot) | 自动配置、Web 开发、MyBatis 整合、配置体系 | 工作中 80% 时间在做的事 |
+| 9 | [Spring Boot 3 vs 4](./spring-boot3-vs4) | 版本演进、破坏性变更、迁移实战 | 2026 面试新热点 |
+| 10 | [微服务与 Spring Cloud](./microservices) | Nacos、OpenFeign、Gateway、Sentinel、链路追踪 | 中高级岗的架构题主战场 |
+| 11 | [分布式核心专题](./distributed) | 分布式锁/事务、幂等、消息队列、缓存一致性、分库分表 | 面试压轴题池 |
+| 12 | [Spring AI 应用开发](./spring-ai) | ChatClient、工具调用、RAG、MCP、对话记忆 | 2026 JD 新热点：Java + AI 应用开发 |
 
 ## 三、简历级项目路线
 
@@ -69,5 +70,6 @@ Java 后端是国内招聘需求量最大的岗位方向之一。初中级岗位
 - Spring Boot 自动配置原理？→ [Spring Boot 实战](./spring-boot)
 - Spring Boot 4 相比 3 有哪些破坏性变更？→ [Spring Boot 3 vs 4](./spring-boot3-vs4)
 - 限流、熔断、降级三概念辨析？Nacos 配置为什么能动态刷新？→ [微服务](./microservices)
+- 缓存穿透/击穿/雪崩三兄弟怎么区分、各怎么防？RDB 和 AOF 选哪个？→ [Redis](./redis)
 - 分布式锁怎么演进？缓存和数据库如何保持一致？→ [分布式专题](./distributed)
 - Spring AI 的 ChatClient/Advisor 体系是什么？2.0 工具调用架构改了哪里？→ [Spring AI](./spring-ai)

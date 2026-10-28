@@ -14,7 +14,7 @@ Java backend is one of the highest-demand roles. Junior-to-mid JDs (1-5 years) a
 | "Understand Spring IoC and AOP" | Three-level cache & circular dependencies, bean lifecycle, transaction failure scenarios | [Spring Core](./spring-core) |
 | "Experience with Spring Boot" | Auto-configuration internals, starter mechanism, config system, layered web development | [Spring Boot in Action](./spring-boot) |
 | "Have used Maven / Gradle" | Dependency scopes, conflict resolution, multi-module builds, mirror setup | [Maven](./maven) |
-| "Redis / message queues / microservices a plus" | Registry & discovery, gateway, circuit breaking/limiting, distributed transactions/locks/idempotency, cache consistency | [Microservices](./microservices) / [Distributed Topics](./distributed) |
+| "Redis / message queues / microservices a plus" | Data types, the three cache problems, persistence, HA; registry & discovery, gateway, circuit breaking/limiting, distributed transactions/locks/idempotency, cache consistency | [Redis](./redis) / [Microservices](./microservices) / [Distributed Topics](./distributed) |
 | "Works well under pressure, team player" | Prove it with one complete project on your résumé, not empty words | Project roadmap below |
 
 **A reality check for 2026**: "Spring Boot 3 to 4", "virtual threads" and "Java 21 features" now show up in a large share of JDs and interviews — legacy systems still run 2.x/3.x while new projects start at 4.x. Being able to explain the version evolution is a differentiator. That is exactly what [Spring Boot 3 vs 4](./spring-boot3-vs4) covers.
@@ -27,13 +27,14 @@ Java backend is one of the highest-demand roles. Junior-to-mid JDs (1-5 years) a
 | 2 | [Java Advanced](./java-advanced) | Concurrency, JVM, reflection, Java 8/17/21 features | Deep end; separates mid from senior |
 | 3 | [SQL from Basics to Practice](./sql) | DDL/DML/DQL, JOINs, subqueries, window functions | Writing complex queries is a daily requirement |
 | 4 | [MySQL Deep Dive](./mysql) | Architecture, index internals, transactions & MVCC, locks, tuning | Top-3 interview topic |
-| 5 | [Maven](./maven) | Coordinates, dependencies, lifecycle, multi-module, conflicts | Toolchain — read any pom.xml afterwards |
-| 6 | [Spring Core](./spring-core) | IoC/DI, bean lifecycle, AOP, transactions | Framework internals; prerequisite for Boot |
-| 7 | [Spring Boot in Action](./spring-boot) | Auto-config, web dev, MyBatis integration, config system | 80% of your actual working time |
-| 8 | [Spring Boot 3 vs 4](./spring-boot3-vs4) | Version evolution, breaking changes, migration playbook | The hot 2026 interview topic |
-| 9 | [Microservices & Spring Cloud](./microservices) | Nacos, OpenFeign, Gateway, Sentinel, tracing | Where senior architecture questions live |
-| 10 | [Distributed Systems Core Topics](./distributed) | Distributed locks/transactions, idempotency, MQ, cache consistency, sharding | The capstone question pool |
-| 11 | [Spring AI Application Development](./spring-ai) | ChatClient, tool calling, RAG, MCP, conversation memory | The new 2026 JD hot spot: Java + AI apps |
+| 5 | [Redis Cache](./redis) | Data types, penetration/breakdown/avalanche, persistence, replication/Sentinel/Cluster | Top-3 interview topic; caching is a daily battleground |
+| 6 | [Maven](./maven) | Coordinates, dependencies, lifecycle, multi-module, conflicts | Toolchain — read any pom.xml afterwards |
+| 7 | [Spring Core](./spring-core) | IoC/DI, bean lifecycle, AOP, transactions | Framework internals; prerequisite for Boot |
+| 8 | [Spring Boot in Action](./spring-boot) | Auto-config, web dev, MyBatis integration, config system | 80% of your actual working time |
+| 9 | [Spring Boot 3 vs 4](./spring-boot3-vs4) | Version evolution, breaking changes, migration playbook | The hot 2026 interview topic |
+| 10 | [Microservices & Spring Cloud](./microservices) | Nacos, OpenFeign, Gateway, Sentinel, tracing | Where senior architecture questions live |
+| 11 | [Distributed Systems Core Topics](./distributed) | Distributed locks/transactions, idempotency, MQ, cache consistency, sharding | The capstone question pool |
+| 12 | [Spring AI Application Development](./spring-ai) | ChatClient, tool calling, RAG, MCP, conversation memory | The new 2026 JD hot spot: Java + AI apps |
 
 ## 3. A résumé-worthy project roadmap
 
@@ -68,5 +69,6 @@ Write résumé bullets as *verb + technology + quantified result*: "Cached hot p
 - How does Spring Boot auto-configuration work? → [Spring Boot in Action](./spring-boot)
 - What breaking changes does Spring Boot 4 bring over 3? → [Spring Boot 3 vs 4](./spring-boot3-vs4)
 - Limiting vs breaking vs degradation — disambiguate. Why does Nacos config hot-refresh? → [Microservices](./microservices)
+- Penetration vs breakdown vs avalanche — tell them apart and prevent each. RDB or AOF? → [Redis](./redis)
 - How does a distributed lock evolve? Cache–DB consistency? → [Distributed Topics](./distributed)
 - What is Spring AI's ChatClient/advisor architecture? What changed in 2.0 tool calling? → [Spring AI](./spring-ai)
