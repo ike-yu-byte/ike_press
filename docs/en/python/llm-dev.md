@@ -123,7 +123,7 @@ result = agent.invoke({"messages": [("user", "Order SO123 arrived short — chec
 
 - **ReAct**: Reason → Act → Observe, looping — the agent's heartbeat.
 - **LangGraph** (LangChain's orchestration layer): flows as state graphs (nodes = steps, edges = transitions) with branches/loops/human-in-the-loop (`interrupt`)/persistent checkpoints — a de-facto standard for production agents.
-- **Multi-turn memory**: history in Redis/DB keyed by `thread_id`; rolling-summarize long conversations (see the [Agent memory chapter](/en/agent/memory-context)).
+- **Multi-turn memory**: history in Redis/DB keyed by `thread_id`; rolling-summarize long conversations (context-engineering concepts in the [Agent knowledge base](/en/agent/)).
 - **Safety lines**: write-operations (refund/order) require **human confirmation** or allowlist caps; re-validate arguments tool-side (models confidently invent order numbers).
 - **MCP**: the standardization protocol for tool ecosystems — one decorator in the Python SDK turns a function into an MCP tool; concepts in the [Agent MCP chapter](/en/agent/mcp-tools).
 

@@ -126,7 +126,7 @@ result = agent.invoke({"messages": [("user", "订单 SO123 签收少件，帮我
 
 - **ReAct 模式**：Reason（想）→ Act（调工具）→ Observe（看结果）循环——Agent 的心脏。
 - **LangGraph**（LangChain 官方推的编排层）：把流程画成状态图（节点=步骤，边=转移），支持分支/循环/人工确认节点（`interrupt`）/持久化 checkpoint——生产级 Agent 的事实标准之一。
-- **多轮记忆**：会话历史存 Redis/DB，按 `thread_id` 恢复；长对话做摘要压缩（见 [Agent 知识库 memory 章](/agent/memory-context)）。
+- **多轮记忆**：会话历史存 Redis/DB，按 `thread_id` 恢复；长对话做摘要压缩（上下文工程概念体系见 [Agent 知识库](/agent/)）。
 - **安全红线**：退款/下单类写操作必须**人工确认**或白名单限额；工具侧二次校验参数（模型会自信地编造订单号）。
 - **MCP**：工具生态的标准化协议——Python SDK 一行装饰器把函数变 MCP 工具，跨应用复用；概念见 [Agent 知识库 MCP 章](/agent/mcp-tools)。
 
