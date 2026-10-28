@@ -22,6 +22,7 @@ export default defineConfig({
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
           { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
           { text: 'React', link: '/react/', activeMatch: '/react/' },
+          { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
           { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
@@ -69,6 +70,24 @@ export default defineConfig({
                 { text: '路由', link: '/react/router' },
                 { text: '状态管理', link: '/react/state-management' },
                 { text: '性能与高频踩坑', link: '/react/performance-pitfalls' },
+              ],
+            },
+          ],
+
+          '/agent/': [
+            {
+              text: 'Agent',
+              collapsed: false,
+              items: [
+                { text: 'Agent 知识库入口', link: '/agent/index' },
+                { text: 'LLM 基础与 API 调用', link: '/agent/llm-basics' },
+                { text: 'Prompt 工程与结构化输出', link: '/agent/prompt-engineering' },
+                { text: 'Agent 核心原理', link: '/agent/agent-core' },
+                { text: 'RAG 检索增强', link: '/agent/rag' },
+                { text: '工具生态与 MCP', link: '/agent/mcp-tools' },
+                { text: '主流框架与选型', link: '/agent/frameworks' },
+                { text: '前端 Agent 工程实战', link: '/agent/agent-ui' },
+                { text: '生产落地与求职指南', link: '/agent/production' },
               ],
             },
           ],
@@ -302,6 +321,7 @@ export default defineConfig({
           { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
           { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
           { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
+          { text: 'Agent', link: '/en/agent/', activeMatch: '/en/agent/' },
         ],
 
         sidebar: {
@@ -348,6 +368,24 @@ export default defineConfig({
                 { text: 'Routing', link: '/en/react/router' },
                 { text: 'State Management', link: '/en/react/state-management' },
                 { text: 'Performance & Pitfalls', link: '/en/react/performance-pitfalls' },
+              ],
+            },
+          ],
+
+          '/en/agent/': [
+            {
+              text: 'Agent',
+              collapsed: false,
+              items: [
+                { text: 'Agent Knowledge Base', link: '/en/agent/index' },
+                { text: 'LLM Basics & APIs', link: '/en/agent/llm-basics' },
+                { text: 'Prompt Engineering & Structured Output', link: '/en/agent/prompt-engineering' },
+                { text: 'Agent Core Principles', link: '/en/agent/agent-core' },
+                { text: 'RAG (Retrieval-Augmented Generation)', link: '/en/agent/rag' },
+                { text: 'Tool Ecosystem & MCP', link: '/en/agent/mcp-tools' },
+                { text: 'Frameworks & Selection', link: '/en/agent/frameworks' },
+                { text: 'Frontend Agent Engineering', link: '/en/agent/agent-ui' },
+                { text: 'Production & Career Guide', link: '/en/agent/production' },
               ],
             },
           ],

@@ -44,9 +44,14 @@ features:
     title: React Knowledge Base
     details: A React migration map for Vue developers — mindset, hooks, routing, state management and top pitfalls.
     link: /en/react/
-  - icon: 📱
-    title: Mobile Friendly
-    details: Responsive design — sidebar and navigation adapt automatically on small screens.
+  - icon:
+      src: /agent.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Agent Knowledge Base
+    details: AI Agent from zero to production for web frontend devs — LLM APIs, prompting, RAG, MCP, framework selection and streaming UI.
+    link: /en/agent/
   - icon: 🚢
     title: Static Export
     details: One command produces a pure static site, deployable to any hosting platform.

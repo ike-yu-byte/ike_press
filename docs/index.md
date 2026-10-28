@@ -49,9 +49,14 @@ features:
     title: React 知识库入口
     details: 面向 Vue 开发者的 React 迁移地图：心智模型、Hooks 对照、路由、状态管理与高频踩坑。
     link: /react/
-  - icon: 📱
-    title: 移动端适配
-    details: 响应式设计，移动端侧边栏与导航自动适配。
+  - icon:
+      src: /agent.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Agent 知识库入口
+    details: 面向 Web 前端的 AI Agent 从入门到实战：LLM API、Prompt、RAG、MCP、框架选型与流式 UI 工程。
+    link: /agent/
   - icon: 🚢
     title: 静态站点导出
     details: 一条命令构建出纯静态产物，可部署到任意静态托管平台。
