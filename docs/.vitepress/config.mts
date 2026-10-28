@@ -22,6 +22,9 @@ export default defineConfig({
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
           { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
           { text: 'React', link: '/react/', activeMatch: '/react/' },
+          { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
+          { text: 'Java', link: '/java/', activeMatch: '/java/' },
+          { text: 'Python', link: '/python/', activeMatch: '/python/' },
           { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
@@ -69,6 +72,62 @@ export default defineConfig({
                 { text: '路由', link: '/react/router' },
                 { text: '状态管理', link: '/react/state-management' },
                 { text: '性能与高频踩坑', link: '/react/performance-pitfalls' },
+              ],
+            },
+          ],
+
+          '/agent/': [
+            {
+              text: 'Agent',
+              collapsed: false,
+              items: [
+                { text: 'Agent 知识库入口', link: '/agent/index' },
+                { text: 'LLM 基础与 API 调用', link: '/agent/llm-basics' },
+                { text: 'Prompt 工程与结构化输出', link: '/agent/prompt-engineering' },
+                { text: 'Agent 核心原理', link: '/agent/agent-core' },
+                { text: 'RAG 检索增强', link: '/agent/rag' },
+                { text: '工具生态与 MCP', link: '/agent/mcp-tools' },
+                { text: '主流框架与选型', link: '/agent/frameworks' },
+                { text: '前端 Agent 工程实战', link: '/agent/agent-ui' },
+                { text: '生产落地与求职指南', link: '/agent/production' },
+              ],
+            },
+          ],
+
+          '/java/': [
+            {
+              text: 'Java',
+              collapsed: false,
+              items: [
+                { text: 'Java + Spring Boot 知识库入口', link: '/java/index' },
+                { text: 'Java 基础入门', link: '/java/java-basics' },
+                { text: 'Java 进阶：并发、JVM 与新特性', link: '/java/java-advanced' },
+                { text: 'SQL 从入门到实战', link: '/java/sql' },
+                { text: 'MySQL 数据库', link: '/java/mysql' },
+                { text: 'Maven 构建管理', link: '/java/maven' },
+                { text: 'Spring 核心：IoC 与 AOP', link: '/java/spring-core' },
+                { text: 'Spring Boot 实战', link: '/java/spring-boot' },
+                { text: 'Spring Boot 3 vs 4：迁移指南', link: '/java/spring-boot3-vs4' },
+                { text: '微服务与 Spring Cloud', link: '/java/microservices' },
+                { text: '分布式核心专题', link: '/java/distributed' },
+                { text: 'Spring AI 应用开发', link: '/java/spring-ai' },
+              ],
+            },
+          ],
+
+          '/python/': [
+            {
+              text: 'Python',
+              items: [
+                { text: 'Python → AI 开发知识库入口', link: '/python/index' },
+                { text: 'Python 基础入门', link: '/python/python-basics' },
+                { text: 'Python 进阶与工程化', link: '/python/python-advanced' },
+                { text: 'Flask Web 开发', link: '/python/flask' },
+                { text: 'Django 全栈框架', link: '/python/django' },
+                { text: '数据处理三件套', link: '/python/data-analysis' },
+                { text: '机器学习与深度学习', link: '/python/ml-dl' },
+                { text: '大模型应用开发', link: '/python/llm-dev' },
+                { text: 'AI 工程化与求职', link: '/python/ai-engineering' },
               ],
             },
           ],
@@ -302,6 +361,9 @@ export default defineConfig({
           { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
           { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
           { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
+          { text: 'Agent', link: '/en/agent/', activeMatch: '/en/agent/' },
+          { text: 'Java', link: '/en/java/', activeMatch: '/en/java/' },
+          { text: 'Python', link: '/en/python/', activeMatch: '/en/python/' },
         ],
 
         sidebar: {
@@ -348,6 +410,62 @@ export default defineConfig({
                 { text: 'Routing', link: '/en/react/router' },
                 { text: 'State Management', link: '/en/react/state-management' },
                 { text: 'Performance & Pitfalls', link: '/en/react/performance-pitfalls' },
+              ],
+            },
+          ],
+
+          '/en/agent/': [
+            {
+              text: 'Agent',
+              collapsed: false,
+              items: [
+                { text: 'Agent Knowledge Base', link: '/en/agent/index' },
+                { text: 'LLM Basics & APIs', link: '/en/agent/llm-basics' },
+                { text: 'Prompt Engineering & Structured Output', link: '/en/agent/prompt-engineering' },
+                { text: 'Agent Core Principles', link: '/en/agent/agent-core' },
+                { text: 'RAG (Retrieval-Augmented Generation)', link: '/en/agent/rag' },
+                { text: 'Tool Ecosystem & MCP', link: '/en/agent/mcp-tools' },
+                { text: 'Frameworks & Selection', link: '/en/agent/frameworks' },
+                { text: 'Frontend Agent Engineering', link: '/en/agent/agent-ui' },
+                { text: 'Production & Career Guide', link: '/en/agent/production' },
+              ],
+            },
+          ],
+
+          '/en/java/': [
+            {
+              text: 'Java',
+              collapsed: false,
+              items: [
+                { text: 'Java + Spring Boot Knowledge Base', link: '/en/java/index' },
+                { text: 'Java Basics', link: '/en/java/java-basics' },
+                { text: 'Java Advanced: Concurrency, JVM & New Features', link: '/en/java/java-advanced' },
+                { text: 'SQL from Basics to Practice', link: '/en/java/sql' },
+                { text: 'MySQL Deep Dive', link: '/en/java/mysql' },
+                { text: 'Maven Build Management', link: '/en/java/maven' },
+                { text: 'Spring Core: IoC & AOP', link: '/en/java/spring-core' },
+                { text: 'Spring Boot in Action', link: '/en/java/spring-boot' },
+                { text: 'Spring Boot 3 vs 4: Migration Guide', link: '/en/java/spring-boot3-vs4' },
+                { text: 'Microservices & Spring Cloud', link: '/en/java/microservices' },
+                { text: 'Distributed Systems Core Topics', link: '/en/java/distributed' },
+                { text: 'Spring AI Application Development', link: '/en/java/spring-ai' },
+              ],
+            },
+          ],
+
+          '/en/python/': [
+            {
+              text: 'Python',
+              items: [
+                { text: 'Python → AI Development Knowledge Base', link: '/en/python/index' },
+                { text: 'Python Basics', link: '/en/python/python-basics' },
+                { text: 'Advanced Python & Engineering', link: '/en/python/python-advanced' },
+                { text: 'Flask Web Development', link: '/en/python/flask' },
+                { text: 'Django Full-Stack Framework', link: '/en/python/django' },
+                { text: 'Data Processing Trio', link: '/en/python/data-analysis' },
+                { text: 'Machine & Deep Learning', link: '/en/python/ml-dl' },
+                { text: 'LLM Application Development', link: '/en/python/llm-dev' },
+                { text: 'AI Engineering & Job Hunting', link: '/en/python/ai-engineering' },
               ],
             },
           ],
