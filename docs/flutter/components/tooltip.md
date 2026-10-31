@@ -1,6 +1,6 @@
 ---
 pageClass: flutter-doc # 配合 var.css 加宽右栏预览列
-preview: '' # 该页 Flutter Web 预览地址（后续传入）
+preview: 'https://ike-yu-byte.github.io/flutter_press/#/components/tooltip' # 该页 Flutter Web 预览地址
 ---
 
 # Tooltip 提示气泡
