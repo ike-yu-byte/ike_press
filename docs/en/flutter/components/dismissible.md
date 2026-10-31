@@ -1,6 +1,6 @@
 ---
 pageClass: flutter-doc # widens the right preview column (see var.css)
-preview: '' # Flutter Web preview URL for this page (to be filled later)
+preview: 'https://ike-yu-byte.github.io/flutter_press/#/components/dismissible' # Flutter Web preview URL for this page
 ---
 
 # Dismissible
