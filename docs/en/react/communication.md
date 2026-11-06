@@ -106,6 +106,31 @@ function ThemedButton() {
 }
 ```
 
+### Reading Context: three ways to consume it
+
+| Way | When | Note |
+| --- | --- | --- |
+| `useContext(Context)` | read in a component | **default**; obeys the Rules of Hooks — must be called unconditionally at the top |
+| `use(Context)` (React 19+) | read **inside a condition / loop**, or with Suspense | you can return early after reading; not bound by the Rules of Hooks |
+| `<Context.Consumer>` | rarely | the render-prop style from the class era; just recognize it |
+
+```jsx
+// 1. useContext — read at the top level (can't go inside an if)
+const { theme } = useContext(ThemeContext);
+
+// 2. use (React 19+) — can be inside a conditional branch, then return early
+function Toolbar({ showTheme }) {
+  if (!showTheme) return null;
+  const { theme } = use(ThemeContext);   // useContext can't do this
+  return <span>Theme: {theme}</span>;
+}
+
+// 3. Consumer — old style, just recognize it when reading others' code
+<ThemeContext.Consumer>
+  {({ theme }) => <span>Theme: {theme}</span>}
+</ThemeContext.Consumer>
+```
+
 ### The key difference from provide/inject: re-render scope
 
 In Vue you provide a reactive object and only components using the specific field update. In React, **when a Context `value` changes, every component that `useContext`s it re-renders** (you can't subscribe to just part of it).
@@ -116,7 +141,47 @@ A value that changes many times a second in Context will make the whole consumin
 2. For high-frequency global state, use an **external store** (Zustand etc.) — its selector subscriptions let a component re-render only when the slice it cares about changes, exactly what Context lacks (see [State Management](/en/react/state-management)).
 :::
 
-From React 19 you can use `<ThemeContext value={...}>` directly as the Provider and read with `use(ThemeContext)` — shorter, same semantics.
+### A plain object literal as `value`: referential instability is a hidden bomb
+
+The example above carries a trap: <span v-pre>`value={{ theme, setTheme }}`</span>. Every time `App` re-renders for **any** reason, this inline object is a **brand-new reference**, and Context only does an `Object.is` reference comparison — so even if `theme` didn't change, **all consumers re-render**. The bigger the value and the subtree, the deeper the performance hole.
+
+```jsx
+// ❌ new object every render → all consumers re-render
+<ThemeContext.Provider value={{ theme, setTheme }}>
+
+// ✅ fix 1: useMemo for a stable reference — value stays the same object while theme is unchanged
+const value = useMemo(() => ({ theme, setTheme }), [theme]);
+<ThemeContext.Provider value={value}>
+```
+
+```jsx
+// ✅ fix 2: split into two Contexts — components subscribing to "read" aren't triggered by "write"
+const ThemeContext = createContext('light');
+const ThemeSetContext = createContext(() => {});
+
+function App() {
+  const [theme, setTheme] = useState('light');
+  return (
+    <ThemeSetContext.Provider value={setTheme}>
+      <ThemeContext.Provider value={theme}>
+        <Page />
+      </ThemeContext.Provider>
+    </ThemeSetContext.Provider>
+  );
+}
+// components that only need to change the theme consume ThemeSetContext (setTheme is stable, almost never triggers updates)
+```
+
+Two more common pitfalls:
+
+- **Don't casually default to `{}`**: when no Provider matches, `useContext` returns the `createContext` argument. If that default is `{}`, `const { theme } = useContext(...)` silently destructures a bunch of `undefined` — a very sneaky bug. Prefer `null` as the default and check at the use site, or don't pass a default at all so "forgot to wrap a Provider" errors early.
+- **The setter itself is referentially stable**: the setter returned by `useState` is always the same function, so "put the setter in its own Context, the changeable value in another" is a standard optimization; likewise, wrap a function prop in `useCallback` before putting it into the `value` object.
+
+::: tip One-sentence summary
+React Context has **no fine-grained dependency tracking**: its subscription unit is **the whole Context**, not a single field of the object. A component subscribes to "did the Context change" (an `Object.is` reference check on `value`), **not** "did a particular property change" — so changing one field, swapping the object reference, makes all consumers re-render. To subscribe per-field you must split Contexts or use an external store (Zustand etc. with selector subscriptions).
+:::
+
+From React 19 there's also a syntactic sugar: `<ThemeContext value={...}>` works directly as the Provider (no need to write `.Provider`), paired with `use(ThemeContext)` to read — shorter, same semantics.
 
 ## Lifting state up: the most "React" solution
 

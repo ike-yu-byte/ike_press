@@ -68,4 +68,12 @@ features:
     title: Python → AI Development Knowledge Base
     details: The complete path from Python to AI development — language basics & advanced, Flask/Django, data analysis, ML/PyTorch, LLM apps and deployment.
     link: /en/python/
+  - icon:
+      src: /nuxt.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Nuxt Knowledge Base
+    details: Nuxt 3/4 from principles to practice — SSR request chain, Payload serialization, hydration, data fetching, rendering modes, and deployment.
+    link: /en/nuxt/
 ---

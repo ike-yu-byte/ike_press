@@ -384,6 +384,7 @@ export default defineConfig({
           { text: 'Agent', link: '/en/agent/', activeMatch: '/en/agent/' },
           { text: 'Java', link: '/en/java/', activeMatch: '/en/java/' },
           { text: 'Python', link: '/en/python/', activeMatch: '/en/python/' },
+          { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
         ],
 
         sidebar: {
@@ -487,6 +488,24 @@ export default defineConfig({
                 { text: 'Machine & Deep Learning', link: '/en/python/ml-dl' },
                 { text: 'LLM Application Development', link: '/en/python/llm-dev' },
                 { text: 'AI Engineering & Job Hunting', link: '/en/python/ai-engineering' },
+              ],
+            },
+          ],
+
+          '/en/nuxt/': [
+            {
+              text: 'Nuxt',
+              collapsed: false,
+              items: [
+                { text: 'Nuxt Knowledge Base', link: '/en/nuxt/index' },
+                { text: 'SSR Principles', link: '/en/nuxt/ssr-principles' },
+                { text: 'Serialization & Payload', link: '/en/nuxt/serialization-payload' },
+                { text: 'Hydration & mismatch', link: '/en/nuxt/hydration' },
+                { text: 'Data fetching & cross-environment state', link: '/en/nuxt/data-fetching' },
+                { text: 'Getting started & project structure', link: '/en/nuxt/getting-started' },
+                { text: 'Routing, layouts, middleware & server layer', link: '/en/nuxt/routing-and-architecture' },
+                { text: 'Rendering modes & deployment', link: '/en/nuxt/rendering-modes-and-deploy' },
+                { text: 'Top pitfalls & cheat sheet', link: '/en/nuxt/pitfalls-cheatsheet' },
               ],
             },
           ],

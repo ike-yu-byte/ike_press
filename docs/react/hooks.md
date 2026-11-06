@@ -45,6 +45,8 @@ function Counter() {
 
 ## useEffect：副作用（生命周期 + watch 的合体）
 
+先说清概念。**什么是副作用**：React 理想中组件的渲染逻辑是**纯函数**——只根据 state、props 计算产出 JSX，不对外界产生任何影响。**副作用（side effect），就是代码去修改、访问组件外部环境的操作**：请求接口、操作 DOM、定时器、订阅事件、写 `localStorage`……这些都会对外部世界产生影响。`useEffect` 就是 React 用来**管理副作用**的 Hook：它的回调在 **DOM 提交更新完成之后**执行；通过依赖数组控制触发时机；还能返回一个**清理函数**，在下次执行 effect 前、或组件卸载时执行，用来清除定时器、解绑事件，防止内存泄漏。
+
 Vue 把"何时跑"拆成 `onMounted` / `onUnmounted` / `watch` / `watchEffect` 好几个 API；React 全塞进一个 `useEffect`，靠**第二个参数（依赖数组）** 决定行为：
 
 ```jsx
@@ -66,7 +68,7 @@ useEffect(() => {
 | 只在挂载后跑一次 | `useEffect(fn, [])` | `onMounted(fn)` |
 | 某依赖变了就重跑 | `useEffect(fn, [userId])` | `watch(userId, fn)` |
 | 每次渲染后都跑（自动追踪） | `useEffect(fn)`（省略第二参） | `watchEffect(fn)` |
-| 卸载时清理 | effect 返回的 cleanup + `[]` | `onUnmounted(fn)` |
+| 清理（下次 effect 执行前 + 卸载时） | effect 返回的 cleanup（配 `[]` 则只在卸载时触发） | `onUnmounted(fn)`（近似） |
 
 ### 依赖数组：第一大坑
 

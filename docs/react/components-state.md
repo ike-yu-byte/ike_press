@@ -165,14 +165,6 @@ setList(list.map((x) => (x.id === 1 ? { ...x, done: true } : x)));
 setCount((prev) => prev + 1);
 ```
 
-::: danger 深层嵌套展开很痛苦，用 immer
-<span v-pre>`{...a, b: {...a.b, c: [...a.b.c]}}`</span> 这种三层展开极易写错。上 <a href="https://immer.pages.dev/" target="_blank" rel="noopener noreferrer">immer</a> 的 `produce`，就能像 Vue 那样"直接改"，immer 在背后帮你生成新对象：
-```jsx
-import { produce } from 'immer';
-setUser(produce((draft) => { draft.tags.push('c'); }));   // 写起来像 mutation，实为不可变
-```
-:::
-
 ## 没有 nextTick：批处理与"读不到最新 state"
 
 Vue 里 `count.value++; await nextTick(); 看 DOM`。React 里两件事不同：
