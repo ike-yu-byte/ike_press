@@ -52,7 +52,51 @@ function CartView() {
 }
 ```
 
-对照 Pinia：`create((set)=>({...}))` ≈ `defineStore(()=>({...}))`；`set` ≈ 直接改 state；选择器 ≈ `storeToRefs` + 按需取。持久化加 `persist` 中间件（≈ Pinia 的 `pinia-plugin-persistedstate`）。
+对照 Pinia：`create((set)=>({...}))` ≈ `defineStore(()=>({...}))`；`set` ≈ 直接改 state；选择器 ≈ `storeToRefs` + 按需取。
+
+**异步、持久化、让 Redux DevTools 识别——三个高频问题一次说清：**
+
+```jsx
+import { create } from 'zustand';
+import { persist, devtools } from 'zustand/middleware';
+
+const useCart = create(
+  devtools(                                          // ③ 让 Redux DevTools 插件能识别
+    persist(
+      (set, get) => ({
+        items: [],
+        loading: false,
+
+        // ① 异步：action 直接写 async，像 Pinia 的 action 一样发请求
+        fetchItems: async () => {
+          set({ loading: true }, false, 'cart/fetchStart');   // 第 3 参给 action 命名，DevTools 里可读
+          try {
+            const data = await fetch('/api/items').then((r) => r.json());
+            set({ items: data, loading: false }, false, 'cart/fetchDone');
+          } catch {
+            set({ loading: false }, false, 'cart/fetchError');
+          }
+        },
+
+        add: (item) => set((s) => ({ items: [...s.items, item] }), false, 'cart/add'),
+      }),
+      {
+        // ② 持久化：自动写 localStorage，刷新不丢
+        name: 'cart-storage',                               // storage key
+        partialize: (s) => ({ items: s.items }),            // 只存 items，函数/loading 不进 storage
+        // storage: createJSONStorage(() => sessionStorage) // 想换 sessionStorage 时
+      }
+    ),
+    { name: 'CartStore' }                    // Redux DevTools 里显示的 store 名
+  )
+);
+
+// 组件里：const fetchItems = useCart((s) => s.fetchItems); fetchItems();  // 直接调
+```
+
+- **异步**：Zustand 没有 thunk 概念——action 本身就能是 `async` 函数，`await` 接口后 `set` 即可，写法和 Pinia 的 action 一致；错误处理就是普通的 `try/catch`。
+- **持久化**：`persist` 中间件自动读写 `localStorage`（≈ `pinia-plugin-persistedstate`）；一定要用 `partialize` 把函数、`loading` 之类的临时态排除掉，只存需要恢复的数据；跨 tab 同步可另配 `storage` 事件监听。
+- **让 Redux DevTools 识别**：只装浏览器插件是**看不到** Zustand 状态的——必须包一层 `devtools()` 中间件；之后每个 `set` 都作为一条 action 出现在时间线里（用 `set` 的第 3 个参数给 action 命名），支持跳转/回放。这是调试增强，不装也不影响功能。
 
 ## Redux Toolkit：大项目的规范之选
 
@@ -82,7 +126,55 @@ function Counter() {
 }
 ```
 
-和 Pinia/Vuex 的对应：`createSlice.reducers` ≈ actions+mutations 合体；`dispatch(action)` 一致；`useSelector` ≈ `mapState`/`storeToRefs`。异步用 `createAsyncThunk` 或 **RTK Query**（后者已覆盖下面 React Query 的场景）。学习曲线比 Zustand 陡，但规范和 DevTools（action 回放、时间旅行）是它的价值。
+和 Pinia/Vuex 的对应：`createSlice.reducers` ≈ actions+mutations 合体；`dispatch(action)` 一致；`useSelector` ≈ `mapState`/`storeToRefs`。学习曲线比 Zustand 陡，但规范和 DevTools（action 回放、时间旅行）是它的价值。
+
+**异步、持久化、DevTools 三个高频问题：**
+
+```jsx
+// ① 异步：reducers 必须是纯函数，接口请求写在 createAsyncThunk 里
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+const fetchItems = createAsyncThunk('items/fetch', async (arg, { rejectWithValue }) => {
+  const res = await fetch('/api/items');
+  if (!res.ok) return rejectWithValue('接口异常');   // 走 rejected 分支
+  return res.json();                                 // 返回值 = fulfilled 的 action.payload
+});
+
+const itemsSlice = createSlice({
+  name: 'items',
+  initialState: { list: [], loading: false },
+  reducers: {},
+  extraReducers: (builder) => builder
+    .addCase(fetchItems.pending,   (s) => { s.loading = true; })
+    .addCase(fetchItems.fulfilled, (s, a) => { s.loading = false; s.list = a.payload; })
+    .addCase(fetchItems.rejected,  (s) => { s.loading = false; }),
+});
+// 组件里 dispatch(fetchItems()) —— pending/fulfilled/rejected 自动进 DevTools 时间线
+```
+
+```jsx
+// ② 持久化：redux-persist（npm i redux-persist）
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+
+const persisted = persistReducer({ key: 'root', storage }, counter.reducer);
+const store = configureStore({
+  reducer: { counter: persisted },
+  middleware: (g) => g({ serializableCheck: { ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'] } }),
+});
+const persistor = persistStore(store);
+
+// 根组件：数据 rehydrate 完成前显示 loading
+<Provider store={store}>
+  <PersistGate loading={<Spinner />} persistor={persistor}>
+    <App />
+  </PersistGate>
+</Provider>
+```
+
+- **让 Redux DevTools 识别页面状态**：这里**什么都不用配**——`configureStore` 默认已接好 Redux DevTools 扩展，浏览器装上插件就能看到每个 slice 的 state 树、每个 action 及其 diff，支持时间旅行/回放；生产构建自动关闭。这是 RTK 相比 Zustand 的开箱优势（Zustand 需要手动包 `devtools` 中间件）。
+- **异步推荐顺序**：简单场景 `createAsyncThunk` 就够；接口多、缓存复杂的场景直接上 **RTK Query**（自动缓存/去重/失效，已覆盖下面 React Query 的场景）。
 
 ## Jotai：原子式，最省心
 
