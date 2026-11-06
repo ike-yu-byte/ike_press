@@ -21,6 +21,7 @@ export default defineConfig({
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
           { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+          { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
           { text: 'React', link: '/react/', activeMatch: '/react/' },
           { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
           { text: 'Java', link: '/java/', activeMatch: '/java/' },
@@ -55,6 +56,24 @@ export default defineConfig({
                 { text: '路由 vue-router', link: '/vue/router' },
                 { text: '状态管理 Pinia', link: '/vue/state-management' },
                 { text: '性能与最佳实践', link: '/vue/performance-best-practices' },
+              ],
+            },
+          ],
+
+          '/nuxt/': [
+            {
+              text: 'Nuxt',
+              collapsed: false,
+              items: [
+                { text: 'Nuxt 知识库入口', link: '/nuxt/index' },
+                { text: 'SSR 原理：一次请求的完整链路', link: '/nuxt/ssr-principles' },
+                { text: '序列化与 Payload', link: '/nuxt/serialization-payload' },
+                { text: '水合 Hydration 与 mismatch', link: '/nuxt/hydration' },
+                { text: '数据获取与跨端状态', link: '/nuxt/data-fetching' },
+                { text: '上手与工程结构', link: '/nuxt/getting-started' },
+                { text: '路由、布局、中间件与服务端层', link: '/nuxt/routing-and-architecture' },
+                { text: '渲染模式、routeRules 与部署', link: '/nuxt/rendering-modes-and-deploy' },
+                { text: '高频踩坑与速查表', link: '/nuxt/pitfalls-cheatsheet' },
               ],
             },
           ],
