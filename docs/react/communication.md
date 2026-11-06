@@ -180,6 +180,10 @@ Vue 的 `provide` 一个 reactive 对象，只有真正用到对应字段的组�
 
 React 19 起还有个语法糖：`<ThemeContext value={...}>` 可直接当 Provider 用（不必写 `.Provider`），配合 `use(ThemeContext)` 读取，写法更短，语义不变。
 
+::: tip 一句话总结
+React Context **没有细粒度依赖追踪**：它的订阅单位是**整个 Context**，不是对象里面的单个字段。组件订阅的是「Context 有没有变」（对 `value` 做 `Object.is` 引用比较），而不是「里面某个属性有没有变」——所以改一个字段、换一次对象引用，所有消费者都得重渲染。想按字段订阅，只能拆 Context 或换外部 store（Zustand 等的选择器订阅）。
+:::
+
 ## 状态提升：最"React"的解法
 
 Vue 里两个兄弟组件共享数据，你可能直接扔进 Pinia。React 更推荐**把共享 state 提到最近的共同父组件**，再各自以 props 下发、以回调上收——这叫 "lifting state up"：
