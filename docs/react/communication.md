@@ -83,7 +83,7 @@ function Panel({ title, children }) {
 深层组件不想逐层传 props（prop drilling），用 Context。对应 Vue 的 `provide`/`inject`：
 
 ```jsx
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 // 1. 建 Context
 const ThemeContext = createContext('light');   // 参数是默认值
@@ -107,9 +107,70 @@ function ThemedButton() {
 }
 ```
 
+### 消费 Context 的三种写法
+
+| 写法 | 适用场景 | 备注 |
+| --- | --- | --- |
+| `useContext(Context)` | 组件里读值 | **默认选择**；遵守 Hook 规则：必须顶层无条件调用，不能放 `if` 里 |
+| `use(Context)`（React 19+） | 需要在**条件分支 / 循环中**读取，或配合 Suspense | 读完可以提前 `return`，不受 Hook 规则约束 |
+| `<Context.Consumer>` | 极少用 | class 组件时代的 render prop 写法，认识即可 |
+
+```jsx
+// 写法 1：useContext —— 顶层读取（不能放条件里）
+const { theme } = useContext(ThemeContext);
+
+// 写法 2：use（React 19+）—— 可以放在条件分支里，读完提前返回
+function Toolbar({ showTheme }) {
+  if (!showTheme) return null;
+  const { theme } = use(ThemeContext);   // ✅ useContext 做不到这一点
+  return <span>主题：{theme}</span>;
+}
+
+// 写法 3：Consumer —— 老写法，看到别人的代码能看懂就行
+<ThemeContext.Consumer>
+  {({ theme }) => <span>主题：{theme}</span>}
+</ThemeContext.Consumer>
+```
+
+### value 传对象字面量：引用不稳定是隐形炸弹
+
+上面的示例故意留了个坑：<span v-pre>`value={{ theme, setTheme }}`</span>。只要 `App` 因为**任何原因**重渲染一次，这个行内对象就是**新引用**，而 Context 只做 `Object.is` 引用比较——于是即使 `theme` 没变，**所有消费者也全部重渲染**。值一多、子树一大，这就是性能黑洞。
+
+```jsx
+// ❌ 每次渲染都是新对象，消费者全量重渲染
+<ThemeContext.Provider value={{ theme, setTheme }}>
+
+// ✅ 对策 1：useMemo 稳定引用 —— theme 不变时，value 始终是同一个对象
+const value = useMemo(() => ({ theme, setTheme }), [theme]);
+<ThemeContext.Provider value={value}>
+```
+
+```jsx
+// ✅ 对策 2：读写拆成两个 Context —— 只订阅"读"的组件不会被"写"触发
+const ThemeContext = createContext('light');
+const ThemeSetContext = createContext(() => {});
+
+function App() {
+  const [theme, setTheme] = useState('light');
+  return (
+    <ThemeSetContext.Provider value={setTheme}>
+      <ThemeContext.Provider value={theme}>
+        <Page />
+      </ThemeContext.Provider>
+    </ThemeSetContext.Provider>
+  );
+}
+// 需要改主题的组件只消费 ThemeSetContext（setTheme 引用稳定，几乎从不触发更新）
+```
+
+顺带两个高频坑：
+
+- **默认值别随手写 `{}`**：没有匹配到 Provider 时，`useContext` 返回的是 `createContext` 的参数。默认值若是 `{}`，`const { theme } = useContext(...)` 静默解构出一堆 `undefined`，Bug 非常隐蔽。推荐默认值给 `null` 并在使用处判断，或干脆不传默认值，让"忘了包 Provider"尽早报错。
+- **setter 本身引用稳定**：`useState` 返回的 setter 永远是同一个函数，所以"setter 单独放一个 Context、易变的值放另一个"是标准优化；同理，函数 props 用 `useCallback` 包一层再放进 `value` 对象，效果相同。
+
 ### 与 provide/inject 的关键差异：重渲染范围
 
-Vue 的 `provide` 一个 reactive 对象，只有真正用到对应字段的组件会更新。React 的 Context：**`value` 一变，所有 `useContext` 消费它的组件全部重渲染**（无法只订阅其中一部分）。
+Vue 的 `provide` 一个 reactive 对象，只有真正用到对应字段的组件会更新。React 的 Context：**`value` 一变，所有消费它的组件全部重渲染**（无法只订阅其中一部分）——这也是上面"对象字面量"与"拆 Context"两个问题的根源。
 
 ::: warning Context 不适合高频/大数据状态
 一个每秒变N次的值放 Context，会让整棵消费子树跟着抖。对策：
@@ -117,7 +178,7 @@ Vue 的 `provide` 一个 reactive 对象，只有真正用到对应字段的组�
 2. 高频全局状态请交给**外部 store**（Zustand 等）——它们用"选择器订阅"让组件只在自己关心的片段变化时重渲染，正是 Context 缺的能力（见[状态管理](/react/state-management)）。
 :::
 
-React 19 起可直接 `<ThemeContext value={...}>` 当 Provider 用、`use(ThemeContext)` 读取，写法更短，语义不变。
+React 19 起还有个语法糖：`<ThemeContext value={...}>` 可直接当 Provider 用（不必写 `.Provider`），配合 `use(ThemeContext)` 读取，写法更短，语义不变。
 
 ## 状态提升：最"React"的解法
 
