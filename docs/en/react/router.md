@@ -48,8 +48,27 @@ React Router: written as nested `<Route>` elements; `element` is the component t
 </Routes>
 ```
 
-::: info A "config style" is also supported (data router)
-Since v6.4 you can use `createBrowserRouter([{ path, element, children, loader }])` + `<RouterProvider>`, which looks much closer to vue-router's array config and even lets you attach `loader`/`action` (data prefetching). Vue devs who like config objects will feel at home here. The hooks sections below apply to both styles.
+::: info A "config style" is also supported (data router): centralized routes via RouterProvider
+React can also **define all routes in one place** like Vue: since v6.4, build the whole route table as an array with `createBrowserRouter([...])` and hand it to `<RouterProvider router={router} />` — no nested `<Routes>` component tree needed:
+
+```jsx
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  { path: '/user/:id', element: <User /> },
+  { path: '/admin', element: <AdminLayout />, children: [
+      { path: 'dashboard', element: <Dashboard /> },       // child route; parent renders <Outlet/>
+  ]},
+  { path: '*', element: <Navigate to="/" replace /> },     // 404 fallback + redirect
+]);
+
+// entry (e.g. main.jsx)
+createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+);
+```
+
+The shape maps almost one-to-one onto vue-router's array config above, and additionally supports `loader`/`action` (data prefetching) and `handle` (custom meta info, see below). Vue devs who prefer centralized config will feel at home here. The hooks sections below apply to both styles.
 :::
 
 ## Outlet & links
