@@ -165,14 +165,6 @@ setList(list.map((x) => (x.id === 1 ? { ...x, done: true } : x)));
 setCount((prev) => prev + 1);
 ```
 
-::: danger Deep spreads hurt — use immer
-Three-level <span v-pre>`{...a, b: {...a.b, c: [...a.b.c]}}`</span> is easy to botch. Add <a href="https://immer.pages.dev/" target="_blank" rel="noopener noreferrer">immer</a>'s `produce` and you can "mutate directly" like Vue, while immer generates the new object underneath:
-```jsx
-import { produce } from 'immer';
-setUser(produce((draft) => { draft.tags.push('c'); }));   // reads like mutation, is immutable
-```
-:::
-
 ## No nextTick: batching & "can't read fresh state"
 
 In Vue you do `count.value++; await nextTick(); inspect DOM`. Two things differ in React:

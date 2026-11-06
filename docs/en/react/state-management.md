@@ -52,7 +52,51 @@ function CartView() {
 }
 ```
 
-Versus Pinia: `create((set)=>({...}))` ≈ `defineStore(()=>({...}))`; `set` ≈ mutating state directly; selectors ≈ `storeToRefs` + picking what you need. Add persistence with the `persist` middleware (≈ Pinia's `pinia-plugin-persistedstate`).
+Versus Pinia: `create((set)=>({...}))` ≈ `defineStore(()=>({...}))`; `set` ≈ mutating state directly; selectors ≈ `storeToRefs` + picking what you need.
+
+**Async, persistence, and making Redux DevTools see the store — three FAQ answers at once:**
+
+```jsx
+import { create } from 'zustand';
+import { persist, devtools } from 'zustand/middleware';
+
+const useCart = create(
+  devtools(                                          // ③ make Redux DevTools recognize it
+    persist(
+      (set, get) => ({
+        items: [],
+        loading: false,
+
+        // ① async: an action can just be an async function, like a Pinia action
+        fetchItems: async () => {
+          set({ loading: true }, false, 'cart/fetchStart');   // 3rd arg names the action for DevTools
+          try {
+            const data = await fetch('/api/items').then((r) => r.json());
+            set({ items: data, loading: false }, false, 'cart/fetchDone');
+          } catch {
+            set({ loading: false }, false, 'cart/fetchError');
+          }
+        },
+
+        add: (item) => set((s) => ({ items: [...s.items, item] }), false, 'cart/add'),
+      }),
+      {
+        // ② persistence: writes to localStorage automatically, survives refresh
+        name: 'cart-storage',                               // storage key
+        partialize: (s) => ({ items: s.items }),            // persist only items, not functions/loading
+        // storage: createJSONStorage(() => sessionStorage) // switch to sessionStorage if needed
+      }
+    ),
+    { name: 'CartStore' }                    // store name shown in Redux DevTools
+  )
+);
+
+// in a component: const fetchItems = useCart((s) => s.fetchItems); fetchItems();  // just call it
+```
+
+- **Async**: Zustand has no thunk concept — an action can literally be an `async` function; `await` the request and `set`. Error handling is a plain `try/catch`.
+- **Persistence**: the `persist` middleware reads/writes `localStorage` automatically (≈ `pinia-plugin-persistedstate`); always use `partialize` to exclude functions and transient flags like `loading`, persisting only what you need to restore; cross-tab sync can be added with a `storage` event listener.
+- **Making Redux DevTools recognize it**: installing the browser extension alone won't show Zustand state — you must wrap the store in the `devtools()` middleware. Then every `set` appears as an action on the timeline (name it via `set`'s 3rd argument) with jump/replay support. It's a debugging enhancement; the store works fine without it.
 
 ## Redux Toolkit: the disciplined choice for big projects
 
@@ -82,7 +126,55 @@ function Counter() {
 }
 ```
 
-Mapping to Pinia/Vuex: `createSlice.reducers` ≈ actions+mutations merged; `dispatch(action)` is the same; `useSelector` ≈ `mapState`/`storeToRefs`. For async use `createAsyncThunk` or **RTK Query** (the latter already covers the React Query scenarios below). The learning curve is steeper than Zustand's, but the discipline and DevTools (action replay, time travel) are its payoff.
+Mapping to Pinia/Vuex: `createSlice.reducers` ≈ actions+mutations merged; `dispatch(action)` is the same; `useSelector` ≈ `mapState`/`storeToRefs`. The learning curve is steeper than Zustand's, but the discipline and DevTools (action replay, time travel) are its payoff.
+
+**The same three FAQ answers:**
+
+```jsx
+// ① async: reducers must be pure functions — put API calls in createAsyncThunk
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+const fetchItems = createAsyncThunk('items/fetch', async (arg, { rejectWithValue }) => {
+  const res = await fetch('/api/items');
+  if (!res.ok) return rejectWithValue('API error');   // goes to the rejected branch
+  return res.json();                                 // return value = action.payload of fulfilled
+});
+
+const itemsSlice = createSlice({
+  name: 'items',
+  initialState: { list: [], loading: false },
+  reducers: {},
+  extraReducers: (builder) => builder
+    .addCase(fetchItems.pending,   (s) => { s.loading = true; })
+    .addCase(fetchItems.fulfilled, (s, a) => { s.loading = false; s.list = a.payload; })
+    .addCase(fetchItems.rejected,  (s) => { s.loading = false; }),
+});
+// in a component: dispatch(fetchItems()) — pending/fulfilled/rejected land on the DevTools timeline automatically
+```
+
+```jsx
+// ② persistence: redux-persist (npm i redux-persist)
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+
+const persisted = persistReducer({ key: 'root', storage }, counter.reducer);
+const store = configureStore({
+  reducer: { counter: persisted },
+  middleware: (g) => g({ serializableCheck: { ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'] } }),
+});
+const persistor = persistStore(store);
+
+// root component: shows loading until rehydration finishes
+<Provider store={store}>
+  <PersistGate loading={<Spinner />} persistor={persistor}>
+    <App />
+  </PersistGate>
+</Provider>
+```
+
+- **Making Redux DevTools see the page state**: nothing to configure — `configureStore` wires up the Redux DevTools extension by default. With the browser extension installed you get every slice's state tree, every action with its diff, and time travel/replay; it auto-disables in production builds. This is RTK's out-of-the-box advantage over Zustand (which needs the manual `devtools` middleware).
+- **Async recommendation order**: `createAsyncThunk` is enough for simple cases; for many endpoints with complex caching go straight to **RTK Query** (automatic caching/dedup/invalidation — already covers the React Query scenarios below).
 
 ## Jotai: atomic, the least fuss
 

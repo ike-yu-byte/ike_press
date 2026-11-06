@@ -45,6 +45,8 @@ function Counter() {
 
 ## useEffect: side effects (lifecycle + watch merged)
 
+First, the concept. **What is a side effect**: ideally a component's render logic is a **pure function** — it only computes JSX from `state` and `props`, affecting nothing outside itself. **A side effect is any operation that touches/modifies the component's external environment**: making a request, manipulating the DOM, timers, subscribing to events, writing `localStorage`… all of them affect the outside world. `useEffect` is the hook React uses to **manage side effects**: its callback runs **after the DOM commit**, its dependency array controls timing, and it can return a **cleanup function** that runs before the next effect (or on unmount) to clear timers and unbind events, preventing memory leaks.
+
 Vue splits "when to run" into `onMounted` / `onUnmounted` / `watch` / `watchEffect`; React folds them all into one `useEffect`, whose behavior is set by the **second argument (dependency array)**:
 
 ```jsx
@@ -66,7 +68,7 @@ Three shapes, mapped to Vue:
 | Run once after mount | `useEffect(fn, [])` | `onMounted(fn)` |
 | Re-run when a dep changes | `useEffect(fn, [userId])` | `watch(userId, fn)` |
 | Run after every render (auto-track) | `useEffect(fn)` (no 2nd arg) | `watchEffect(fn)` |
-| Cleanup on unmount | effect's cleanup + `[]` | `onUnmounted(fn)` |
+| Cleanup (before next effect + on unmount) | effect's cleanup (with `[]` it only fires on unmount) | `onUnmounted(fn)` (approx.) |
 
 ### The dependency array: pitfall #1
 

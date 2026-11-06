@@ -21,6 +21,7 @@ export default defineConfig({
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
           { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+          { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
           { text: 'React', link: '/react/', activeMatch: '/react/' },
           { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
           { text: 'Java', link: '/java/', activeMatch: '/java/' },
@@ -55,6 +56,24 @@ export default defineConfig({
                 { text: '路由 vue-router', link: '/vue/router' },
                 { text: '状态管理 Pinia', link: '/vue/state-management' },
                 { text: '性能与最佳实践', link: '/vue/performance-best-practices' },
+              ],
+            },
+          ],
+
+          '/nuxt/': [
+            {
+              text: 'Nuxt',
+              collapsed: false,
+              items: [
+                { text: 'Nuxt 知识库入口', link: '/nuxt/index' },
+                { text: 'SSR 原理：一次请求的完整链路', link: '/nuxt/ssr-principles' },
+                { text: '序列化与 Payload', link: '/nuxt/serialization-payload' },
+                { text: '水合 Hydration 与 mismatch', link: '/nuxt/hydration' },
+                { text: '数据获取与跨端状态', link: '/nuxt/data-fetching' },
+                { text: '上手与工程结构', link: '/nuxt/getting-started' },
+                { text: '路由、布局、中间件与服务端层', link: '/nuxt/routing-and-architecture' },
+                { text: '渲染模式、routeRules 与部署', link: '/nuxt/rendering-modes-and-deploy' },
+                { text: '高频踩坑与速查表', link: '/nuxt/pitfalls-cheatsheet' },
               ],
             },
           ],
@@ -365,6 +384,7 @@ export default defineConfig({
           { text: 'Agent', link: '/en/agent/', activeMatch: '/en/agent/' },
           { text: 'Java', link: '/en/java/', activeMatch: '/en/java/' },
           { text: 'Python', link: '/en/python/', activeMatch: '/en/python/' },
+          { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
         ],
 
         sidebar: {
@@ -468,6 +488,24 @@ export default defineConfig({
                 { text: 'Machine & Deep Learning', link: '/en/python/ml-dl' },
                 { text: 'LLM Application Development', link: '/en/python/llm-dev' },
                 { text: 'AI Engineering & Job Hunting', link: '/en/python/ai-engineering' },
+              ],
+            },
+          ],
+
+          '/en/nuxt/': [
+            {
+              text: 'Nuxt',
+              collapsed: false,
+              items: [
+                { text: 'Nuxt Knowledge Base', link: '/en/nuxt/index' },
+                { text: 'SSR Principles', link: '/en/nuxt/ssr-principles' },
+                { text: 'Serialization & Payload', link: '/en/nuxt/serialization-payload' },
+                { text: 'Hydration & mismatch', link: '/en/nuxt/hydration' },
+                { text: 'Data fetching & cross-environment state', link: '/en/nuxt/data-fetching' },
+                { text: 'Getting started & project structure', link: '/en/nuxt/getting-started' },
+                { text: 'Routing, layouts, middleware & server layer', link: '/en/nuxt/routing-and-architecture' },
+                { text: 'Rendering modes & deployment', link: '/en/nuxt/rendering-modes-and-deploy' },
+                { text: 'Top pitfalls & cheat sheet', link: '/en/nuxt/pitfalls-cheatsheet' },
               ],
             },
           ],

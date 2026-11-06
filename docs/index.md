@@ -73,4 +73,12 @@ features:
     title: Python → AI 开发知识库入口
     details: 从 Python 基础到 AI 开发的完整路径：语法与进阶、Flask/Django、数据分析、机器学习/PyTorch、大模型应用与工程部署。
     link: /python/
+  - icon:
+      src: /nuxt.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Nuxt 知识库入口
+    details: Nuxt 3/4 从原理到实战：SSR 请求链路、Payload 序列化、水合机制、数据获取、渲染模式与部署。
+    link: /nuxt/
 ---

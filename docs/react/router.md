@@ -48,8 +48,27 @@ React Router：写成嵌套的 `<Route>` 元素，`element` 是要渲染的组�
 </Routes>
 ```
 
-::: info 也支持"配置式"（data router）
-v6.4 起可用 `createBrowserRouter([{ path, element, children, loader }])` + `<RouterProvider>`，形态更接近 vue-router 的数组配置，还能挂 `loader`/`action`（数据预取）。习惯配置式对象的 Vue 开发者会觉得这个更亲切。下文 hooks 部分两种都通用。
+::: info 也支持"配置式"（data router）：RouterProvider 集中管理路由
+React 也可以像 Vue 一样把路由**集中到一处配置、统一管理**：v6.4 起用 `createBrowserRouter([...])` 把整个路由表定义成一个数组，再交给 `<RouterProvider router={router} />` 渲染，不写嵌套的 `<Routes>` 组件树：
+
+```jsx
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  { path: '/user/:id', element: <User /> },
+  { path: '/admin', element: <AdminLayout />, children: [
+      { path: 'dashboard', element: <Dashboard /> },       // 子路由，父组件渲染 <Outlet/>
+  ]},
+  { path: '*', element: <Navigate to="/" replace /> },     // 404 兜底 + 重定向
+]);
+
+// 入口（如 main.jsx）
+createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+);
+```
+
+形态与上面 vue-router 的数组配置几乎一一对应，还额外支持 `loader`/`action`（数据预取）、`handle`（自定义 meta 信息，见下文）。习惯集中式配置的 Vue 开发者会觉得这个更亲切。下文 hooks 部分两种都通用。
 :::
 
 ## 出口与链接
