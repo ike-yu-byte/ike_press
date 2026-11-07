@@ -7,6 +7,44 @@ export default defineConfig({
 
   head: [['link', { rel: 'icon', href: '/favicon.png' }]],
 
+  /**
+   * search 必须放在顶层 themeConfig 中：
+   * VitePress 构建期用 site.themeConfig?.search?.provider === 'local'
+   * 决定编译期常量 __VP_LOCAL_SEARCH__，写在 locales.*.themeConfig 里不会生效，
+   * 搜索按钮会渲染成空节点（导航栏中间留白）。
+   * 多语言翻译则通过 options.locales[localeKey].translations 分别提供。
+   */
+  themeConfig: {
+    search: {
+      // 英文下用内置英文
+      provider: 'local',
+      options: {
+        locales: {
+          root: {
+            translations: {
+              button: { buttonText: '搜索文档', buttonAriaLabel: '搜索文档' },
+              modal: {
+                displayDetails: '展开详情',
+                resetButtonTitle: '清空搜索',
+                backButtonTitle: '关闭',
+                noResultsText: '无法找到相关结果',
+                footer: {
+                  selectText: '选择',
+                  selectKeyAriaLabel: '回车键',
+                  navigateText: '切换',
+                  navigateUpKeyAriaLabel: '上箭头',
+                  navigateDownKeyAriaLabel: '下箭头',
+                  closeText: '关闭',
+                  closeKeyAriaLabel: 'Esc 键',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
   // 国际化：root = 简体中文（站点根路径），en = 英文（/en/ 路径）
   // 配置 locales 后，导航栏右上角自动出现语言切换下拉按钮
   locales: {
@@ -16,17 +54,34 @@ export default defineConfig({
       title: 'IKE Press',
       description: '一个程序员的碎碎念',
       themeConfig: {
+        /**
+         * 导航分组：带 items 的项在导航栏渲染为下拉按钮（悬浮/点击展开）
+         * 分组自身的 activeMatch 是正则字符串，用于在子页面时高亮整个分组
+         */
         nav: [
           { text: '首页', link: '/' },
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
-          { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
-          { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
-          { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
-          { text: 'React', link: '/react/', activeMatch: '/react/' },
+          {
+            text: '前端',
+            activeMatch: '^/(flutter|vue|nuxt|react|electron)(/|$)',
+            items: [
+              { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
+              { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+              { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
+              { text: 'React', link: '/react/', activeMatch: '/react/' },
+              { text: 'Electron', link: '/electron/', activeMatch: '/electron/' },
+            ],
+          },
           { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
-          { text: 'Java', link: '/java/', activeMatch: '/java/' },
+          {
+            text: '后端',
+            activeMatch: '^/(java|nestjs)(/|$)',
+            items: [
+              { text: 'Java', link: '/java/', activeMatch: '/java/' },
+              { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
+            ],
+          },
           { text: 'Python', link: '/python/', activeMatch: '/python/' },
-          { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
         sidebar: {
@@ -312,6 +367,42 @@ export default defineConfig({
               ],
             },
           ],
+
+          '/electron/': [
+            {
+              text: '开始',
+              collapsed: false,
+              items: [
+                { text: 'Electron 知识库入口', link: '/electron/index' },
+                { text: '进程模型与运行时架构', link: '/electron/architecture' },
+                { text: '环境、脚手架与第一个窗口', link: '/electron/getting-started' },
+              ],
+            },
+            {
+              text: '核心机制',
+              collapsed: false,
+              items: [
+                { text: 'IPC 进程通信全解', link: '/electron/ipc' },
+                { text: '窗口与视图管理', link: '/electron/window' },
+                { text: '菜单、托盘与系统集成', link: '/electron/system-integration' },
+                { text: '安全加固清单', link: '/electron/security' },
+              ],
+            },
+            {
+              text: '工程化',
+              collapsed: false,
+              items: [
+                { text: '原生模块与本地能力', link: '/electron/native-modules' },
+                { text: '打包、签名与自动更新', link: '/electron/build-release' },
+                { text: '性能优化与调试排错', link: '/electron/performance-debug' },
+              ],
+            },
+            {
+              text: '速查',
+              collapsed: false,
+              items: [{ text: 'API 与踩坑速查表', link: '/electron/cheatsheet' }],
+            },
+          ],
         },
 
         outline: { level: [2, 6], label: '本页目录' }, // h2-h6收录到右侧目录
@@ -322,34 +413,6 @@ export default defineConfig({
         sidebarMenuLabel: '菜单', // 仅移动端可见
         returnToTopLabel: '返回顶部', // 仅移动端可见
         langMenuLabel: '切换语言',
-
-        search: {
-          provider: 'local',
-          options: {
-            locales: {
-              root: {
-                translations: {
-                  button: { buttonText: '搜索文档', buttonAriaLabel: '搜索文档' },
-                  modal: {
-                    displayDetails: '展开详情',
-                    resetButtonTitle: '清空搜索',
-                    backButtonTitle: '关闭',
-                    noResultsText: '无法找到相关结果',
-                    footer: {
-                      selectText: '选择',
-                      selectKeyAriaLabel: '回车键',
-                      navigateText: '切换',
-                      navigateUpKeyAriaLabel: '上箭头',
-                      navigateDownKeyAriaLabel: '下箭头',
-                      closeText: '关闭',
-                      closeKeyAriaLabel: 'Esc 键',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
 
         socialLinks: [
           { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
@@ -375,16 +438,27 @@ export default defineConfig({
       title: 'IKE Press',
       description: 'A programmer’s rambling blog',
       themeConfig: {
+        // 与中文站保持同样的分组结构；en 暂无 NestJS 文档，后端分组只放 Java
         nav: [
           { text: 'Home', link: '/en/' },
           { text: 'Guide', link: '/en/guide/', activeMatch: '/en/guide/' },
-          { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
-          { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
-          { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
+          {
+            text: 'Frontend',
+            activeMatch: '^/en/(flutter|vue|nuxt|react)(/|$)',
+            items: [
+              { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
+              { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
+              { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
+              { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
+            ],
+          },
           { text: 'Agent', link: '/en/agent/', activeMatch: '/en/agent/' },
-          { text: 'Java', link: '/en/java/', activeMatch: '/en/java/' },
+          {
+            text: 'Backend',
+            activeMatch: '^/en/(java|nestjs)(/|$)',
+            items: [{ text: 'Java', link: '/en/java/', activeMatch: '/en/java/' }],
+          },
           { text: 'Python', link: '/en/python/', activeMatch: '/en/python/' },
-          { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
         ],
 
         sidebar: {
@@ -635,10 +709,6 @@ export default defineConfig({
         docFooter: { prev: 'Previous', next: 'Next' },
         lastUpdatedText: 'Last updated',
         langMenuLabel: 'Change language',
-
-        search: {
-          provider: 'local',
-        },
 
         socialLinks: [
           { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },

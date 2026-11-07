@@ -81,4 +81,12 @@ features:
     title: Nuxt 知识库入口
     details: Nuxt 3/4 从原理到实战：SSR 请求链路、Payload 序列化、水合机制、数据获取、渲染模式与部署。
     link: /nuxt/
+  - icon:
+      src: /electron.svg
+      width: 28
+      height: 28
+      wrap: true
+    title: Electron 桌面应用
+    details: 用 Web 技术写跨平台桌面应用：双进程模型、IPC 通信、窗口与系统集成、安全加固、原生模块、打包签名与自动更新。
+    link: /electron/
 ---
