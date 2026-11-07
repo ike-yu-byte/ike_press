@@ -63,14 +63,14 @@ export default defineConfig({
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           {
             text: '前端',
-            activeMatch: '^/(flutter|vue|react)(/|$)',
+            activeMatch: '^/(flutter|vue|nuxt|react)(/|$)',
             items: [
               { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
               { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+              { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
               { text: 'React', link: '/react/', activeMatch: '/react/' },
             ],
           },
-          { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
           { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
           {
             text: '后端',
@@ -407,10 +407,11 @@ export default defineConfig({
           { text: 'Guide', link: '/en/guide/', activeMatch: '/en/guide/' },
           {
             text: 'Frontend',
-            activeMatch: '^/en/(flutter|vue|react)(/|$)',
+            activeMatch: '^/en/(flutter|vue|nuxt|react)(/|$)',
             items: [
               { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
               { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
+              { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
               { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
             ],
           },
@@ -421,7 +422,6 @@ export default defineConfig({
             items: [{ text: 'Java', link: '/en/java/', activeMatch: '/en/java/' }],
           },
           { text: 'Python', link: '/en/python/', activeMatch: '/en/python/' },
-          { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
         ],
 
         sidebar: {
