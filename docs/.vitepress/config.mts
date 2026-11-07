@@ -63,12 +63,13 @@ export default defineConfig({
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
           {
             text: '前端',
-            activeMatch: '^/(flutter|vue|nuxt|react)(/|$)',
+            activeMatch: '^/(flutter|vue|nuxt|react|electron)(/|$)',
             items: [
               { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
               { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
               { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
               { text: 'React', link: '/react/', activeMatch: '/react/' },
+              { text: 'Electron', link: '/electron/', activeMatch: '/electron/' },
             ],
           },
           { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
@@ -364,6 +365,42 @@ export default defineConfig({
                 { text: 'InkWell 水波纹', link: '/flutter/components/inkwell' },
                 { text: 'Draggable 拖拽', link: '/flutter/components/draggable' },
               ],
+            },
+          ],
+
+          '/electron/': [
+            {
+              text: '开始',
+              collapsed: false,
+              items: [
+                { text: 'Electron 知识库入口', link: '/electron/index' },
+                { text: '进程模型与运行时架构', link: '/electron/architecture' },
+                { text: '环境、脚手架与第一个窗口', link: '/electron/getting-started' },
+              ],
+            },
+            {
+              text: '核心机制',
+              collapsed: false,
+              items: [
+                { text: 'IPC 进程通信全解', link: '/electron/ipc' },
+                { text: '窗口与视图管理', link: '/electron/window' },
+                { text: '菜单、托盘与系统集成', link: '/electron/system-integration' },
+                { text: '安全加固清单', link: '/electron/security' },
+              ],
+            },
+            {
+              text: '工程化',
+              collapsed: false,
+              items: [
+                { text: '原生模块与本地能力', link: '/electron/native-modules' },
+                { text: '打包、签名与自动更新', link: '/electron/build-release' },
+                { text: '性能优化与调试排错', link: '/electron/performance-debug' },
+              ],
+            },
+            {
+              text: '速查',
+              collapsed: false,
+              items: [{ text: 'API 与踩坑速查表', link: '/electron/cheatsheet' }],
             },
           ],
         },
