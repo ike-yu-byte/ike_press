@@ -7,6 +7,44 @@ export default defineConfig({
 
   head: [['link', { rel: 'icon', href: '/favicon.png' }]],
 
+  /**
+   * search 必须放在顶层 themeConfig 中：
+   * VitePress 构建期用 site.themeConfig?.search?.provider === 'local'
+   * 决定编译期常量 __VP_LOCAL_SEARCH__，写在 locales.*.themeConfig 里不会生效，
+   * 搜索按钮会渲染成空节点（导航栏中间留白）。
+   * 多语言翻译则通过 options.locales[localeKey].translations 分别提供。
+   */
+  themeConfig: {
+    search: {
+      // 英文下用内置英文
+      provider: 'local',
+      options: {
+        locales: {
+          root: {
+            translations: {
+              button: { buttonText: '搜索文档', buttonAriaLabel: '搜索文档' },
+              modal: {
+                displayDetails: '展开详情',
+                resetButtonTitle: '清空搜索',
+                backButtonTitle: '关闭',
+                noResultsText: '无法找到相关结果',
+                footer: {
+                  selectText: '选择',
+                  selectKeyAriaLabel: '回车键',
+                  navigateText: '切换',
+                  navigateUpKeyAriaLabel: '上箭头',
+                  navigateDownKeyAriaLabel: '下箭头',
+                  closeText: '关闭',
+                  closeKeyAriaLabel: 'Esc 键',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
   // 国际化：root = 简体中文（站点根路径），en = 英文（/en/ 路径）
   // 配置 locales 后，导航栏右上角自动出现语言切换下拉按钮
   locales: {
@@ -323,34 +361,6 @@ export default defineConfig({
         returnToTopLabel: '返回顶部', // 仅移动端可见
         langMenuLabel: '切换语言',
 
-        search: {
-          provider: 'local',
-          options: {
-            locales: {
-              root: {
-                translations: {
-                  button: { buttonText: '搜索文档', buttonAriaLabel: '搜索文档' },
-                  modal: {
-                    displayDetails: '展开详情',
-                    resetButtonTitle: '清空搜索',
-                    backButtonTitle: '关闭',
-                    noResultsText: '无法找到相关结果',
-                    footer: {
-                      selectText: '选择',
-                      selectKeyAriaLabel: '回车键',
-                      navigateText: '切换',
-                      navigateUpKeyAriaLabel: '上箭头',
-                      navigateDownKeyAriaLabel: '下箭头',
-                      closeText: '关闭',
-                      closeKeyAriaLabel: 'Esc 键',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-
         socialLinks: [
           { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
           {
@@ -635,10 +645,6 @@ export default defineConfig({
         docFooter: { prev: 'Previous', next: 'Next' },
         lastUpdatedText: 'Last updated',
         langMenuLabel: 'Change language',
-
-        search: {
-          provider: 'local',
-        },
 
         socialLinks: [
           { icon: 'github', link: 'https://github.com/ike-yu-byte/ike_press' },
