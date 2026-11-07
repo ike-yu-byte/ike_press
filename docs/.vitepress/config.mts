@@ -54,17 +54,33 @@ export default defineConfig({
       title: 'IKE Press',
       description: '一个程序员的碎碎念',
       themeConfig: {
+        /**
+         * 导航分组：带 items 的项在导航栏渲染为下拉按钮（悬浮/点击展开）
+         * 分组自身的 activeMatch 是正则字符串，用于在子页面时高亮整个分组
+         */
         nav: [
           { text: '首页', link: '/' },
           { text: '指南', link: '/guide/', activeMatch: '/guide/' },
-          { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
-          { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+          {
+            text: '前端',
+            activeMatch: '^/(flutter|vue|react)(/|$)',
+            items: [
+              { text: 'Flutter', link: '/flutter/', activeMatch: '/flutter/' },
+              { text: 'Vue', link: '/vue/', activeMatch: '/vue/' },
+              { text: 'React', link: '/react/', activeMatch: '/react/' },
+            ],
+          },
           { text: 'Nuxt', link: '/nuxt/', activeMatch: '/nuxt/' },
-          { text: 'React', link: '/react/', activeMatch: '/react/' },
           { text: 'Agent', link: '/agent/', activeMatch: '/agent/' },
-          { text: 'Java', link: '/java/', activeMatch: '/java/' },
+          {
+            text: '后端',
+            activeMatch: '^/(java|nestjs)(/|$)',
+            items: [
+              { text: 'Java', link: '/java/', activeMatch: '/java/' },
+              { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
+            ],
+          },
           { text: 'Python', link: '/python/', activeMatch: '/python/' },
-          { text: 'NestJS', link: '/nestjs/', activeMatch: '/nestjs/' },
         ],
 
         sidebar: {
@@ -385,14 +401,25 @@ export default defineConfig({
       title: 'IKE Press',
       description: 'A programmer’s rambling blog',
       themeConfig: {
+        // 与中文站保持同样的分组结构；en 暂无 NestJS 文档，后端分组只放 Java
         nav: [
           { text: 'Home', link: '/en/' },
           { text: 'Guide', link: '/en/guide/', activeMatch: '/en/guide/' },
-          { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
-          { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
-          { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
+          {
+            text: 'Frontend',
+            activeMatch: '^/en/(flutter|vue|react)(/|$)',
+            items: [
+              { text: 'Flutter', link: '/en/flutter/', activeMatch: '/en/flutter/' },
+              { text: 'Vue', link: '/en/vue/', activeMatch: '/en/vue/' },
+              { text: 'React', link: '/en/react/', activeMatch: '/en/react/' },
+            ],
+          },
           { text: 'Agent', link: '/en/agent/', activeMatch: '/en/agent/' },
-          { text: 'Java', link: '/en/java/', activeMatch: '/en/java/' },
+          {
+            text: 'Backend',
+            activeMatch: '^/en/(java|nestjs)(/|$)',
+            items: [{ text: 'Java', link: '/en/java/', activeMatch: '/en/java/' }],
+          },
           { text: 'Python', link: '/en/python/', activeMatch: '/en/python/' },
           { text: 'Nuxt', link: '/en/nuxt/', activeMatch: '/en/nuxt/' },
         ],
