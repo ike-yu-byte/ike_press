@@ -1,12 +1,33 @@
 # Python → AI 开发知识库入口
 
 > 一条从零基础到大模型应用开发的学习路径：Python 语言 → Web 框架（Flask/Django）→ 数据处理 → 机器学习/深度学习 → LLM 应用开发 → 工程化部署。每一站都有对应章节，按顺序学即可，不必纠结"下一步学什么"。
+>
+> **前端同学专用**：本库所有 Python 知识都配了 **JS 对照**，用你熟悉的 Node/Express/TS/Zod/TF.js 做锚点。先读 JS 对照再记 Python 差异，效率最高。
 
 ## 一、为什么是 Python 到 AI 这条路
 
 - Python 是 AI 领域的**唯一通用货币**：模型训练（PyTorch）、应用开发（LangChain/LlamaIndex）、服务化（FastAPI）、数据处理（Pandas）全在 Python 生态里。
 - 2026 招聘市场上，"AI 应用工程师 / LLM 应用开发"岗的核心要求是：**Python 工程能力 + 大模型 API/LangChain/RAG/Agent + 服务化部署**——不需要你会训练基础大模型，但要求你能把模型能力变成可用产品。
 - Flask/Django 解决的是"会写脚本"到"会写服务"的中间跳：Web 请求、数据库、鉴权、部署这些工程能力，在任何后端/AI 岗都是地基。
+
+**JS 对照速查（全库通用）：**
+
+| Python 生态 | JS / TS 对位 | 差异提示 |
+| --- | --- | --- |
+| `python` + `.venv` + `pip/uv` | `node` + `node_modules` + `npm/pnpm` | Python 按解释器隔离，JS 按项目 node_modules 隔离 |
+| 缩进即语法 | `{}` 大括号 | 迁移时最不习惯的点 |
+| `list` / `dict` / `set` | `Array` / `Object` / `Set` | `bool([])` 在 Python 是 False，JS 是 true |
+| `def` / `lambda` | `function` / 箭头函数 | Python 一等公民与 JS 一致 |
+| `class A(B):` | `class A extends B` | 继承写法不同，语义相同 |
+| `try/except/finally` | `try/catch/finally` | Python 没有 `catch`，还有 `else` 块 |
+| `typing` + Pydantic | TypeScript + Zod | 编译期检查 + 运行期校验双层同构 |
+| Flask / Django / FastAPI | Express / NestJS | FastAPI 的 Pydantic 自动文档最接近 NestJS + Swagger |
+| NumPy / Pandas | mathjs / Danfo.js / Arquero | JS 没有原生向量化，大数据量 Python 更快 |
+| PyTorch / transformers | TF.js / Transformers.js | 概念相同，训练大模型仍以 Python 为主 |
+| LangChain / LangGraph | LangChain.js / LangGraph.js | API 名字几乎一一对应（`|` → `.pipe()`） |
+| openai-python | openai-js | 请求结构相同，多一层 `await` |
+| uvicorn + Gunicorn | node + PM2/cluster | 都需要多进程吃满多核 |
+| celery + Redis | BullMQ + Redis | 异步任务同构 |
 
 ## 二、学习顺序总览（六站路线）
 
@@ -25,6 +46,7 @@ Python 语法/OOP   →   并发/装饰器/工程化  →   Flask 最小可用 �
 | 1 | [Python 基础入门](./python-basics) | 写出正确的脚本：数据类型、流程控制、函数、面向对象、异常、文件 | 2-3 周 |
 | 2 | [Python 进阶与工程化](./python-advanced) | 写出地道的 Python：生成器、装饰器、类型注解、并发/异步、虚拟环境 | 2-3 周 |
 | 3a | [Flask Web 开发](./flask) | 独立搭一个 REST API 服务：路由、蓝图、SQLAlchemy、鉴权 | 2 周 |
+| 3c | [FastAPI 入门](./fastapi) | 写出现代异步 API：参数校验、依赖注入、流式响应、OpenAPI/Dify | 2 周 |
 | 3b | [Django 全栈框架](./django) | 用"全家桶"快速做出带后台管理的完整站点：ORM、Admin、DRF | 3 周 |
 | 4 | [数据处理三件套](./data-analysis) | NumPy 向量化、Pandas 清洗分析、SQL/Redis 的 Python 姿势 | 2-3 周 |
 | 5 | [机器学习与深度学习](./ml-dl) | sklearn 跑通建模全流程；PyTorch 理解张量/自动求导/训练循环 | 3-4 周 |
@@ -45,7 +67,7 @@ Python 语法/OOP   →   并发/装饰器/工程化  →   Flask 最小可用 �
 | "熟悉 Pandas/NumPy 数据处理" | groupby/merge/透视表、向量化思维、缺失值处理 | [数据处理](./data-analysis) |
 | "了解机器学习基本原理" | 监督/无监督、过拟合、评估指标、sklearn 流程 | [机器学习](./ml-dl) |
 | "有 LangChain / RAG / Agent 开发经验" | 链式调用、向量库、检索策略、工具调用、多轮记忆 | [大模型应用](./llm-dev) |
-| "熟悉 FastAPI / 模型服务化部署" | Pydantic 校验、异步端点、流式响应、Docker/GPU | [工程化](./ai-engineering) |
+| "熟悉 FastAPI / 模型服务化部署" | Pydantic 校验、异步端点、流式响应、Docker/GPU | [FastAPI](./fastapi) / [工程化](./ai-engineering) |
 | "了解 PyTorch 优先"（算法岗） | Tensor 操作、autograd、训练循环、transformers 库 | [深度学习](./ml-dl) / [大模型应用](./llm-dev) |
 | "有微调经验（LoRA/SFT）加分" | 概念+一次实操经历即可，应用岗不要求手推公式 | [大模型应用](./llm-dev) 微调节 |
 
@@ -53,11 +75,11 @@ Python 语法/OOP   →   并发/装饰器/工程化  →   Flask 最小可用 �
 
 每个阶段做一个"能跑起来"的东西，比刷完所有教程有效十倍：
 
-1. **第 1-2 站**：命令行工具——批量重命名/账单 CSV 汇总器（练文件 IO + argparse + 类型注解）。
-2. **第 3 站**：Flask 或 Django 写一个"待办 API + 简单后台"，带 SQLite 和 token 鉴权。
-3. **第 4 站**：拿一份真实公开数据集（如 Kaggle 泰坦尼克），Pandas 清洗 + 可视化 + 结论输出。
-4. **第 5 站**：sklearn 对同一数据集做分类模型，交叉验证 + 混淆矩阵讲清效果。
-5. **第 6-7 站（简历主打项目）**：**知识库问答机器人**——FastAPI + LangChain + RAG + 向量库 + 流式输出 + Docker 部署，完整走一遍"从模型 API 到线上服务"。这个项目与 Java 岗的 Spring AI 项目、前端 Agent 知识库互为印证，简历上按目标岗位挑一个主打。
+1. **第 1-2 站**：命令行工具——批量重命名/账单 CSV 汇总器（练文件 IO + argparse + 类型注解）。JS 对照：用 `commander` + `fs` 写同样的 CLI。
+2. **第 3 站**：Flask 或 Django 写一个"待办 API + 简单后台"，带 SQLite 和 token 鉴权。JS 对照：Express + Prisma + JWT 中间件。
+3. **第 4 站**：拿一份真实公开数据集（如 Kaggle 泰坦尼克），Pandas 清洗 + 可视化 + 结论输出。JS 对照：Danfo.js + Chart.js。
+4. **第 5 站**：sklearn 对同一数据集做分类模型，交叉验证 + 混淆矩阵讲清效果。JS 对照：TF.js 跑通同等流程（概念相同，工具链不同）。
+5. **第 6-7 站（简历主打项目）**：**知识库问答机器人**——FastAPI + LangChain + RAG + 向量库 + 流式输出 + Docker 部署，完整走一遍"从模型 API 到线上服务"。JS 对照版本：Next.js/Express + LangChain.js + Pinecone + SSE，但**建议至少用 FastAPI 做一版**，因为 JD 明确要求 Python 工程能力。这个项目与 Java 岗的 Spring AI 项目、前端 Agent 知识库互为印证，简历上按目标岗位挑一个主打。
 
 ## 五、学习资源
 
@@ -71,16 +93,18 @@ Python 语法/OOP   →   并发/装饰器/工程化  →   Flask 最小可用 �
   <a href="https://python.langchain.com/" target="_blank" rel="noopener noreferrer" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:8px;font-size:14px;">LangChain 文档</a>
   <a href="https://huggingface.co/learn" target="_blank" rel="noopener noreferrer" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:8px;font-size:14px;">HuggingFace 课程</a>
   <a href="https://www.liaoxuefeng.com/wiki/1016959663602400" target="_blank" rel="noopener noreferrer" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:8px;font-size:14px;">廖雪峰 Python 教程</a>
+  <a href="https://js.langchain.com/" target="_blank" rel="noopener noreferrer" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:8px;font-size:14px;">LangChain.js 文档（对照用）</a>
+  <a href="https://www.tensorflow.org/js" target="_blank" rel="noopener noreferrer" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:8px;font-size:14px;">TensorFlow.js（对照用）</a>
 </div>
 
 ## 六、常见版本与工具链速查（2026）
 
-| 项 | 现状口径 |
-| --- | --- |
-| Python 版本 | 3.12/3.13 生产主流；3.14（2025-10 发布）带来实验性 free-threading（无 GIL 构建）与 JIT——面试提一句"知道 GIL 及其演进方向"即可 |
-| 包/环境管理 | `venv` + pip 是基础；新项目推荐 **uv**（快 10-100 倍）或 poetry；conda 用于数据科学环境 |
-| Web 框架 | Flask（轻）/ Django（全栈）/ **FastAPI（异步 + AI 服务化事实标准）** |
-| 深度学习 | PyTorch 一统研究界，工业推理常见 ONNX/TensorRT |
-| LLM 应用 | LangChain / LlamaIndex / 各家 SDK（openai-python 兼容多数国产模型）；概念体系见本站 [Agent 知识库](/agent/) |
+| 项 | 现状口径 | JS 对照 |
+| --- | --- | --- |
+| Python 版本 | 3.12/3.13 生产主流；3.14（2025-10 发布）带来实验性 free-threading（无 GIL 构建）与 JIT——面试提一句"知道 GIL 及其演进方向"即可 | Node 22 LTS |
+| 包/环境管理 | `venv` + pip 是基础；新项目推荐 **uv**（快 10-100 倍）或 poetry；conda 用于数据科学环境 | npm/pnpm + package.json + lock |
+| Web 框架 | Flask（轻）/ Django（全栈）/ **FastAPI（异步 + AI 服务化事实标准）** | Express（轻）/ NestJS（全栈）/ Hono（边缘） |
+| 深度学习 | PyTorch 一统研究界，工业推理常见 ONNX/TensorRT | TF.js / Transformers.js（推理为主） |
+| LLM 应用 | LangChain / LlamaIndex / 各家 SDK（openai-python 兼容多数国产模型）；概念体系见本站 [Agent 知识库](/agent/) | LangChain.js / LangGraph.js / openai-js |
 
-> 前端同学转 AI：语言站（1-2）重点补 Python 与 JS 的心智差异（缩进即语法、GIL、动态类型+类型注解）；Web 站（3）与 Node/Express 概念一一对应，可快速带过。
+> 前端同学转 AI：语言站（1-2）重点补 Python 与 JS 的心智差异（缩进即语法、GIL、动态类型+类型注解）；Web 站（3）与 Node/Express 概念一一对应，可快速带过。**本库每站都已配 JS 对照，先读对照再记 Python 写法。**

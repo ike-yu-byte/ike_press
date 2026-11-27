@@ -55,3 +55,39 @@
     --vp-home-hero-image-filter: blur(56px);
   }
 }
+
+/**
+ * Python / JS 双栏代码对照组件（CodeCompare）
+ */
+.code-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 16px 0;
+}
+
+.code-compare-col {
+  min-width: 0;
+}
+
+.code-compare-label {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.code-compare-col > [class*='language-'] {
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .code-compare {
+    grid-template-columns: 1fr;
+  }
+}

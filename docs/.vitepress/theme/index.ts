@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import Layout from './Layout.vue'
 import FlutterPreview from './components/FlutterPreview.vue'
+import CodeCompare from './components/CodeCompare.vue'
 import './styles/var.css'
 
 export default {
@@ -11,5 +12,6 @@ export default {
   enhanceApp({ app }) {
     // 也保留全局注册，普通页面可在正文内手动放置
     app.component('FlutterPreview', FlutterPreview)
+    app.component('CodeCompare', CodeCompare)
   },
 } satisfies Theme

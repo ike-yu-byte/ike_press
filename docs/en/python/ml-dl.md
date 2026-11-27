@@ -1,17 +1,21 @@
 # Machine & Deep Learning Foundations
 
 > Stop 5: the foundation of AI. Application roles don't expect hand-derived backprop, but they do expect **correct model intuition**: train/validate/overfit, choosing metrics, why the Transformer rules today. The concepts here feed directly into the LLM chapter.
+>
+> **How to read**: every concept is immediately followed by a **JS counterpart (TensorFlow.js / Hugging Face JS)**. The concepts are language-agnostic; only the toolchain differs.
 
 ## 1. The machine-learning worldview
 
-```
+```text
 dataset ──split──→ train (learns parameters) / validation (tunes hyperparams, picks models) / test (touched ONCE, acceptance)
 tasks ──two families──→ supervised (labeled: classification/regression) | unsupervised (unlabeled: clustering/dimensionality reduction)
 failure ──two kinds──→ underfitting (model too simple even for train)
                        overfitting (memorizes: train 99%, test 70%) → fixes: more data / regularization / early stopping / simpler model / CV
 ```
 
-- Feature engineering: numerics (imputation, scaling), categoricals (one-hot/target encoding), time (cyclic sin/cos, rolling stats) — on tabular data "good features beat fancy models" still holds.
+**JS counterpart:** the worldview is language-independent. TF.js does the same with `model.fit(trainX, trainY, { validationSplit: 0.2, epochs, callbacks })` — train/validation split, `epochs`, early-stopping callbacks are identical concepts with different API names.
+
+- Feature engineering: numerics (imputation, scaling), categoricals (one-hot/target encoding), time (cyclic sin/cos, rolling stats) — on tabular data "good features beat fancy models" still holds. JS side: Danfo.js or hand-written pipelines.
 - Metric selection (guaranteed exam material):
 
 | Scenario | Metric | Caveat |
@@ -22,6 +26,10 @@ failure ──two kinds──→ underfitting (model too simple even for train)
 | Ranking/reco | Top-K hit rate, NDCG | app roles meet these too |
 
 ## 2. scikit-learn: classic ML end to end
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
@@ -43,51 +51,157 @@ pre = ColumnTransformer([
 ])
 pipe = Pipeline([("pre", pre), ("clf", GradientBoostingClassifier())])
 
-scores = cross_val_score(pipe, X_tr, y_tr, cv=5, scoring="roc_auc")     # 5-fold CV
-print(f"AUC {scores.mean():.3f} ± {scores.std():.3f}")                  # report mean±std; single-fold lies
+scores = cross_val_score(pipe, X_tr, y_tr, cv=5, scoring="roc_auc")
+# 5-fold CV
+print(f"AUC {scores.mean():.3f} ± {scores.std():.3f}")
+# report mean±std; single-fold lies
 
 grid = GridSearchCV(pipe, {"clf__n_estimators": [200, 400], "clf__max_depth": [3, 5]},
-                    scoring="roc_auc", n_jobs=-1, cv=5)                 # grid: lower LR, more trees
-grid.best_estimator_.fit(X_tr, y_tr)                                    # tuning uses validation
+                    scoring="roc_auc", n_jobs=-1, cv=5)
+                    # grid: lower LR, more trees
+grid.best_estimator_.fit(X_tr, y_tr)
+# tuning uses validation
 pred = grid.best_estimator_.predict(X_te)
-print(classification_report(y_te, pred))                                # the test set appears exactly here
+print(classification_report(y_te, pred))
+# the test set appears exactly here
 ```
+
+</template>
+
+<template #js>
+
+```js
+// TF.js has models and training but no sklearn-style Pipeline / GridSearchCV
+import * as tf from "@tensorflow/tfjs";
+
+const model = tf.sequential({
+  layers: [tf.layers.dense({ inputShape: [features], units: 16, activation: "relu" }),
+           tf.layers.dense({ units: 1, activation: "sigmoid" })],
+});
+model.compile({ optimizer: tf.train.adam(0.001), loss: "binaryCrossentropy", metrics: ["accuracy"] });
+
+await model.fit(trainX, trainY, {
+  epochs: 50,
+  batchSize: 32,
+  validationSplit: 0.2,
+  // ≈ train_test_split + validation
+  callbacks: tf.callbacks.earlyStopping({ monitor: "val_loss", patience: 5 }),
+  // ≈ early stopping
+});
+
+const pred = model.predict(testX);
+// classification metrics: compute yourself or use a small metrics library
+```
+
+</template>
+
+</CodeCompare>
+
+> **Reality check**: tabular ML (GBDT/XGBoost) is far less mature in JS. Frontend devs learn this section mainly to **read Python code and understand metrics**; real tabular ML still lives in Python.
 
 Model cheat answers: logistic regression = interpretable baseline; random forest = robust and lazy; **GBDT families (XGBoost/LightGBM) = the tabular champion**; SVM for small data; KNN/clustering as literacy. Feature importance + SHAP explanations are what make business users trust the model.
 
 ## 3. Deep learning: intuition via PyTorch
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 import torch
 import torch.nn as nn
 
 # a tensor: an n-d array with a device — NumPy lookalike that is differentiable and GPU-resident
-x = torch.randn(64, 28 * 28, requires_grad=True)     # requires_grad: enters the autograd graph
-model = nn.Sequential(                                # a network = composition of parameterized layers
-    nn.Linear(28 * 28, 128), nn.ReLU(),                # fully connected + nonlinearity
-    nn.Dropout(0.2),                                   # randomly drop units while training: anti-overfit
+x = torch.randn(64, 28 * 28, requires_grad=True)
+# requires_grad: enters the autograd graph
+model = nn.Sequential(
+# a network = composition of parameterized layers
+    nn.Linear(28 * 28, 128), nn.ReLU(),
+    # fully connected + nonlinearity
+    nn.Dropout(0.2),
+    # randomly drop units while training: anti-overfit
     nn.Linear(128, 10),
 )
-logits = model(x)                                      # forward: x → hidden → output
+logits = model(x)
+# forward: x → hidden → output
 
-loss = nn.functional.cross_entropy(logits, y)          # loss: distance between prediction and truth
-loss.backward()                                        # backward: autograd computes grads along the graph
+loss = nn.functional.cross_entropy(logits, y)
+# loss: distance between prediction and truth
+loss.backward()
+# backward: autograd computes grads along the graph
 optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
-optimizer.step(); optimizer.zero_grad()                # update params, then clear grads (forget it = accumulate — classic bug)
+optimizer.step(); optimizer.zero_grad()
+# update params, then clear grads (forget it = accumulate — classic bug)
 
 # the training-loop skeleton every AI project is a variant of
 for epoch in range(10):
-    model.train()                                   # train mode: Dropout/BN active
-    for xb, yb in train_loader:                     # DataLoader: batching, shuffling, worker prefetch
-        xb, yb = xb.to(device), yb.to(device)       # device = cuda/cpu — CPUs choke on big matrices
+    model.train()
+    # train mode: Dropout/BN active
+    for xb, yb in train_loader:
+    # DataLoader: batching, shuffling, worker prefetch
+        xb, yb = xb.to(device), yb.to(device)
+        # device = cuda/cpu — CPUs choke on big matrices
         optimizer.zero_grad()
         loss = nn.functional.cross_entropy(model(xb), yb)
         loss.backward(); optimizer.step()
-    model.eval()                                    # eval mode: Dropout off, BN uses running stats
-    with torch.no_grad():                           # inference skips grad bookkeeping — saves VRAM, prevents updates
+    model.eval()
+    # eval mode: Dropout off, BN uses running stats
+    with torch.no_grad():
+    # inference skips grad bookkeeping — saves VRAM, prevents updates
         acc = evaluate(model, val_loader)
-    if acc > best: torch.save(model.state_dict(), "best.pt")    # early stopping + checkpointing
+    if acc > best: torch.save(model.state_dict(), "best.pt")
+    # early stopping + checkpointing
 ```
+
+</template>
+
+<template #js>
+
+```js
+import * as tf from "@tensorflow/tfjs";
+
+const model = tf.sequential({
+  layers: [
+    tf.layers.dense({ inputShape: [28 * 28], units: 128, activation: "relu" }),
+    tf.layers.dropout({ rate: 0.2 }),
+    // ≈ nn.Dropout
+    tf.layers.dense({ units: 10, activation: "softmax" }),
+  ],
+});
+model.compile({
+  optimizer: tf.train.adam(1e-3),
+  // ≈ AdamW (TF.js has no built-in AdamW)
+  loss: "categoricalCrossentropy",
+  // ≈ cross_entropy
+  metrics: ["accuracy"],
+});
+
+await model.fit(trainX, trainY, {
+  epochs: 10,
+  batchSize: 64,
+  validationData: [valX, valY],
+  callbacks: {
+    onEpochEnd: async (epoch, logs) => {
+      if (logs.val_acc > best) await model.save("file://./best-model");
+      // ≈ state_dict
+    },
+  },
+});
+// TF.js fit() handles zero_grad → backward → step internally
+```
+
+</template>
+
+</CodeCompare>
+
+| PyTorch | TensorFlow.js |
+| --- | --- |
+| `tensor(requires_grad=True)` | `tf.variable()` + `tf.grad()` |
+| `nn.Sequential` | `tf.sequential` |
+| `loss.backward(); optimizer.step()` | inside `model.fit()` |
+| `model.eval()` + `torch.no_grad()` | `model.predict()` |
+| `torch.save(state_dict)` | `model.save()` |
+| CUDA GPU | WebGL / WebGPU backend (browser) / Node backend |
 
 Concepts you must own: **layers are parameterized functions, loss measures gap, backprop computes gradients, optimizers descend, batch/epoch/lr are the three knobs**. OOM → shrink batch first.
 
@@ -106,20 +220,49 @@ Concepts you must own: **layers are parameterized functions, loss measures gap, 
 | Temperature / top_p | sampling knobs: 0 ≈ deterministic, high = creative and more hallucination |
 | RLHF / DPO | preference-alignment training stages — "why models are polite yet opinionated" |
 
+**JS counterpart:** these concepts are directly usable in JS — `@huggingface/transformers` runs BERT, embeddings and small language models in browser/Node; `pipeline("feature-extraction")` is the same API name as Python `transformers`. The vector-retrieval half of RAG can be built entirely in JS using the very same Embedding concept.
+
 ## 5. Five minutes in the Hugging Face ecosystem
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 from transformers import pipeline
 
-clf = pipeline("sentiment-analysis")                      # model auto-downloads: review sentiment
-print(clf("This product is fantastic!"))                  # [{'label': 'POSITIVE', 'score': 0.999}]
+clf = pipeline("sentiment-analysis")
+# model auto-downloads: review sentiment
+print(clf("This product is fantastic!"))
+# [{'label': 'POSITIVE', 'score': 0.999}]
 
 gen = pipeline("text-generation", model="Qwen/Qwen2.5-0.5B-Instruct")
-print(gen("Write a line of poetry about autumn", max_new_tokens=40))   # a generative model running locally
+print(gen("Write a line of poetry about autumn", max_new_tokens=40))
+# a generative model running locally
 ```
 
-- HF Hub is to AI what PyPI is to Python: models/datasets/demos hosted; get familiar with `transformers`, `datasets`, `peft` (fine-tuning).
-- Local small models (0.5B-7B): **Ollama** (`ollama run qwen2.5:7b`, ships an OpenAI-compatible API) — the free engine for the next chapter's RAG experiments.
+</template>
+
+<template #js>
+
+```js
+import { pipeline } from "@huggingface/transformers";
+
+const clf = await pipeline("sentiment-analysis");
+console.log(await clf("This product is fantastic!"));
+// [{ label: 'POSITIVE', score: 0.999 }]
+
+const gen = await pipeline("text-generation", "Qwen/Qwen2.5-0.5B-Instruct");
+console.log(await gen("Write a line of poetry about autumn", { max_new_tokens: 40 }));
+// nearly identical API — difference: await + ONNX model format
+```
+
+</template>
+
+</CodeCompare>
+
+- HF Hub is to AI what PyPI is to Python: models/datasets/demos hosted; get familiar with `transformers`, `datasets`, `peft` (fine-tuning). JS: `@huggingface/transformers` + `@huggingface/hub`.
+- Local small models (0.5B-7B): **Ollama** (`ollama run qwen2.5:7b`, ships an OpenAI-compatible API) — the free engine for the next chapter's RAG experiments. JS side: `ollama-js`.
 
 ## 6. How deep should an app engineer go?
 
@@ -130,13 +273,15 @@ print(gen("Write a line of poetry about autumn", max_new_tokens=40))   # a gener
 | Bonus | one LoRA fine-tune actually run | see the fine-tuning section next chapter |
 | Algo roles only | hand-derived backprop, paper reproductions | app candidates: skip the self-torture |
 
+JS devs note: TF.js / Transformers.js are enough for concepts and inference, but **training large models, fine-tuning and GBDT tabular ML remain Python-first**. Learning the Python code lets you read the entire AI toolchain.
+
 ## 7. Self-check
 
 1. Why may the test set be touched only once? Validation vs test roles?
 2. 1:99 imbalance, 98% accuracy — what does that prove? What should you look at?
 3. What does cross-validation defend against? Why must the scaler live inside the Pipeline?
 4. GBDT vs random forest philosophies (sequential error-correction vs parallel voting)?
-5. What breaks without `optimizer.zero_grad()`? `model.eval()` vs `torch.no_grad()` — each doing what?
+5. What breaks without `optimizer.zero_grad()`? `model.eval()` vs `torch.no_grad()` — each doing what? (Why doesn't TF.js need them?)
 6. Which RNN problem does self-attention solve?
 7. High vs low temperature — which tasks suit which?
 8. What is the KV Cache and why are long conversations expensive?
