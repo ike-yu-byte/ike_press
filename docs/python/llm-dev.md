@@ -1,16 +1,24 @@
 # 大模型应用开发（LLM App / LangChain / RAG / Agent）
 
 > 第 6 站：2026 招聘市场的当红炸子鸡。这一站把前五站全部变现：Python 工程（1-2 站）+ API 服务（3 站）+ 数据处理（4 站）+ 模型心智（5 站）= LLM 应用开发。概念体系与本站 [Agent 知识库](/agent/) 完全互通，本章聚焦 **Python 侧的落地写法**。
+>
+> **阅读方式**：每个 Python 知识点后都紧跟 **JS 对照（OpenAI JS SDK / LangChain.js）**。LLM 的 HTTP API 与概念是跨语言的，JS 侧几乎一一对应。
 
 ## 一、直接调用模型 API：一切的地基
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 # openai-python SDK 是事实标准——通义/DeepSeek/Kimi/GLM/Ollama 全部提供 OpenAI 兼容端点
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="sk-...",                      # 环境变量注入，永不进 git
-    base_url="https://api.deepseek.com",   # 换服务商只改这一行
+    api_key="sk-...",
+    # 环境变量注入，永不进 git
+    base_url="https://api.deepseek.com",
+    # 换服务商只改这一行
 )
 
 resp = client.chat.completions.create(
@@ -19,22 +27,67 @@ resp = client.chat.completions.create(
         {"role": "system", "content": "你是严谨的法规助手，只依据给定条文回答。"},
         {"role": "user", "content": "试用期最长可以约定多久？"},
     ],
-    temperature=0.2,                       # 事实型任务调低
+    temperature=0.2,
+    # 事实型任务调低
     stream=False,
 )
 print(resp.choices[0].message.content)
-print(resp.usage.prompt_tokens, resp.usage.completion_tokens)   # 成本从 token 统计开始
+print(resp.usage.prompt_tokens, resp.usage.completion_tokens)
+# 成本从 token 统计开始
 
 # 流式：打字机效果与首字延迟(TTFT)优化的基础
 for chunk in client.chat.completions.create(model="deepseek-chat", messages=msgs, stream=True):
     delta = chunk.choices[0].delta.content
     if delta:
-        print(delta, end="", flush=True)   # 每个 chunk 是增量片段——拼接逻辑自己写清
+        print(delta, end="", flush=True)
+        # 每个 chunk 是增量片段——拼接逻辑自己写清
 ```
+
+</template>
+
+<template #js>
+
+```js
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  // 环境变量注入
+  baseURL: "https://api.deepseek.com",
+  // 换服务商只改这一行
+});
+
+const resp = await client.chat.completions.create({
+  model: "deepseek-chat",
+  messages: [
+    { role: "system", content: "你是严谨的法规助手，只依据给定条文回答。" },
+    { role: "user", content: "试用期最长可以约定多久？" },
+  ],
+  temperature: 0.2,
+});
+console.log(resp.choices[0].message.content);
+console.log(resp.usage.prompt_tokens, resp.usage.completion_tokens);
+
+// 流式：for await 逐块
+const stream = await client.chat.completions.create({ model: "deepseek-chat", messages: msgs, stream: true });
+for await (const chunk of stream) {
+  process.stdout.write(chunk.choices[0]?.delta?.content ?? "");
+}
+```
+
+</template>
+
+</CodeCompare>
+
+> Python 版是**同步 for** / async 版 `async for`；JS 版是 `for await`。结构几乎一模一样，只是 `snake_case` 换成 `camelCase`、多了 `await`。
 
 裸 API 已够写很多应用；**框架解决的是"编排"**——多步链路、检索、记忆、工具这些模式化脏活。
 
 ## 二、LangChain 核心抽象：链与提示模板
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -48,7 +101,8 @@ prompt = ChatPromptTemplate.from_messages([
     ("user", "{question}"),
 ])
 
-chain = prompt | llm | StrOutputParser()          # LCEL 管道符：| 把 Runnable 串成链
+chain = prompt | llm | StrOutputParser()
+# LCEL 管道符：| 把 Runnable 串成链
 answer = chain.invoke({"role": "英语老师", "limit": 100, "question": "虚拟语气怎么用？"})
 
 # 结构化输出：让模型直接产出可解析的 JSON（Pydantic 定义 schema）
@@ -59,14 +113,49 @@ class Plan(BaseModel):
     steps: list[str]
     risk: str
 
-structured = llm.with_structured_output(Plan)     # 底层：工具调用或 JSON mode + 校验重试
+structured = llm.with_structured_output(Plan)
+# 底层：工具调用或 JSON mode + 校验重试
 plan: Plan = structured.invoke("制定一周学习 Python 的计划")
 ```
 
-- 心智：LangChain = "Runnable 协议 + 各家适配器"；`invoke/stream/batch` 三接口贯穿一切组件。
+</template>
+
+<template #js>
+
+```js
+import { ChatOpenAI } from "@langchain/openai";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { StringOutputParser } from "@langchain/core/output_parsers";
+
+const llm = new ChatOpenAI({ model: "deepseek-chat", configuration: { baseURL: "https://api.deepseek.com" }, temperature: 0 });
+const prompt = ChatPromptTemplate.fromMessages([
+  ["system", "你是{role}，输出不超过{limit}字。"],
+  ["human", "{question}"],
+]);
+
+const chain = prompt.pipe(llm).pipe(new StringOutputParser());
+// LCEL 的 | → JS 的 .pipe()
+const answer = await chain.invoke({ role: "英语老师", limit: 100, question: "虚拟语气怎么用？" });
+
+// 结构化输出：用 Zod 定义 schema（Pydantic 的 JS 对位）
+import { z } from "zod";
+const Plan = z.object({ steps: z.array(z.string()), risk: z.string() });
+const structured = llm.withStructuredOutput(Plan);
+const plan = await structured.invoke("制定一周学习 Python 的计划");
+```
+
+</template>
+
+</CodeCompare>
+
+- 心智：LangChain = "Runnable 协议 + 各家适配器"；`invoke/stream/batch` 三接口贯穿一切组件。JS 版 `.pipe()` 就是 Python 的 `|`。
 - 面试口径：框架是加速器不是黑盒——**能说清每个抽象底下就是 HTTP 调用 + Prompt 拼接 + 解析重试**，才不会被"离开框架还会不会"问倒。
 
 ## 三、RAG：知识库问答（应用岗第一大考点）
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 # —— 离线索引：加载 → 切分 → 向量化 → 入库 ——
@@ -94,22 +183,64 @@ rag_chain = (
 print(rag_chain.invoke("差旅住宿标准是多少？"))
 ```
 
+</template>
+
+<template #js>
+
+```js
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
+
+const docs = await new PDFLoader("kb/policy.pdf").load();
+const splitter = new RecursiveCharacterTextSplitter({ chunkSize: 500, chunkOverlap: 50 });
+const splits = await splitter.splitDocuments(docs);
+const store = await MemoryVectorStore.fromDocuments(splits, new OpenAIEmbeddings({ model: "text-embedding-v3" }));
+
+const retriever = store.asRetriever({ k: 4 });
+const ragChain = RunnableSequence.from([
+  { context: async (q) => (await retriever.invoke(q)).map(d => d.pageContent).join("\n\n"), question: (q) => q },
+  ChatPromptTemplate.fromTemplate("仅依据以下资料回答，资料没有就明说不知道：\n{context}\n问题：{question}"),
+  llm,
+  new StringOutputParser(),
+]);
+console.log(await ragChain.invoke("差旅住宿标准是多少？"));
+```
+
+</template>
+
+</CodeCompare>
+
+| RAG 组件 | Python | JS |
+| --- | --- | --- |
+| 文档加载 | `PyPDFLoader` / `DirectoryLoader` | `PDFLoader` / `DirectoryLoader` |
+| 切分 | `RecursiveCharacterTextSplitter` | `RecursiveCharacterTextSplitter` |
+| Embedding | `OpenAIEmbeddings` | `OpenAIEmbeddings` |
+| 向量库 | Chroma / FAISS / Milvus | MemoryVectorStore / Pinecone / Qdrant |
+| 链编排 | LCEL `|` | `.pipe()` / `RunnableSequence` |
+
 工程要点（每条都是面试展开点）：
 
 1. **切分策略**：固定长度 → 递归分隔符 → 按结构（Markdown 标题/合同条款）切；表格和代码块单独处理。
 2. **检索质量三板斧**：混合检索（BM25 + 向量）、重排 rerank（bge-reranker 精排 top20→top4）、元数据过滤（时间/部门）。
 3. **防幻觉三件套**：Prompt 限定"只依据资料"、低 temperature、答案带引用编号可回溯。
 4. **评估闭环**：golden set 50 题起步，检索看命中率，生成看忠实度（RAGAS 的 faithfulness/relevance 指标）——改一版参数跑一遍，别凭感觉调。
-5. LlamaIndex 是 RAG 特化替代者（数据连接器更丰富）；两者概念同构，会一个另一个半天上手。
+5. LlamaIndex 是 RAG 特化替代者（数据连接器更丰富）；JS 侧有 `llamaindex` 包，概念同构。
 
 ## 四、Agent：工具调用与自主规划
+
+<CodeCompare>
+
+<template #python>
 
 ```python
 from langchain_core.tools import tool
 
 @tool
 def query_order(order_no: str) -> str:
-    """按订单号查询订单状态。"""          # docstring 就是给模型看的工具说明书——写清楚！
+    """按订单号查询订单状态。"""
+    # docstring 就是给模型看的工具说明书——写清楚！
     return order_service.status(order_no)
 
 @tool
@@ -124,18 +255,42 @@ agent = create_react_agent(llm, [query_order, refund])
 result = agent.invoke({"messages": [("user", "订单 SO123 签收少件，帮我查单并退差价 20 元")]})
 ```
 
+</template>
+
+<template #js>
+
+```js
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
+import { createReactAgent } from "@langchain/langgraph/prebuilt";
+
+const queryOrder = tool(async ({ orderNo }) => orderService.status(orderNo), {
+  name: "query_order",
+  description: "按订单号查询订单状态。",
+  // ≈ Python 的 docstring——模型靠它选工具
+  schema: z.object({ orderNo: z.string() }),
+});
+
+const agent = createReactAgent({ llm, tools: [queryOrder, refund] });
+const result = await agent.invoke({ messages: [{ role: "user", content: "订单 SO123 签收少件，帮我查单并退差价 20 元" }] });
+```
+
+</template>
+
+</CodeCompare>
+
 - **ReAct 模式**：Reason（想）→ Act（调工具）→ Observe（看结果）循环——Agent 的心脏。
-- **LangGraph**（LangChain 官方推的编排层）：把流程画成状态图（节点=步骤，边=转移），支持分支/循环/人工确认节点（`interrupt`）/持久化 checkpoint——生产级 Agent 的事实标准之一。
-- **多轮记忆**：会话历史存 Redis/DB，按 `thread_id` 恢复；长对话做摘要压缩（上下文工程概念体系见 [Agent 知识库](/agent/)）。
+- **LangGraph**（官方编排层）：状态图（节点=步骤，边=转移），支持分支/循环/人工确认节点（`interrupt`）/持久化 checkpoint。JS 侧 `@langchain/langgraph` 完全对应。
+- **多轮记忆**：会话历史存 Redis/DB，按 `thread_id` 恢复；长对话做摘要压缩（上下文工程概念见 [Agent 知识库](/agent/)）。
 - **安全红线**：退款/下单类写操作必须**人工确认**或白名单限额；工具侧二次校验参数（模型会自信地编造订单号）。
-- **MCP**：工具生态的标准化协议——Python SDK 一行装饰器把函数变 MCP 工具，跨应用复用；概念见 [Agent 知识库 MCP 章](/agent/mcp-tools)。
+- **MCP**：工具生态标准化协议——Python SDK 一行装饰器把函数变 MCP 工具；JS 侧 `@modelcontextprotocol/sdk` 同样支持。概念见 [Agent 知识库 MCP 章](/agent/mcp-tools)。
 
 ## 五、Prompt 工程与上下文管理
 
-- 结构化 Prompt 模板：角色 / 任务 / 约束 / 输出格式 / few-shot 示例五段式；few-shot 示例的**格式一致性**比数量重要。
+- 结构化 Prompt 模板：角色 / 任务 / 约束 / 输出格式 / few-shot 示例五段式；few-shot 示例的**格式一致性**比数量重要。JS 侧 `ChatPromptTemplate.fromMessages` 与 Python 同名同构。
 - 长上下文策略：窗口不是越大越好——"lost in the middle"，关键信息放头尾；超窗口的对话做**滚动摘要**。
 - 缓存省钱：稳定内容（系统提示、RAG 资料）放前缀命中 prompt cache；路由分层——简单问题走小模型/规则，复杂再升级。
-- 评测集是护城河：Prompt 每次改动跑固定 case 集回归，LangSmith/Langfuse 追踪每次调用的输入输出与 token 成本。
+- 评测集是护城河：Prompt 每次改动跑固定 case 集回归，LangSmith/Langfuse 追踪每次调用的输入输出与 token 成本（JS 侧同样用 Langfuse SDK）。
 
 ## 六、微调：应用工程师的够用版
 
@@ -153,12 +308,14 @@ result = agent.invoke({"messages": [("user", "订单 SO123 签收少件，帮我
 # 验收 = 留 10% 数据做盲测对比基座模型；警惕灾难性遗忘（通用能力下降）
 ```
 
+**JS 对照：** 微调几乎没有 JS 原生方案——它依赖 CUDA/PyTorch 生态。JS 开发者的现实路径是：**用 Python 跑微调 → 导出模型 → JS/TS 侧只做推理与产品集成**。知道这条分工即可，不必在 JS 里硬找 LoRA。
+
 面试话术："我们场景先 RAG 后微调——微调只解决'怎么说'，不解决'知道什么'，知识更新靠重训是灾难"——这句能击败 80% 竞争者。
 
 ## 七、本章自检清单
 
-1. 流式响应的 chunk 为什么不能直接当完整文本存？TTFT 怎么优化？
-2. LCEL 的 `|` 背后是什么协议？invoke/stream/batch 各适合什么场景？
+1. 流式响应的 chunk 为什么不能直接当完整文本存？TTFT 怎么优化？（JS `for await` 对照）
+2. LCEL 的 `|` 背后是什么协议？invoke/stream/batch 各适合什么场景？（JS `.pipe()`）
 3. RAG 完整链路讲一遍，每环的可选组件与权衡？
 4. chunk_size/overlap 怎么定？评估怎么指导调参？
 5. ReAct 循环的终止条件？死循环怎么防（最大步数/预算）？
